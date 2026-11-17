@@ -40,3 +40,5 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 ## What would change it
 <observation that would reopen this decision>
 ```
+
+The approved original-mesh hardware pilot is scoped separately from the reported-run decisions. [Pilot decision](2026-11-17-original-a100-pilot.md)

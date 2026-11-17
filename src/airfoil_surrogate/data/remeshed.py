@@ -20,9 +20,10 @@ import numpy as np
 import pyarrow.parquet as pq
 import yaml
 
+from airfoil_surrogate.data import BOX
+
 FIELD_NAMES = ("Ux", "Uy", "p", "nut")
 N_ZONES = 6
-BOX = (-2.0, 4.0, -1.5, 1.5)  # xmin, xmax, ymin, ymax of the clipped domain
 TASK_SPLITS = (
     "full_train",
     "full_test",

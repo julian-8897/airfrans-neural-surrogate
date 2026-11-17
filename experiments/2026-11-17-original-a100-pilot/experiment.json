@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "2026-11-17-original-a100-pilot",
+  "title": "original a100 pilot",
+  "status": "registered",
+  "created": "2026-11-17T22:15:40+00:00",
+  "question": "What are peak CUDA allocation and training throughput on original AirfRANS meshes?",
+  "hypothesis": "A full A100 can train the default Transolver with 32000 sampled nodes per step.",
+  "protocol": "Full-task training cases only, seed 0, batch one, float32, Adam and one-cycle schedule. Time synchronised steps after warm-up. Use a bounded training-case subset for a hardware pilot.",
+  "decision_rule": "Record finite training steps, peak allocated and reserved bytes, and steady-state steps per second before proposing a full-run budget.",
+  "budget": "One full A100, one job, at most 60 wall minutes. No CFD.",
+  "linear": [],
+  "parent": null,
+  "tags": [],
+  "verdict": null
+}

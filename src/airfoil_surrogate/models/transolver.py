@@ -18,7 +18,7 @@ from dataclasses import dataclass
 import torch
 from torch import nn
 
-from airfoil_surrogate.data.remeshed import BOX
+from airfoil_surrogate.data import BOX
 
 
 @dataclass(frozen=True)
