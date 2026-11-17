@@ -73,7 +73,7 @@ Subpackages are created when their first code lands, not ahead of time.
 ## Open items
 
 - Whether trained weights are an ODbL derivative database or a Produced Work. Do not publish weights until this is settled.
-- OpenFOAM case rebuild: upstream ships no meshing or case scripts, so the setup must be reconstructed from the paper. This gates Q2 and Q3.
+- OpenFOAM reproduction: the authors provide the original NACA case generator in [Extrality/NACA_simulation](https://github.com/Extrality/NACA_simulation). Reproduction on existing NACA cases and adaptation to non-NACA coordinates gate Q2 and Q3.
 - Transolver: the official code is MIT (checked 2026-11-17), and the authors quote 20 to 24 h on one A100 for AirfRANS. Our reimplementation has not been checked numerically against the official module; the proposed check loads the official weights into ours and compares outputs. Running the downloaded official code was blocked by the permission policy and needs the user's go-ahead.
 - Leakage check: done 2026-11-17. There are 1000 distinct NACA shapes and none is shared between train and test, so no extra split is proposed. Awaiting the user's agreement.
 - Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented. The stored CL/CD are consistent with original-mesh integration on three checked cases. The remeshed ground-truth fields substantially underpredict CD on those cases.

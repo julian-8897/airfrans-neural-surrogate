@@ -38,7 +38,7 @@ Needed for Q2 and Q3. Rebuild the AirfRANS OpenFOAM case (mesh, boundary conditi
 
 Gate: CL and CD within a tolerance of the dataset values, and surface pressure visually matching, before any new simulation is trusted. **[agree tolerance]**
 
-Checked 2026-11-17: the Extrality/AirfRANS repo ships no OpenFOAM case or meshing scripts, only training code, models and `naca_generator.py`. The case setup (mesh topology and resolution, boundary conditions, solver settings) must be rebuilt from the paper's description. One weekend is likely optimistic; budget two and treat the reproduction gate as the go/no-go for Q2 and Q3.
+The authors identify a separate repository containing the scripts used to generate AirfRANS, including the blockMesh definition, near-wall spacing parameters and dataset generator. Start from those scripts and reproduce known NACA cases before adapting the geometry input to UIUC coordinates. Numerical reproduction and mesh quality on non-NACA profiles remain unverified. [Upstream case generator](https://github.com/Extrality/NACA_simulation)
 
 Cost reference: about 25 min per case on 16 CPU cores (paper, Table 4).
 
@@ -108,7 +108,7 @@ Rough effort: 4 to 5 weekends. If time runs short, cut objective B and the 5-dig
 
 ## Risks
 
-- **Case-generation scripts missing (confirmed):** rebuilding the OpenFOAM setup delays M3 and M4. Proposed fallback, not yet agreed: if the reproduction gate cannot be passed, Q2 and Q3 report results against a documented, self-consistent setup, which weakens their claims.
+- **Solver reproduction:** differences in mesh generation or post-processing could delay M3 and M4. Proposed fallback, not yet agreed: if the reproduction gate cannot be passed, Q2 and Q3 report results against a documented, self-consistent setup, which weakens their claims.
 - **Parametric baseline wins on in-family coefficients:** report it. The geometry argument then rests on Q2.
 - **Drag remains unpredictable:** objective B becomes a documented negative result, and the uncertainty gate is the deliverable.
 - **Meshing inside the loop is slow or fragile:** fall back to a fixed query point cloud built from the parametric surface.
