@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from airfoil_surrogate.eval.__main__ import evaluate_run
 from airfoil_surrogate.models.transolver import TransolverConfig
 from airfoil_surrogate.train import TrainConfig, split_train_val, train
 
@@ -52,3 +53,12 @@ def test_training_loop_writes_run_artefacts(tmp_path):
     meta = json.loads((out / "run.json").read_text())
     assert len(meta["train_ids"]) == 3 and meta["git"]["rev"]
     assert (out / "model.pt").exists() and (out / "normaliser.json").exists()
+
+    evaluation = evaluate_run(out, tmp_path / "eval", limit=2)
+    cases = [
+        json.loads(row) for row in (evaluation / "cases.jsonl").read_text().splitlines()
+    ]
+    assert [case["index"] for case in cases] == meta["val_ids"][:2]
+    summary = json.loads((evaluation / "summary.json").read_text())
+    assert summary["split"] == "validation"
+    assert summary["metrics"]["volume_mse"]["n_defined"] == [2] * 4

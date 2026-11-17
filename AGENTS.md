@@ -21,7 +21,8 @@ Stage 2 (3D car aerodynamics, AhmedML, multi-GPU) is a separate, later plan.
   - Model: `airfoil_surrogate.models.transolver`, a reimplementation of the authors' AirfRANS code with the AirfRANS config (3.89M parameters). It has not yet been checked numerically against the official weights.
   - Training: `python -m airfoil_surrogate.train` follows the authors' recipe, using the full remeshed mesh instead of subsampled nodes. Validation is the last 10% of the task's training list, and the test split is never loaded. Each run writes `run.json`, `metrics.jsonl`, `normaliser.json` and `model.pt` to a new `runs/<stamp>-<name>-<task>-s<seed>/` directory.
   - Cost: about 0.175 s per step on the Mac GPU, so the full 398-epoch schedule is about 14 h locally. Reported training needs the cluster.
-- Next: the evaluation harness (field MSE as in the paper, CL/CD via force integration, per-case tails) on remeshed data; checking the stored CL/CD against the `airfrans` force integration; registering the `exp` experiment once the question, protocol and budget are agreed.
+- 2026-11-17: **validation evaluation prototyped.** The evaluator reuses each checkpoint's saved validation indices and normaliser. It writes nodewise field errors aggregated per case, P95/P99 across cases, and optional `airfrans` coefficient and wall-shear diagnostics. See [the evaluation methodology](docs/methodology/prototype-evaluation.md) for usage and the three-case ground-truth check.
+- Next: agree the reported data and metric protocol before registering the `exp` experiment. Original-mesh drag qualification and Transolver parity are still open.
 
 ## Repo rules
 
@@ -75,7 +76,7 @@ Subpackages are created when their first code lands, not ahead of time.
 - OpenFOAM case rebuild: upstream ships no meshing or case scripts, so the setup must be reconstructed from the paper. This gates Q2 and Q3.
 - Transolver: the official code is MIT (checked 2026-11-17), and the authors quote 20 to 24 h on one A100 for AirfRANS. Our reimplementation has not been checked numerically against the official module; the proposed check loads the official weights into ours and compares outputs. Running the downloaded official code was blocked by the permission policy and needs the user's go-ahead.
 - Leakage check: done 2026-11-17. There are 1000 distinct NACA shapes and none is shared between train and test, so no extra split is proposed. Awaiting the user's agreement.
-- Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented, and it is unconfirmed whether the stored CL/CD come from the original simulations.
+- Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented. The stored CL/CD are consistent with original-mesh integration on three checked cases. The remeshed ground-truth fields substantially underpredict CD on those cases.
 
 ## Verification commands
 
