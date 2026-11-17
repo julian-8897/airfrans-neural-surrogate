@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261117T221946Z-2bdb",
   "experiment": "2026-11-17-original-a100-pilot",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "891545"
   },
   "command": [
     "sbatch",
@@ -13,9 +13,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-17T22:19:46+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-17T22:22:02+00:00",
+  "duration_s": 136.953,
+  "exit_code": 0,
   "git": {
     "commit": "c58aa886f2472c03b769ffa530d5fe3d4fc6ee87",
     "branch": "prototype-evaluation",
@@ -77,6 +77,16 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-17-original-a100-pilot/20261117T221946Z-2bdb",
-  "metrics": null,
-  "note": "Remote immutable staging directory /parallel_scratch/jc02423/airfrans-original-pilot-c58aa88 on Eureka2. Runs the archived committed code with cluster CUDA PyTorch."
+  "metrics": {
+    "timed_steps": 100,
+    "elapsed_seconds": 17.87421190086752,
+    "steps_per_second": 5.594652259613556,
+    "peak_allocated_bytes": 3830737408,
+    "peak_reserved_bytes": 4097835008,
+    "torch_version": "2.14.1+cu126",
+    "cuda_version": "12.6",
+    "gpu": "NVIDIA A100 80GB PCIe",
+    "final_loss": 2.7393808364868164
+  },
+  "note": "Remote immutable staging directory /parallel_scratch/jc02423/airfrans-original-pilot-c58aa88 on Eureka2. Runs the archived committed code with cluster CUDA PyTorch.\nSLURM completed 0:0, 37 elapsed seconds with one full A100. Accounting and job log retrieved alongside metrics."
 }

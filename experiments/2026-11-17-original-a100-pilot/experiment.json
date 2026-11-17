@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-17-original-a100-pilot",
   "title": "original a100 pilot",
-  "status": "running",
+  "status": "complete",
   "created": "2026-11-17T22:15:40+00:00",
   "question": "What are peak CUDA allocation and training throughput on original AirfRANS meshes?",
   "hypothesis": "A full A100 can train the default Transolver with 32000 sampled nodes per step.",
@@ -12,5 +12,9 @@
   "linear": [],
   "parent": null,
   "tags": [],
-  "verdict": null
+  "verdict": {
+    "status": "complete",
+    "text": "Default Transolver trained on 32000 original-mesh nodes per update at 5.595 steps/s on one A100 80 GB. Peak allocated 3.57 GiB, reserved 3.82 GiB. Three resident training cases, 100 timed steps after ten warm-ups. 720 cases x 398 epochs implies about 14.2 training-loop hours, excluding full-dataset loading, validation and checkpointing.",
+    "date": "2026-11-17T22:22:02+00:00"
+  }
 }
