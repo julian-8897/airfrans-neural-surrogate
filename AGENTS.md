@@ -14,8 +14,9 @@ Stage 2 (3D car aerodynamics, AhmedML, multi-GPU) is a separate, later plan.
 
 ## Current state
 
-- 2026-11-17: repo scaffolded (uv skeleton, plan, licence, pre-commit). No data, models or tests yet.
-- Next: M0, which covers downloading AirfRANS with recorded checksums, writing the licence note and registering the experiment with `exp`. This needs the user's sign-off on the question, protocol and budget first.
+- 2026-11-17: repo scaffolded (uv skeleton, plan, licence, pre-commit).
+- 2026-11-17: **prototyping on `PLAID-datasets/AirfRANS_remeshed`**; see [the decision record](docs/decisions/2026-11-17-prototype-data-remeshed.md). The data comes from `scripts/download_remeshed.py`, with revisions and SHA-256 checksums pinned in `manifests/airfrans_remeshed.json`, and lands in `data/raw/airfrans_remeshed/`. The loader is `airfoil_surrogate.data.remeshed`. Remeshed results are **not comparable** with published AirfRANS or Transolver numbers; the data for reported runs is still open.
+- Next: featurisation (AirfRANS inputs: position, inlet velocity, signed distance, normals) and the harness on remeshed data; checking the stored CL/CD against the `airfrans` force integration; registering the `exp` experiment once the question, protocol and budget are agreed.
 
 ## Repo rules
 
@@ -35,6 +36,8 @@ Stage 2 (3D car aerodynamics, AhmedML, multi-GPU) is a separate, later plan.
 
 ```
 AGENTS.md            # this file (CLAUDE.md imports it)
+manifests/           # pinned dataset revisions and checksums
+scripts/             # download and one-off utilities
 PLAN.md              # research plan
 docs/decisions/      # dated decision records for each [agree] item
 src/airfoil_surrogate/
@@ -66,7 +69,8 @@ Subpackages are created when their first code lands, not ahead of time.
 - Whether trained weights are an ODbL derivative database or a Produced Work. Do not publish weights until this is settled.
 - OpenFOAM case rebuild: upstream ships no meshing or case scripts, so the setup must be reconstructed from the paper. This gates Q2 and Q3.
 - Transolver: the licence of the official code (github.com/thuml/Transolver) has not been checked, and its AirfRANS training cost has not been verified.
-- The leakage check (whether shapes repeat across train and test under different flow conditions) is not yet run.
+- Leakage check: done 2026-11-17. There are 1000 distinct NACA shapes and none is shared between train and test, so no extra split is proposed. Awaiting the user's agreement.
+- Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented, and it is unconfirmed whether the stored CL/CD come from the original simulations.
 
 ## Verification commands
 
@@ -74,9 +78,13 @@ Subpackages are created when their first code lands, not ahead of time.
 uv sync
 uv run ruff check .
 uv run ruff format --check .
-uv run pytest                      # once tests exist
+uv run pytest                      # data tests skip if data/raw/airfrans_remeshed is absent
+uv run pytest -m "not slow"        # skip tests that read all 1000 samples (~15 s)
 uv run pre-commit run --all-files
+uv run python scripts/download_remeshed.py   # fetch and verify prototype data (0.6 GB)
 ```
+
+Downloaded samples are pickles. Load them only through `airfoil_surrogate.data.remeshed.unpickle_sample`, which allows numpy globals only; never call `pickle.loads` on them directly.
 
 ## Conventions
 

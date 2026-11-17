@@ -15,10 +15,10 @@ dist/
 .env.*
 
 # Data, runs and model artefacts (never committed; see AGENTS.md)
-data/
-runs/
-outputs/
-checkpoints/
+/data/
+/runs/
+/outputs/
+/checkpoints/
 *.zarr/
 *.ckpt
 *.pt

@@ -1,0 +1,31 @@
+{
+  "dataset": "PLAID-datasets/AirfRANS_remeshed",
+  "revision": "10b38a5a770017c2669f8afa490ba970bc7e65f8",
+  "licence": "ODbL-1.0",
+  "files": {
+    "README.md": {
+      "size": 43300,
+      "sha256": "7d4a8c3f09dd2cbd194261d40f562671db28538678ace0f66343f51d8b98ab58"
+    },
+    "data/all_samples-00000-of-00003.parquet": {
+      "size": 200318589,
+      "sha256": "e1d492e1965817484bfd5f91197d521a150876ac15d9645e57f5aa4cfab144fb"
+    },
+    "data/all_samples-00001-of-00003.parquet": {
+      "size": 201397725,
+      "sha256": "f17cd7805d051a20a20f701cdf2d28c6af8bb2e2ee2e2ea764666035c2fba6a3"
+    },
+    "data/all_samples-00002-of-00003.parquet": {
+      "size": 209005247,
+      "sha256": "d4dc7a603cc92c781d3f87eaef860c6fd255ed47ae419827ba362daf324f2fdb"
+    }
+  },
+  "case_names": {
+    "dataset": "OneScience-Group/airfrans",
+    "revision": "f99b37789d0c76e02b923b14b23dcd6389f0d895",
+    "path": "data/Dataset/manifest.json",
+    "local_name": "airfrans_manifest.json",
+    "size": 187191,
+    "sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13"
+  }
+}

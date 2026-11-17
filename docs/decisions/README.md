@@ -6,7 +6,9 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 
 | Item | PLAN.md section | Status | Record |
 |---|---|---|---|
-| Leakage check and shape-held-out split | Data | open | |
+| Prototype data: AirfRANS_remeshed (reported-run data still open) | Data | accepted | [2026-11-17](2026-11-17-prototype-data-remeshed.md) |
+| Leakage check and shape-held-out split | Data | evidence recorded (no shape repeats); awaiting agreement | [2026-11-17](2026-11-17-prototype-data-remeshed.md) |
+| Data for reported runs (official processed vs remeshed) | Data | open | |
 | Out-of-family set selection rule | Data | open | |
 | Solver reproduction tolerance (CL, CD, surface pressure) | Solver reproduction | open | |
 | Architectures and hyperparameters for reported runs | Models | open | |
