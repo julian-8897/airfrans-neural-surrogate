@@ -140,7 +140,10 @@ def shard_paths(data_dir: Path) -> list[Path]:
 def iter_samples(
     data_dir: Path, indices: Iterable[int] | None = None
 ) -> Iterator[RemeshedSample]:
-    """Yield samples in index order, optionally restricted to ``indices``."""
+    """Yield samples in ascending index order, optionally restricted to ``indices``.
+
+    The order of ``indices`` is ignored; use ``RemeshedSample.index`` to align.
+    """
     wanted = None if indices is None else set(indices)
     offset = 0
     for path in shard_paths(data_dir):
@@ -189,24 +192,33 @@ def match_case_names(
     return out
 
 
+def wall_edges(
+    triangles: np.ndarray, pos: np.ndarray, box=BOX, tol: float = 1e-9
+) -> tuple[np.ndarray, np.ndarray]:
+    """Airfoil wall edges (E, 2) and, for each, the opposite vertex of its triangle.
+
+    A boundary edge belongs to exactly one triangle; edges not on the outer
+    clip box are on the airfoil.
+    """
+    local = np.array([[0, 1, 2], [1, 2, 0], [2, 0, 1]])  # (edge a, edge b, opposite)
+    tri_edges = triangles[:, local].reshape(-1, 3)
+    key = np.sort(tri_edges[:, :2], axis=1)
+    _, inverse, counts = np.unique(key, axis=0, return_inverse=True, return_counts=True)
+    boundary = tri_edges[counts[inverse.ravel()] == 1]
+    xmin, xmax, ymin, ymax = box
+    px, py = pos[:, 0], pos[:, 1]
+    on_box = (
+        (np.abs(px - xmin) < tol)
+        | (np.abs(px - xmax) < tol)
+        | (np.abs(py - ymin) < tol)
+        | (np.abs(py - ymax) < tol)
+    )
+    airfoil = ~(on_box[boundary[:, 0]] & on_box[boundary[:, 1]])
+    return boundary[airfoil, :2], boundary[airfoil, 2]
+
+
 def airfoil_boundary_nodes(
     triangles: np.ndarray, pos: np.ndarray, box=BOX, tol: float = 1e-9
 ) -> np.ndarray:
-    """Sorted node indices on the airfoil wall.
-
-    Boundary edges belong to exactly one triangle; those not lying on the
-    outer clip box form the airfoil surface.
-    """
-    edges = np.sort(triangles[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2), axis=1)
-    unique, counts = np.unique(edges, axis=0, return_counts=True)
-    boundary = unique[counts == 1]
-    xmin, xmax, ymin, ymax = box
-    x, y = pos[:, 0], pos[:, 1]
-    on_box = (
-        (np.abs(x - xmin) < tol)
-        | (np.abs(x - xmax) < tol)
-        | (np.abs(y - ymin) < tol)
-        | (np.abs(y - ymax) < tol)
-    )
-    inner = boundary[~(on_box[boundary[:, 0]] & on_box[boundary[:, 1]])]
-    return np.unique(inner)
+    """Sorted node indices on the airfoil wall."""
+    return np.unique(wall_edges(triangles, pos, box, tol)[0])

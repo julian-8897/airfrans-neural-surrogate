@@ -16,7 +16,12 @@ Stage 2 (3D car aerodynamics, AhmedML, multi-GPU) is a separate, later plan.
 
 - 2026-11-17: repo scaffolded (uv skeleton, plan, licence, pre-commit).
 - 2026-11-17: **prototyping on `PLAID-datasets/AirfRANS_remeshed`**; see [the decision record](docs/decisions/2026-11-17-prototype-data-remeshed.md). The data comes from `scripts/download_remeshed.py`, with revisions and SHA-256 checksums pinned in `manifests/airfrans_remeshed.json`, and lands in `data/raw/airfrans_remeshed/`. The loader is `airfoil_surrogate.data.remeshed`. Remeshed results are **not comparable** with published AirfRANS or Transolver numbers; the data for reported runs is still open.
-- Next: featurisation (AirfRANS inputs: position, inlet velocity, signed distance, normals) and the harness on remeshed data; checking the stored CL/CD against the `airfrans` force integration; registering the `exp` experiment once the question, protocol and budget are agreed.
+- 2026-11-17: **model inputs examined and Transolver drafted.**
+  - Features: `airfoil_surrogate.data.features` (7 AirfRANS input channels, wall mask from mesh topology, normals pointing into the fluid, normaliser fitted on training cases only). Findings are in [docs/methodology/model-inputs.md](docs/methodology/model-inputs.md); notably, the remeshed fields violate no-slip on the wall.
+  - Model: `airfoil_surrogate.models.transolver`, a reimplementation of the authors' AirfRANS code with the AirfRANS config (3.89M parameters). It has not yet been checked numerically against the official weights.
+  - Training: `python -m airfoil_surrogate.train` follows the authors' recipe, using the full remeshed mesh instead of subsampled nodes. Validation is the last 10% of the task's training list, and the test split is never loaded. Each run writes `run.json`, `metrics.jsonl`, `normaliser.json` and `model.pt` to a new `runs/<stamp>-<name>-<task>-s<seed>/` directory.
+  - Cost: about 0.175 s per step on the Mac GPU, so the full 398-epoch schedule is about 14 h locally. Reported training needs the cluster.
+- Next: the evaluation harness (field MSE as in the paper, CL/CD via force integration, per-case tails) on remeshed data; checking the stored CL/CD against the `airfrans` force integration; registering the `exp` experiment once the question, protocol and budget are agreed.
 
 ## Repo rules
 
@@ -68,7 +73,7 @@ Subpackages are created when their first code lands, not ahead of time.
 
 - Whether trained weights are an ODbL derivative database or a Produced Work. Do not publish weights until this is settled.
 - OpenFOAM case rebuild: upstream ships no meshing or case scripts, so the setup must be reconstructed from the paper. This gates Q2 and Q3.
-- Transolver: the licence of the official code (github.com/thuml/Transolver) has not been checked, and its AirfRANS training cost has not been verified.
+- Transolver: the official code is MIT (checked 2026-11-17), and the authors quote 20 to 24 h on one A100 for AirfRANS. Our reimplementation has not been checked numerically against the official module; the proposed check loads the official weights into ours and compares outputs. Running the downloaded official code was blocked by the permission policy and needs the user's go-ahead.
 - Leakage check: done 2026-11-17. There are 1000 distinct NACA shapes and none is shared between train and test, so no extra split is proposed. Awaiting the user's agreement.
 - Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented, and it is unconfirmed whether the stored CL/CD come from the original simulations.
 
@@ -82,6 +87,8 @@ uv run pytest                      # data tests skip if data/raw/airfrans_remesh
 uv run pytest -m "not slow"        # skip tests that read all 1000 samples (~15 s)
 uv run pre-commit run --all-files
 uv run python scripts/download_remeshed.py   # fetch and verify prototype data (0.6 GB)
+uv run python scripts/examine_inputs.py      # input/target examination (~30 s)
+uv run python -m airfoil_surrogate.train --task full --epochs 8 --name smoke   # ~17 min on MPS
 ```
 
 Downloaded samples are pickles. Load them only through `airfoil_surrogate.data.remeshed.unpickle_sample`, which allows numpy globals only; never call `pickle.loads` on them directly.
