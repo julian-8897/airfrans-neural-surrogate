@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "run_id": "20261117T221946Z-2bdb",
+  "experiment": "2026-11-17-original-a100-pilot",
+  "status": "running",
+  "backend": {
+    "kind": "slurm",
+    "job_id": null
+  },
+  "command": [
+    "sbatch",
+    "configs/original-a100-pilot.sbatch"
+  ],
+  "cwd": ".",
+  "started": "2026-11-17T22:19:46+00:00",
+  "ended": null,
+  "duration_s": null,
+  "exit_code": null,
+  "git": {
+    "commit": "c58aa886f2472c03b769ffa530d5fe3d4fc6ee87",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "configs/original-a100-pilot.sbatch",
+    "sha256": "63265b9f20c610a3ebd443f7623288165526641bdf311964c529c94b32d50141",
+    "copy": "experiments/2026-11-17-original-a100-pilot/runs/20261117T221946Z-2bdb/config.sbatch"
+  },
+  "seeds": [
+    0
+  ],
+  "data": [
+    {
+      "path": "data/original-a100-pilot/case0.npz",
+      "version": null,
+      "exists": true,
+      "size_bytes": 9020508,
+      "sha256": "e20440cd6ce3c3f11d07141d122bc05621357b1830929aa114e812c9ea89d63d"
+    },
+    {
+      "path": "data/original-a100-pilot/case1.npz",
+      "version": null,
+      "exists": true,
+      "size_bytes": 8648236,
+      "sha256": "681893bcd423f8464acfed893a7869d8ac5f41893c8a8576c12d51841541503a"
+    },
+    {
+      "path": "data/original-a100-pilot/case2.npz",
+      "version": null,
+      "exists": true,
+      "size_bytes": 9404016,
+      "sha256": "fcefc558abd0efe77b86d380bad85153092f6be92d7eb6e672cb7e73195e0382"
+    },
+    {
+      "path": "data/original-a100-pilot/sources.json",
+      "version": null,
+      "exists": true,
+      "size_bytes": 702,
+      "sha256": "9c5a63cea55e5fd9c86b653e7acb8153ac7737fe04d30994bf663810a271a6c5"
+    },
+    {
+      "path": "data/original-a100-pilot/normaliser.json",
+      "version": null,
+      "exists": true,
+      "size_bytes": 811,
+      "sha256": "f7f40dabdb773ffa67371e0b15477b84352d69856d86020f82b6970e4c3ef3a7"
+    }
+  ],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-17-original-a100-pilot/20261117T221946Z-2bdb",
+  "metrics": null,
+  "note": "Remote immutable staging directory /parallel_scratch/jc02423/airfrans-original-pilot-c58aa88 on Eureka2. Runs the archived committed code with cluster CUDA PyTorch."
+}

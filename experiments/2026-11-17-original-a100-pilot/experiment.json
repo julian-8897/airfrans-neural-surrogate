@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-17-original-a100-pilot",
   "title": "original a100 pilot",
-  "status": "registered",
+  "status": "running",
   "created": "2026-11-17T22:15:40+00:00",
   "question": "What are peak CUDA allocation and training throughput on original AirfRANS meshes?",
   "hypothesis": "A full A100 can train the default Transolver with 32000 sampled nodes per step.",
