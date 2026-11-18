@@ -18,6 +18,8 @@ from pathlib import Path
 
 import numpy as np
 
+from airfoil_surrogate.cfd.accounting import CORES
+from airfoil_surrogate.cfd.campaign import check_qualification
 from airfoil_surrogate.cfd.convert import convert_files
 from airfoil_surrogate.cfd.reproduction import (
     GENERATOR_REVISION,
@@ -25,7 +27,6 @@ from airfoil_surrogate.cfd.reproduction import (
     read_convergence,
 )
 
-CORES = 16
 TEMPLATE = Path("Simulations/airFoil2DInit")
 GENERATOR_FILES = (
     "simulation_generator.py",
@@ -202,7 +203,14 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def run_case(plan: Path, case_id: str, generator_repo: Path, out: Path) -> None:
+def run_case(
+    plan: Path,
+    case_id: str,
+    generator_repo: Path,
+    out: Path,
+    *,
+    qualification: Path | None = None,
+) -> None:
     if os.environ.get("WM_PROJECT_VERSION") not in ("2112", "v2112"):
         raise RuntimeError("source the OpenFOAM v2112 runtime before running a case")
     if os.environ.get("SLURM_NTASKS") != str(CORES):
@@ -216,6 +224,16 @@ def run_case(plan: Path, case_id: str, generator_repo: Path, out: Path) -> None:
     if len(matches) != 1:
         raise ValueError("case ID must occur exactly once in the manifest")
     case = matches[0]
+    qualification_sha256 = None
+    if "group" in case:
+        if qualification is None:
+            raise ValueError("matched CFD requires three qualifying reproductions")
+        gate = check_qualification(qualification)
+        if gate["official_split_sha256"] != spec["sources"]["airfrans_split_sha256"]:
+            raise ValueError(
+                "qualification and matched case use different official splits"
+            )
+        qualification_sha256 = _sha256(qualification)
     out.mkdir(parents=True, exist_ok=False)
     source = out / "generator"
     generator_sha256 = _generator_archive(generator_repo, source)
@@ -229,6 +247,7 @@ def run_case(plan: Path, case_id: str, generator_repo: Path, out: Path) -> None:
             "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
             "cores": CORES,
             "case": case,
+            "qualification_sha256": qualification_sha256,
         },
     )
     case_dir = out / "case"
@@ -254,9 +273,16 @@ def main() -> None:
     parser.add_argument("plan", type=Path)
     parser.add_argument("case_id")
     parser.add_argument("generator_repo", type=Path)
+    parser.add_argument("--qualification", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    run_case(args.plan, args.case_id, args.generator_repo, args.out)
+    run_case(
+        args.plan,
+        args.case_id,
+        args.generator_repo,
+        args.out,
+        qualification=args.qualification,
+    )
     print(args.out)
 
 

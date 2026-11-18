@@ -12,4 +12,4 @@ uv run --locked --extra forces python -m airfoil_surrogate.cfd.cohorts \
 
 `cohorts.json` gives the primary and reserve cases in each group with the shared operating conditions. For UIUC, it also gives hashes of the closed contours passed to the CFD runner. The NACA controls come from official test identifiers, with any identical geometries from the 800 training and validation IDs excluded. Ranks are deterministic within the UIUC group and within each NACA family. The selection command reads geometry and case IDs only.
 
-Run the matched cases only after the protocol is approved and all three NACA reproductions pass. Freeze the final 30 qualified cases per group before inference. The primary and reserve ranks record the initial selection for that process.
+Run the matched cases only after the protocol is approved and all three NACA reproductions pass. Freeze the final 30 qualified cases per group before inference. The primary and reserve ranks record the initial selection for that process. [Allocation, qualification and freeze commands](cfd-campaign.md).

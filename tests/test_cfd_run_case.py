@@ -189,3 +189,24 @@ def test_case_runner_stops_after_failed_mesh_check(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match="checkMesh failed"):
         runner.solve_case(tmp_path, 20_000)
     assert calls == ["blockMesh", "checkMesh"]
+
+
+def test_matched_runner_requires_reproduction_evidence_before_preparation(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setenv("WM_PROJECT_VERSION", "v2112")
+    monkeypatch.setenv("SLURM_NTASKS", "16")
+    plan = tmp_path / "cohorts.json"
+    plan.write_text(
+        json.dumps(
+            {
+                "schema": 1,
+                "generator_revision": runner.GENERATOR_REVISION,
+                "cases": [{"id": "uiuc-test", "group": "uiuc"}],
+            }
+        )
+    )
+    out = tmp_path / "attempt"
+    with pytest.raises(ValueError, match="requires three qualifying reproductions"):
+        runner.run_case(plan, "uiuc-test", tmp_path, out)
+    assert not out.exists()
