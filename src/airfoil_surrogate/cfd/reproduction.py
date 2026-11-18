@@ -120,6 +120,12 @@ def read_convergence(coefficients: str, solver_log: str, limit: int) -> dict:
     }
 
 
+def mesh_check_passed(log: str) -> bool:
+    return bool(re.search(r"^\s*Mesh OK\.\s*$", log, re.M)) and not bool(
+        re.search(r"Failed \d+ mesh checks|FOAM FATAL", log)
+    )
+
+
 def _wall_paths(x: np.ndarray, lines: np.ndarray) -> list[np.ndarray]:
     if len(lines) % 3 or np.any(lines[::3] != 2):
         raise ValueError("surface pressure comparison requires two-point wall edges")
@@ -202,9 +208,7 @@ def compare_reproduction(
         for values in (original_force, reproduced_force, original_cp, reproduced_cp)
     ):
         raise ValueError("non-finite force or surface pressure in reproduction")
-    mesh_ok = bool(re.search(r"^\s*Mesh OK\.\s*$", checkmesh_log, re.M)) and not bool(
-        re.search(r"Failed \d+ mesh checks|FOAM FATAL", checkmesh_log)
-    )
+    mesh_ok = mesh_check_passed(checkmesh_log)
     delta = np.abs(reproduced_force[:, 0] - original_force[:, 0])
     tolerance = np.maximum([0.02, 0.0005], np.abs(original_force[:, 0]) * [0.03, 0.05])
     cp_rmse = np.sqrt(np.mean((reproduced_cp - original_cp) ** 2, axis=1))

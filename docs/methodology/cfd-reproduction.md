@@ -9,7 +9,17 @@ uv run --locked --extra forces python -m airfoil_surrogate.cfd.reproduction plan
 
 This reads the official case IDs and checks their order. It records the original rounded inlet velocity and angle of attack, NACA parameters, iteration limit and pinned generator revision. The plan uses no reference flow fields or model predictions.
 
-After the approved solver job has completed, select the volume and aerofoil patch from the same final `foamToVTK` export. Use the common conversion for reproduction, control and UIUC cases:
+After approval, use the [reproduction job template](../../configs/cfd-reproduction.sbatch) for one registered case per allocation. Make the OpenFOAM v2112 runtime and the project Python environment available in the job. The pinned Python setup imports PyYAML, Matplotlib and Seaborn. Point the job at an upstream Git checkout with the revision recorded in the plan:
+
+```bash
+python -m airfoil_surrogate.cfd.run_case \
+  /path/to/reproduction-plan.json CASE_ID /path/to/NACA_simulation \
+  --out "$EXP_OUT/cfd"
+```
+
+The runner extracts the pinned Git objects and calls the original mesh, settings and boundary-condition setup functions in a new directory. It checks `blockMesh` and `checkMesh` before launching `simpleFoam` on 16 MPI ranks. The force monitor writes each iteration with coefficient field output disabled. Solver settings and the primary field-write interval are preserved. After convergence, the runner reconstructs the latest time and converts the VTK output to `$EXP_OUT/cfd/native`. It keeps the solver logs and mesh and writes `completion.json` after conversion succeeds. UIUC manifests supply a hashed CSV contour ordered from the upper trailing edge to the leading edge to the lower trailing edge. [Pinned case generator](https://github.com/Extrality/NACA_simulation/tree/2dbf00c5ecbb8d6cef720db1e72c1fe40307eeab).
+
+For a retained raw export, the standalone conversion takes the volume and aerofoil patch from the same final `foamToVTK` time:
 
 ```bash
 python -m airfoil_surrogate.cfd.convert \
