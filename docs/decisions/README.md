@@ -42,3 +42,5 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 ```
 
 The approved original-mesh hardware pilot is scoped separately from the reported-run decisions. [Pilot decision](2026-11-17-original-a100-pilot.md)
+
+The [original-mesh Transolver and geometry-transfer protocol](../methodology/original-mesh-transfer-protocol.md) bundles the decisions for a one-seed, full-task study and awaits approval.
