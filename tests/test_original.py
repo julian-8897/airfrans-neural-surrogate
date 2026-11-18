@@ -1,7 +1,13 @@
+import hashlib
+import json
+
 import numpy as np
 import pytest
 from meshes import grid_with_hole
 from numpy.testing import assert_allclose, assert_array_equal
+
+from airfoil_surrogate.data.features import NodeFeatures, Normaliser
+from airfoil_surrogate.data.staged_original import case_order_sha256
 
 pv = pytest.importorskip("pyvista")
 original = pytest.importorskip("airfoil_surrogate.data.original")
@@ -99,3 +105,87 @@ def test_original_force_adapter_on_known_fields(mesh_files):
         atol=np.finfo(np.float64).eps * sim.NU,
     )
     assert_array_equal(forces.force_coefficients(sim, reference=True), reference)
+
+
+def test_normaliser_fit_verifies_training_membership_and_staged_meshes(
+    mesh_files, tmp_path
+):
+    fit = pytest.importorskip("airfoil_surrogate.data.fit_original_normaliser")
+    ids = ["airFoil2D_SST_32_-4_1_4_12", "airFoil2D_SST_54_3_1_4_14"]
+    pin = {
+        "split_sha256": "a" * 64,
+        "zip_index_sha256": "b" * 64,
+        "partitions": {"train": {"size": 2, "order_sha256": case_order_sha256(ids)}},
+    }
+    root = tmp_path / "train"
+    cases = []
+    for case in ids:
+        (root / case).mkdir(parents=True)
+        files = {}
+        for source in mesh_files[:2]:
+            contents = source.read_bytes()
+            (root / case / f"{case}_{source.name}").write_bytes(contents)
+            files[source.name] = {
+                "size": len(contents),
+                "sha256": hashlib.sha256(contents).hexdigest(),
+            }
+        cases.append({"id": case, "files": files})
+    manifest = root / "stage.json"
+    metadata = {
+        "schema": 1,
+        "source": pin,
+        "partition": "train",
+        "partition_size": 2,
+        "cases": cases,
+    }
+    manifest.write_text(json.dumps(metadata))
+    output = tmp_path / "normaliser.json"
+    fit.fit_staged_training(root, pin, output)
+
+    saved = json.loads(output.read_text())
+    assert saved["fit_cases"] == ids
+    assert (
+        saved["fit_stage_sha256"] == hashlib.sha256(manifest.read_bytes()).hexdigest()
+    )
+    normaliser = Normaliser.load(output)
+    angles = np.deg2rad([-4.0, 3.0])
+    inlet = np.array([32.0, 54.0]) * np.exp(1j * angles)
+    expected = inlet.mean()
+    assert_allclose(normaliser.mean_in[2:4], [expected.real, expected.imag], atol=1e-12)
+    with pytest.raises(FileExistsError):
+        fit.fit_staged_training(root, pin, output)
+
+    wrong_id = {**cases[1], "id": "airFoil2D_SST_54_3_1_4_17"}
+    manifest.write_text(json.dumps({**metadata, "cases": [cases[0], wrong_id]}))
+    retry = tmp_path / "retry.json"
+    with pytest.raises(ValueError, match="full official train order"):
+        fit.fit_staged_training(root, pin, retry)
+
+    manifest.write_text(json.dumps(metadata))
+    path = root / ids[1] / f"{ids[1]}_internal.vtu"
+    contents = path.read_bytes()
+    path.write_bytes(bytes([contents[0] ^ 1]) + contents[1:])
+    with pytest.raises(ValueError, match="checksum mismatch"):
+        fit.fit_staged_training(root, pin, retry)
+    assert not retry.exists()
+
+
+def test_verified_normaliser_uses_population_statistics_over_all_nodes():
+    fit = pytest.importorskip("airfoil_surrogate.data.fit_original_normaliser")
+    cases = []
+    for values in ([1.0, 3.0], [8.0]):
+        nodes = np.array(values)[:, None]
+        cases.append(
+            NodeFeatures(
+                pos=np.tile(nodes, (1, 2)),
+                x=np.tile(nodes, (1, 7)),
+                y=np.tile(2 * nodes, (1, 4)),
+                surf=np.zeros(len(nodes), dtype=bool),
+            )
+        )
+    norm = fit.fit_checked_normaliser(cases)
+    # The three equally weighted input nodes have mean 4 and variance 26/3.
+    assert_allclose(norm.mean_in, 4, rtol=0, atol=1e-15)
+    assert_allclose(norm.std_in, np.sqrt(26 / 3), rtol=0, atol=1e-15)
+    assert_allclose(norm.mean_out, 8, rtol=0, atol=1e-15)
+    assert_allclose(norm.std_out, 2 * np.sqrt(26 / 3), rtol=0, atol=1e-15)

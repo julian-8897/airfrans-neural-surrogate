@@ -103,14 +103,17 @@ class Normaliser:
     def inverse_targets(self, y: np.ndarray) -> np.ndarray:
         return y * (self.std_out + self.eps) + self.mean_out
 
-    def save(self, path: Path) -> None:
+    def to_dict(self) -> dict:
         data = {
             k: getattr(self, k).tolist()
             for k in ("mean_in", "std_in", "mean_out", "std_out")
         }
         data["eps"] = self.eps
         data["input_names"], data["target_names"] = INPUT_NAMES, TARGET_NAMES
-        Path(path).write_text(json.dumps(data, indent=2))
+        return data
+
+    def save(self, path: Path) -> None:
+        Path(path).write_text(json.dumps(self.to_dict(), indent=2))
 
     @classmethod
     def load(cls, path: Path) -> Normaliser:

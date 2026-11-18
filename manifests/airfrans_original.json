@@ -6,5 +6,19 @@
   "etag": "\"62f519b5-255c76d39\"",
   "zip_index_sha256": "0d340b0184227162e198869e44d48b4b1f7e3dda2143dc38fc0ac2f7add603ea",
   "split_path": "Dataset/manifest.json",
-  "split_sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13"
+  "split_sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13",
+  "partitions": {
+    "train": {
+      "size": 720,
+      "order_sha256": "7b34644160c6e2d56f0b54a5c4ce546a4bc7f3ba3ab53ac591ec4da3c3c57598"
+    },
+    "validation": {
+      "size": 80,
+      "order_sha256": "4385c25d92920af3bfefd507c2e3d44d613cd6b3575cb51b2a4987fa0671ea27"
+    },
+    "test": {
+      "size": 200,
+      "order_sha256": "d91db30fce76e3c00fa4f89d21189f29723aa36d3e04fe45631f0fd54930f964"
+    }
+  }
 }
