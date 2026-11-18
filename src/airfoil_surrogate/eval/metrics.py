@@ -1,8 +1,13 @@
-"""Per-case prototype metrics and equal-case summaries."""
+"""Per-case field metrics and equal-case summaries."""
 
 import numpy as np
 
 from airfoil_surrogate.data.features import Normaliser
+
+
+def json_values(values: np.ndarray | np.generic) -> list | float | None:
+    """Encode undefined metrics as JSON null."""
+    return np.where(np.isfinite(values), values, None).tolist()
 
 
 def relative_l2(error: np.ndarray, reference: np.ndarray) -> np.ndarray:

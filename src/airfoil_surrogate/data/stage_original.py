@@ -38,8 +38,11 @@ def stage_partition(
     out: Path,
     *,
     case_ids: list[str] | None = None,
+    frozen_sha256: str | None = None,
 ) -> Path:
     """Extract only the chosen mesh members into a create-only staging directory."""
+    if partition == "test" and (frozen_sha256 is None or case_ids is not None):
+        raise ValueError("test staging requires a frozen evaluation and all test cases")
     if zip_index_sha256(archive) != pin["zip_index_sha256"]:
         raise ValueError("original AirfRANS ZIP catalogue checksum mismatch")
     raw_splits = archive.read(pin["split_path"])
@@ -110,6 +113,7 @@ def stage_partition(
                 "partition": partition,
                 "partition_size": len(ordered),
                 "cases": cases,
+                **({"frozen_sha256": frozen_sha256} if partition == "test" else {}),
             },
             indent=2,
         )
@@ -124,16 +128,38 @@ def main() -> None:
     parser.add_argument("--partition", choices=PARTITIONS, required=True)
     parser.add_argument("--out", type=Path, required=True, help="new directory")
     parser.add_argument(
+        "--frozen", type=Path, help="frozen.json required for test staging"
+    )
+    parser.add_argument(
         "--case", action="append", help="optional case IDs within partition"
     )
     args = parser.parse_args()
+
+    frozen_sha256 = None
+    if args.partition == "test":
+        if args.frozen is None:
+            parser.error("--partition test requires --frozen")
+        frozen_bytes = args.frozen.read_bytes()
+        frozen = json.loads(frozen_bytes)
+        if frozen.get("schema") != 1 or not frozen.get("sha256", {}).get("model.pt"):
+            parser.error("invalid evaluation freeze manifest")
+        frozen_sha256 = hashlib.sha256(frozen_bytes).hexdigest()
+    elif args.frozen is not None:
+        parser.error("--frozen applies only to test staging")
 
     pin = json.loads(PIN.read_text())
     if args.archive.stat().st_size != pin["size"]:
         parser.error("original AirfRANS ZIP size mismatch")
     with ZipFile(args.archive) as archive:
         print(
-            stage_partition(archive, pin, args.partition, args.out, case_ids=args.case)
+            stage_partition(
+                archive,
+                pin,
+                args.partition,
+                args.out,
+                case_ids=args.case,
+                frozen_sha256=frozen_sha256,
+            )
         )
 
 

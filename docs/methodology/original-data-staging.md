@@ -11,7 +11,7 @@ uv run --locked python -m airfoil_surrogate.data.stage_original /path/to/Dataset
   --partition validation --out /path/to/new/validation
 ```
 
-Staging reads only the mesh members in the requested partition. Use `--partition test` for the separate held-out evaluation after the checkpoint and baselines have been frozen. The 720 training cases, 80 validation cases and 200 test cases retain their official order. Use repeated `--case` arguments to stage a subset for qualification. Each stage requires a new directory and writes `stage.json` after all files have been extracted. The manifest records the partition, ordered case IDs, mesh sizes and digests.
+Staging reads only the mesh members in the requested partition. Use `--partition test --frozen /path/to/frozen.json` for the separate held-out evaluation. The 720 training cases, 80 validation cases and 200 test cases retain their official order. Use repeated `--case` arguments to stage a training or validation subset for qualification. Each stage requires a new directory and writes `stage.json` after all files have been extracted. The manifest records the partition, ordered case IDs, mesh sizes and digests, and the freeze digest for the test stage.
 
 Fit a normaliser with the complete training stage and a new output filename:
 

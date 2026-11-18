@@ -17,13 +17,17 @@ def case_order_sha256(case_ids: list[str]) -> str:
 
 
 def read_complete_partition(
-    root: Path, partition: str, pin: dict
+    root: Path, partition: str, pin: dict, *, frozen_sha256: str | None = None
 ) -> tuple[list[dict], str]:
     """Check membership and order without opening any mesh files."""
     manifest = (root / "stage.json").read_bytes()
     metadata = json.loads(manifest)
     if metadata["schema"] != 1 or metadata["partition"] != partition:
         raise ValueError(f"expected a staged {partition} partition")
+    if partition == "test" and (
+        frozen_sha256 is None or metadata.get("frozen_sha256") != frozen_sha256
+    ):
+        raise ValueError("test stage was not made for this evaluation freeze")
     if any(
         metadata["source"][digest] != pin[digest]
         for digest in ("zip_index_sha256", "split_sha256")

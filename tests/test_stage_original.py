@@ -5,6 +5,10 @@ from zipfile import ZipFile
 import pytest
 
 from airfoil_surrogate.data.stage_original import stage_partition, zip_index_sha256
+from airfoil_surrogate.data.staged_original import (
+    case_order_sha256,
+    read_complete_partition,
+)
 
 
 @pytest.fixture
@@ -18,7 +22,7 @@ def pinned_archive(tmp_path):
     path = tmp_path / "Dataset.zip"
     with ZipFile(path, "w") as archive:
         archive.writestr(split_path, splits)
-        for case_id in selected:
+        for case_id in selected[:3] + case_ids[800:]:
             for suffix in ("internal.vtu", "aerofoil.vtp"):
                 name = f"{case_id}_{suffix}"
                 archive.writestr(f"Dataset/{case_id}/{name}", name.encode())
@@ -27,6 +31,9 @@ def pinned_archive(tmp_path):
             "zip_index_sha256": zip_index_sha256(archive),
             "split_path": split_path,
             "split_sha256": hashlib.sha256(splits).hexdigest(),
+            "partitions": {
+                "test": {"size": 200, "order_sha256": case_order_sha256(case_ids[800:])}
+            },
         }
         yield archive, pin, selected
 
@@ -83,3 +90,21 @@ def test_staging_rejects_wrong_partition_and_checksum_before_writing(
     with pytest.raises(ValueError, match="split checksum mismatch"):
         stage_partition(archive, wrong_pin, "train", out, case_ids=[first])
     assert not out.exists()
+
+
+def test_test_meshes_require_a_freeze_and_complete_partition(pinned_archive, tmp_path):
+    archive, pin, (_, _, _, holdout) = pinned_archive
+    out = tmp_path / "test"
+    with pytest.raises(ValueError, match="requires a frozen evaluation"):
+        stage_partition(archive, pin, "test", out)
+    with pytest.raises(ValueError, match="all test cases"):
+        stage_partition(
+            archive, pin, "test", out, case_ids=[holdout], frozen_sha256="a" * 64
+        )
+    assert not out.exists()
+
+    stage_partition(archive, pin, "test", out, frozen_sha256="a" * 64)
+    rows, _ = read_complete_partition(out, "test", pin, frozen_sha256="a" * 64)
+    assert len(rows) == 200 and rows[0]["id"] == holdout
+    with pytest.raises(ValueError, match="not made for this evaluation freeze"):
+        read_complete_partition(out, "test", pin, frozen_sha256="b" * 64)

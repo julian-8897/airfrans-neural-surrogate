@@ -13,14 +13,9 @@ import torch
 
 from airfoil_surrogate.data.features import TARGET_NAMES, Normaliser, build_features
 from airfoil_surrogate.data.remeshed import iter_samples, load_split_indices
-from airfoil_surrogate.eval.metrics import field_errors, summarise
+from airfoil_surrogate.eval.metrics import field_errors, json_values, summarise
 from airfoil_surrogate.models.transolver import Transolver, TransolverConfig
 from airfoil_surrogate.train import ROOT, git_state, pick_device
-
-
-def json_values(values: np.ndarray) -> list:
-    """Encode undefined metrics as JSON null."""
-    return np.where(np.isfinite(values), values, None).tolist()
 
 
 @torch.inference_mode()
