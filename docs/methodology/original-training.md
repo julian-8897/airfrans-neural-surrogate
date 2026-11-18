@@ -19,3 +19,23 @@ python -m airfoil_surrogate.train_original \
 ```
 
 `resume.pt` is replaced atomically only after a complete epoch. It records model, optimiser, scheduler and RNG states, all completed metrics and the best validation weights so far. At completion, `model.pt` contains the selected weights, `selection.json` records eligible validation scores and the selected checkpoint hash, and `metrics.jsonl`, `run.json` and `normaliser.json` preserve metrics and provenance.
+
+## Fit the baselines and freeze the evaluation inputs
+
+Fit the field and coefficient baselines on the complete training stage in a registered run with the `forces` dependencies installed:
+
+```bash
+python -m airfoil_surrogate.eval.original_baselines \
+  /path/to/train --out "$EXP_OUT/baselines.json"
+```
+
+The field baseline averages each region within each training case, then weights the cases equally. The coefficient baseline fits one quadratic ridge per NACA family using the original-mesh reference CL and CD. Its feature indices, training means and scales, and fitted weights are stored with the ordered fitting cases.
+
+Once training and the baselines are complete, freeze the evaluation inputs before staging the official test meshes:
+
+```bash
+python -m airfoil_surrogate.eval.freeze_original \
+  /path/to/completed/training /path/to/baselines.json --out "$EXP_OUT/frozen.json"
+```
+
+The freeze command checks that training and the baselines used the same pinned training cases. It verifies the complete validation schedule and checkpoint selection, then binds the baseline, checkpoint, normaliser, run metadata and recorded metrics by SHA-256.

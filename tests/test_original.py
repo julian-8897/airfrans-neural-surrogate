@@ -107,11 +107,9 @@ def test_original_force_adapter_on_known_fields(mesh_files):
     assert_array_equal(forces.force_coefficients(sim, reference=True), reference)
 
 
-def test_normaliser_fit_verifies_training_membership_and_staged_meshes(
-    mesh_files, tmp_path
-):
-    fit = pytest.importorskip("airfoil_surrogate.data.fit_original_normaliser")
-    ids = ["airFoil2D_SST_32_-4_1_4_12", "airFoil2D_SST_54_3_1_4_14"]
+@pytest.fixture
+def training_stage(mesh_files, tmp_path):
+    ids = ["airFoil2D_SST_32_-4_1_4_12", "airFoil2D_SST_54_3_2_3_1_14"]
     pin = {
         "split_sha256": "a" * 64,
         "zip_index_sha256": "b" * 64,
@@ -139,6 +137,17 @@ def test_normaliser_fit_verifies_training_membership_and_staged_meshes(
         "cases": cases,
     }
     manifest.write_text(json.dumps(metadata))
+    return root, pin, metadata
+
+
+def test_normaliser_fit_verifies_training_membership_and_staged_meshes(
+    training_stage, tmp_path
+):
+    fit = pytest.importorskip("airfoil_surrogate.data.fit_original_normaliser")
+    root, pin, metadata = training_stage
+    manifest = root / "stage.json"
+    cases = metadata["cases"]
+    ids = [row["id"] for row in cases]
     output = tmp_path / "normaliser.json"
     fit.fit_staged_training(root, pin, output)
 
@@ -168,6 +177,33 @@ def test_normaliser_fit_verifies_training_membership_and_staged_meshes(
     with pytest.raises(ValueError, match="checksum mismatch"):
         fit.fit_staged_training(root, pin, retry)
     assert not retry.exists()
+
+
+def test_baseline_fit_reads_verified_fields_and_reference_forces(
+    training_stage, mesh_files, tmp_path
+):
+    module = pytest.importorskip("airfoil_surrogate.eval.original_baselines")
+    root, pin, metadata = training_stage
+    output = tmp_path / "baselines.json"
+    module.fit_staged_baselines(root, pin, output)
+
+    record = json.loads(output.read_text())
+    ids = [row["id"] for row in metadata["cases"]]
+    assert record["fit_cases"] == ids
+    assert (
+        record["fit_stage_sha256"]
+        == hashlib.sha256((root / "stage.json").read_bytes()).hexdigest()
+    )
+    baseline = module.OriginalBaselines.from_dict(record)
+    internal, patch = mesh_files[:2]
+    mesh = original.load_original_mesh(internal, patch)
+    for case, (inlet, theta) in zip(ids, [(32, -4), (54, 3)], strict=True):
+        sim = module.OriginalForceSimulation(mesh, inlet, np.deg2rad(theta))
+        reference = module.force_coefficients(sim, reference=True)[:, 0]
+        assert_allclose(baseline.predict_coefficients(case), reference, rtol=0, atol=0)
+    fields = sim.features
+    expected = np.stack((fields.y[~fields.surf].mean(0), fields.y[fields.surf].mean(0)))
+    assert_allclose(baseline.regional_means, expected, rtol=0, atol=0)
 
 
 def test_verified_normaliser_uses_population_statistics_over_all_nodes():

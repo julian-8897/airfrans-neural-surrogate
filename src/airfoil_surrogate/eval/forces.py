@@ -18,6 +18,7 @@ class OriginalForceSimulation(Simulation):
 
     def __init__(self, mesh: OriginalMesh, inlet_velocity: float, aoa: float):
         features = mesh.features(inlet_velocity, aoa)
+        self.features = features
         self.inlet_velocity = inlet_velocity
         self.angle_of_attack = aoa
         self.NU = np.array(AIRFRANS_VISCOSITY)
