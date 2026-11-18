@@ -1,0 +1,10 @@
+{
+  "dataset": "AirfRANS",
+  "licence": "ODbL-1.0",
+  "url": "https://data.isir.upmc.fr/extrality/NeurIPS_2022/Dataset.zip",
+  "size": 10029067577,
+  "etag": "\"62f519b5-255c76d39\"",
+  "zip_index_sha256": "0d340b0184227162e198869e44d48b4b1f7e3dda2143dc38fc0ac2f7add603ea",
+  "split_path": "Dataset/manifest.json",
+  "split_sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13"
+}
