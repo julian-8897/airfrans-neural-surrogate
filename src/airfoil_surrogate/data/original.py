@@ -53,8 +53,11 @@ def _point_array(mesh: pv.DataSet, name: str, components: int = 1) -> np.ndarray
 
 def load_original_mesh(internal_path: Path, aerofoil_path: Path) -> OriginalMesh:
     """Read a processed VTU/VTP pair and match the wall by exact planar coordinates."""
-    internal = pv.read(internal_path)
-    aerofoil = pv.read(aerofoil_path)
+    return match_original_mesh(pv.read(internal_path), pv.read(aerofoil_path))
+
+
+def match_original_mesh(internal: pv.DataSet, aerofoil: pv.DataSet) -> OriginalMesh:
+    """Validate the volume and wall layouts and match their vertices."""
     if not isinstance(internal, pv.UnstructuredGrid) or not isinstance(
         aerofoil, pv.PolyData
     ):

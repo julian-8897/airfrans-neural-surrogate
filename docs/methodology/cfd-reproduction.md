@@ -9,7 +9,17 @@ uv run --locked --extra forces python -m airfoil_surrogate.cfd.reproduction plan
 
 This reads the official case IDs and checks their order. It records the original rounded inlet velocity and angle of attack, NACA parameters, iteration limit and pinned generator revision. The plan uses no reference flow fields or model predictions.
 
-After the approved OpenFOAM jobs have completed and exported their native mesh files in the original processed layout, verify each case against its pinned training reference:
+After the approved solver job has completed, select the volume and aerofoil patch from the same final `foamToVTK` export. Use the common conversion for reproduction, control and UIUC cases:
+
+```bash
+python -m airfoil_surrogate.cfd.convert \
+  /path/to/VTK/final/internal.vtu /path/to/VTK/final/boundary/aerofoil.vtp \
+  --out "$EXP_OUT/native"
+```
+
+The converter retains whole cells intersecting the AirfRANS clip box, slices the volume and wall at z = 0.5 m, and computes signed distances against the three-dimensional wall surface. It requires exact vertex matching between the sliced meshes, checks distance sign, planar unit normals and no-slip, and records the point-field differences between the wall patch and the volume at those vertices. It writes a native `internal.vtu` and `aerofoil.vtp` with a conversion manifest containing input and output hashes. [AirfRANS preprocessing description](https://airfrans.readthedocs.io/en/latest/notes/dataset.html#raw-versus-pre-processed-dataset).
+
+Verify each reproduction against its pinned training reference:
 
 ```bash
 python -m airfoil_surrogate.cfd.reproduction verify \
