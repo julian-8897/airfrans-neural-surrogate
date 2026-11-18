@@ -116,9 +116,12 @@ class Normaliser:
         Path(path).write_text(json.dumps(self.to_dict(), indent=2))
 
     @classmethod
-    def load(cls, path: Path) -> Normaliser:
-        d = json.loads(Path(path).read_text())
+    def from_dict(cls, d: dict) -> Normaliser:
         arrays = {
             k: np.asarray(d[k]) for k in ("mean_in", "std_in", "mean_out", "std_out")
         }
         return cls(**arrays, eps=d["eps"])
+
+    @classmethod
+    def load(cls, path: Path) -> Normaliser:
+        return cls.from_dict(json.loads(Path(path).read_text()))
