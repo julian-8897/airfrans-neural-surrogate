@@ -1,6 +1,6 @@
 import hashlib
 import json
-from dataclasses import asdict
+from dataclasses import asdict, replace
 
 import numpy as np
 import pytest
@@ -361,3 +361,65 @@ def test_paired_intervals_preserve_pairing_and_undefined_channels():
         "supports_improvement": False,
     }
     assert_allclose(third["interval95"], [1.075, 2.925])
+
+
+def _cfd_history(last_cl, last_cd):
+    samples = [
+        f"{i} {0.01 if i <= 500 else last_cd} 0 {0.5 if i <= 500 else last_cl}\n"
+        for i in range(1, 1001)
+    ]
+    return "# Time Cd Cs Cl\n" + "".join(samples)
+
+
+def test_cfd_monitor_uses_consecutive_final_iterations_and_named_force_columns():
+    cfd = pytest.importorskip("airfoil_surrogate.cfd.reproduction")
+    solver_log = "Time = 1000\n\nEnd\n"
+    history = _cfd_history(0.501, 0.01004)
+    passed = cfd.read_convergence(history, solver_log, 20_000)
+    assert passed["passed"]
+    assert passed["last_iteration"] == 1000
+    assert_allclose(passed["absolute_difference"], [0.001, 0.00004], atol=1e-15)
+    assert not cfd.read_convergence(_cfd_history(0.501, 0.01006), solver_log, 20_000)[
+        "passed"
+    ]
+
+    for bad_history in (
+        history.replace("\n650 ", "\n649 "),
+        history.removesuffix(history.splitlines()[-1] + "\n"),
+    ):
+        with pytest.raises(ValueError, match="final 1,000 consecutive iterations"):
+            cfd.read_convergence(bad_history, solver_log, 20_000)
+    with pytest.raises(ValueError, match="completed solve"):
+        cfd.read_convergence(history, "Time = 1000\n", 20_000)
+
+
+def test_cfd_reproduction_gate_checks_both_surfaces_independently(mesh_files):
+    cfd = pytest.importorskip("airfoil_surrogate.cfd.reproduction")
+    internal, patch = mesh_files[:2]
+    mesh = original.load_original_mesh(internal, patch)
+    case = {
+        "id": "probe",
+        "inlet_velocity": 2.0,
+        "aoa_deg": 0,
+        "iteration_limit": 20_000,
+    }
+    logs = ("Mesh OK.\n", "Time = 1000\n\nEnd\n", _cfd_history(0.5, 0.01))
+    report, reference_cp, candidate_cp = cfd.compare_reproduction(
+        case, mesh, mesh, *logs
+    )
+    assert report["passed"]
+    assert reference_cp.shape == (2, 99)
+    assert_allclose(
+        reference_cp, np.tile(cfd.CP_STATIONS / 2, (2, 1)), rtol=0, atol=1e-12
+    )
+    assert_array_equal(reference_cp, candidate_cp)
+
+    changed = mesh.internal.copy()
+    changed.point_data["p"] += 0.2
+    failed, *_ = cfd.compare_reproduction(
+        case, mesh, replace(mesh, internal=changed), *logs
+    )
+    assert not failed["passed"]
+    assert failed["mesh_ok"] and failed["convergence"]["passed"]
+    assert_allclose(failed["coefficient_absolute_difference"], [0, 0], atol=1e-12)
+    assert_allclose(failed["cp_rmse"], [0.1, 0.1], atol=1e-12)
