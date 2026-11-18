@@ -14,10 +14,7 @@ import torch
 
 from airfoil_surrogate.data.features import TARGET_NAMES, Normaliser
 from airfoil_surrogate.data.stage_original import PIN
-from airfoil_surrogate.data.staged_original import (
-    read_complete_partition,
-    verified_mesh_paths,
-)
+from airfoil_surrogate.data.staged_original import read_complete_partition
 from airfoil_surrogate.models.transolver import Transolver
 
 UPSTREAM_REVISION = "75e0f67643806a81cd1d3f6adc88dd8c02416fe7"
@@ -119,7 +116,7 @@ def _load_pinned_reference(path: Path) -> ModuleType:
 def run_parity(
     source: Path, train_stage: Path, normaliser_path: Path, case_id: str
 ) -> dict:
-    from airfoil_surrogate.data.original import load_original_mesh
+    from airfoil_surrogate.data.original import load_staged_features
 
     rows, stage_sha256 = read_complete_partition(
         train_stage, "train", json.loads(PIN.read_text())
@@ -132,9 +129,7 @@ def run_parity(
         raise ValueError("normaliser provenance does not match the training stage")
     cases = {row["id"]: row for row in rows}
     case = cases[case_id]
-    inlet, angle = map(float, case_id.split("_")[2:4])
-    mesh = load_original_mesh(*verified_mesh_paths(train_stage, case))
-    features = mesh.features(inlet, np.deg2rad(angle))
+    features = load_staged_features(train_stage, case)
     if len(features.pos) < 2 * SUBSET_SIZE:
         raise ValueError("training mesh is too small for disjoint parity subsets")
 

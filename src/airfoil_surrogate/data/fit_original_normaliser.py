@@ -15,12 +15,9 @@ from airfoil_surrogate.data.features import (
     NodeFeatures,
     Normaliser,
 )
-from airfoil_surrogate.data.original import load_original_mesh
+from airfoil_surrogate.data.original import load_staged_features
 from airfoil_surrogate.data.stage_original import PIN
-from airfoil_surrogate.data.staged_original import (
-    read_complete_partition,
-    verified_mesh_paths,
-)
+from airfoil_surrogate.data.staged_original import read_complete_partition
 
 
 def fit_checked_normaliser(features: Iterable[NodeFeatures]) -> Normaliser:
@@ -66,9 +63,7 @@ def fit_staged_training(root: Path, pin: dict, out: Path) -> None:
 
     def features() -> Iterable[NodeFeatures]:
         for row in rows:
-            inlet_velocity, angle_deg = map(float, row["id"].split("_")[2:4])
-            mesh = load_original_mesh(*verified_mesh_paths(root, row))
-            yield mesh.features(inlet_velocity, np.deg2rad(angle_deg))
+            yield load_staged_features(root, row)
 
     normaliser = fit_checked_normaliser(features())
     with out.open("x") as stream:

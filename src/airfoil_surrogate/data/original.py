@@ -10,6 +10,7 @@ import pyvista as pv
 from scipy.spatial import cKDTree
 
 from airfoil_surrogate.data.features import NodeFeatures
+from airfoil_surrogate.data.staged_original import verified_mesh_paths
 
 
 @dataclass(frozen=True)
@@ -81,3 +82,10 @@ def load_original_mesh(internal_path: Path, aerofoil_path: Path) -> OriginalMesh
     ):
         raise ValueError("wall patch must match a unique subset of internal vertices")
     return OriginalMesh(internal, aerofoil, wall_nodes)
+
+
+def load_staged_features(root: Path, row: dict) -> NodeFeatures:
+    """Verify a staged case's files and build its original-node features."""
+    inlet_velocity, angle_deg = map(float, row["id"].split("_")[2:4])
+    mesh = load_original_mesh(*verified_mesh_paths(root, row))
+    return mesh.features(inlet_velocity, np.deg2rad(angle_deg))
