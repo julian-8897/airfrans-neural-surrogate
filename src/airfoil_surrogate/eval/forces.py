@@ -1,4 +1,4 @@
-"""AirfRANS force integration on the prototype triangular meshes."""
+"""AirfRANS force integration on original and remeshed geometry."""
 
 import numpy as np
 import pyvista as pv
@@ -6,7 +6,39 @@ from airfrans import Simulation
 from scipy.stats import spearmanr
 
 from airfoil_surrogate.data.features import wall_normals
+from airfoil_surrogate.data.original import OriginalMesh
 from airfoil_surrogate.data.remeshed import RemeshedSample, wall_edges
+
+# Simulation's viscosity at its default 298.15 K. Density cancels in CL/CD.
+AIRFRANS_VISCOSITY = 1.5498148291427463e-5
+
+
+class OriginalForceSimulation(Simulation):
+    """Integrate dimensional fields in native node order using the wall patch."""
+
+    def __init__(self, mesh: OriginalMesh, inlet_velocity: float, aoa: float):
+        features = mesh.features(inlet_velocity, aoa)
+        self.inlet_velocity = inlet_velocity
+        self.angle_of_attack = aoa
+        self.NU = np.array(AIRFRANS_VISCOSITY)
+        self.RHO = 1.0
+        self.position = features.pos
+        self.surface = features.surf
+        self.sdf = features.x[:, 4:5]
+        # Integration expects fluid-domain normals, pointing into the solid.
+        self.normals = -features.x[:, 5:7]
+        self.airfoil_position = self.position[mesh.wall_nodes]
+        self.internal = mesh.internal
+        self.airfoil = mesh.aerofoil.compute_cell_sizes(area=False, volume=False)
+        self.set_fields(features.y)
+
+    def set_fields(self, fields: np.ndarray) -> None:
+        """Use predictions in (u_x, u_y, p, nu_t) order on the original vertices."""
+        fields = np.asarray(fields, dtype=np.float64)
+        if fields.shape != (len(self.position), 4) or not np.isfinite(fields).all():
+            raise ValueError("expected four finite fields on the original vertices")
+        self.velocity = fields[:, :2]
+        self.pressure = fields[:, 2:3]
 
 
 class RemeshedForceSimulation(Simulation):
@@ -16,8 +48,7 @@ class RemeshedForceSimulation(Simulation):
         self.position = sample.pos
         self.inlet_velocity = sample.inlet_velocity
         self.angle_of_attack = sample.aoa
-        # Simulation's viscosity at its default 298.15 K. Density cancels in CL/CD.
-        self.NU = np.array(1.5498148291427463e-5)
+        self.NU = np.array(AIRFRANS_VISCOSITY)
         self.RHO = 1.0
         self.sdf = -sample.implicit_distance[:, None]
 

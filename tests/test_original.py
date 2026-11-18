@@ -28,6 +28,9 @@ def mesh_files(tmp_path):
     patch = pv.PolyData(points[wall], lines=[2, 0, 1, 2, 1, 2, 2, 2, 3, 2, 3, 0])
     outward = np.array([[1, 1, 0], [1, -1, 0], [-1, -1, 0], [-1, 1, 0]])
     patch.point_data["Normals"] = -outward / np.sqrt(2)
+    patch.cell_data["Normals"] = np.array(
+        [[-1.0, 0, 0], [0, 1.0, 0], [1.0, 0, 0], [0, -1.0, 0]]
+    )
     internal_path = tmp_path / "internal.vtu"
     patch_path = tmp_path / "aerofoil.vtp"
     internal.save(internal_path)
@@ -63,3 +66,36 @@ def test_original_mesh_rejects_a_mismatched_wall_patch(mesh_files):
     patch.save(patch_path)
     with pytest.raises(ValueError, match="wall patch must match"):
         original.load_original_mesh(internal_path, patch_path)
+
+
+def test_original_force_adapter_on_known_fields(mesh_files):
+    forces = pytest.importorskip("airfoil_surrogate.eval.forces")
+    internal_path, patch_path, _, _, _, outward = mesh_files
+    mesh = original.load_original_mesh(internal_path, patch_path)
+    sim = forces.OriginalForceSimulation(mesh, inlet_velocity=2.0, aoa=0.0)
+    reference = forces.force_coefficients(sim, reference=True)
+
+    fields = np.zeros((len(sim.position), 4))
+    fields[:, 2] = 17.0
+    sim.set_fields(fields)
+    assert_allclose(forces.force_coefficients(sim), 0, atol=1e-12)
+
+    # AirfRANS averages the unit diagonal vertex normals onto each edge. Their
+    # edge-average magnitudes are 1/sqrt(2), scaling the exact rectangular-wall
+    # force of -0.5 for dp/dx = 1. The dynamic pressure at U = 2 is 2.
+    fields[:, 2] += sim.position[:, 0]
+    sim.set_fields(fields)
+    drag = -0.25 / np.sqrt(2)
+    assert_allclose(
+        forces.force_coefficients(sim), [[0, 0, 0], [drag, drag, 0]], rtol=0, atol=1e-12
+    )
+
+    fields[:, 0] = sim.position[:, 1]
+    sim.set_fields(fields)
+    assert_allclose(
+        sim.wallshearstress(over_airfoil=True),
+        sim.NU * outward[:, [1, 0]] / np.sqrt(2),
+        rtol=0,
+        atol=np.finfo(np.float64).eps * sim.NU,
+    )
+    assert_array_equal(forces.force_coefficients(sim, reference=True), reference)

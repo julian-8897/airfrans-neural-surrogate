@@ -8,13 +8,18 @@ from pathlib import Path
 
 from airfrans import Simulation
 
+from airfoil_surrogate.data.original import load_original_mesh
 from airfoil_surrogate.data.remeshed import (
     case_key,
     iter_samples,
     load_split_indices,
     match_case_names,
 )
-from airfoil_surrogate.eval.forces import RemeshedForceSimulation, force_coefficients
+from airfoil_surrogate.eval.forces import (
+    OriginalForceSimulation,
+    RemeshedForceSimulation,
+    force_coefficients,
+)
 from airfoil_surrogate.train import ROOT, git_state
 
 
@@ -43,11 +48,20 @@ def main() -> None:
     for sample, name in zip(samples, names, strict=True):
         original = Simulation(str(args.original_root), name)
         remeshed = RemeshedForceSimulation(sample)
-        hashes = {
-            patch: hashlib.sha256(
-                (args.original_root / name / f"{name}_{patch}").read_bytes()
-            ).hexdigest()
+        paths = {
+            patch: args.original_root / name / f"{name}_{patch}"
             for patch in ("internal.vtu", "aerofoil.vtp")
+        }
+        native = OriginalForceSimulation(
+            load_original_mesh(paths["internal.vtu"], paths["aerofoil.vtp"]),
+            float(original.inlet_velocity),
+            float(original.angle_of_attack),
+        )
+        direct = force_coefficients(original, reference=True)
+        adapter = force_coefficients(native)
+        hashes = {
+            patch: hashlib.sha256(path.read_bytes()).hexdigest()
+            for patch, path in paths.items()
         }
         cases.append(
             {
@@ -55,7 +69,9 @@ def main() -> None:
                 "case": name,
                 "original_sha256": hashes,
                 "stored": [sample.cl, sample.cd],
-                "original": force_coefficients(original, reference=True).tolist(),
+                "original": direct.tolist(),
+                "original_adapter": adapter.tolist(),
+                "original_adapter_minus_direct": (adapter - direct).tolist(),
                 "remeshed": force_coefficients(remeshed, reference=True).tolist(),
             }
         )

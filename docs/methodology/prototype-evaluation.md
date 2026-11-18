@@ -24,4 +24,6 @@ uv run --locked --extra forces python scripts/check_force_labels.py \
   /path/to/Dataset 0 194 437
 ```
 
+The command also passes unchanged original-mesh vertex fields through the prediction adapter. `original_adapter_minus_direct` records the difference from direct `airfrans.Simulation` integration for each total, pressure and viscous contribution.
+
 Across these cases, original-mesh integration differed from the stored CL by at most 3.2 × 10⁻⁶ and from the stored CD by at most 9.0 × 10⁻⁷. That supports an original-mesh origin for the labels on this sample. Remeshed ground-truth integration yielded 33–69% lower CD than the stored values. The difference came primarily from the smaller viscous term. The original-mesh check and the analytic uniform-pressure, linear-pressure and linear-shear tests exercise the integration. The three-case check leaves dataset-wide label provenance and the reported-run force tolerance open.
