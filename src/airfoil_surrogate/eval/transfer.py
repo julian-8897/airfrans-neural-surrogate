@@ -45,7 +45,7 @@ def _linked_json(record: dict) -> dict:
     return json.loads(data)
 
 
-def _frozen_cases(cohorts: dict, pin: dict) -> list[dict]:
+def frozen_cases(cohorts: dict, pin: dict) -> list[dict]:
     if (
         cohorts.get("schema") != 1
         or cohorts.get("budget", {}).get("within_cap") is not True
@@ -129,7 +129,7 @@ def evaluate_transfer(
     frozen_bytes = freeze_path.read_bytes()
     cohort_bytes = cohort_path.read_bytes()
     frozen = json.loads(frozen_bytes)
-    cases = _frozen_cases(json.loads(cohort_bytes), pin)
+    cases = frozen_cases(json.loads(cohort_bytes), pin)
     meshes = [_verified_mesh_paths(case) for case in cases]
     model, norm = load_frozen_model(frozen_inputs(run, baselines, frozen), device)
 
