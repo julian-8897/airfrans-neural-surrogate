@@ -24,6 +24,7 @@ esac
 export TMPDIR="$EXP_OUT/tmp" XDG_CACHE_HOME="$EXP_OUT/cache"
 export XDG_CONFIG_HOME="$EXP_OUT/config" XDG_DATA_HOME="$EXP_OUT/xdg-data"
 export UV_CACHE_DIR="$XDG_CACHE_HOME/uv" UV_PYTHON_INSTALL_DIR="$AIRFOIL_SCRATCH/interpreters"
+export UV_HTTP_TIMEOUT=180 UV_HTTP_RETRIES=5 UV_CONCURRENT_DOWNLOADS=4
 export HF_HOME="$XDG_CACHE_HOME/huggingface" MPLCONFIGDIR="$XDG_CONFIG_HOME/matplotlib"
 export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 export OPENBLAS_NUM_THREADS="$OMP_NUM_THREADS" MKL_NUM_THREADS="$OMP_NUM_THREADS"
@@ -40,10 +41,22 @@ case "${1:-}" in
         test "$(stat --format=%s "$EXP_OUT/Dataset.zip.partial")" = "${source[1]}"
         mv -n "$EXP_OUT/Dataset.zip.partial" "$EXP_OUT/Dataset.zip"
         ;;
+    dataset-ranges)
+        python3 scripts/fetch_original_ranges.py "${2:?Provide existing ZIP prefix}" \
+            --prefix-bytes "${3:?Provide verified prefix byte count}" --out "$EXP_OUT/ranges"
+        ;;
     environment)
         # Eureka2's 535-series driver ran the pilot's CUDA 12.6 build.
         # The PyPI torch wheel in uv.lock requests CUDA 13.
         export UV_PROJECT_ENVIRONMENT="$EXP_OUT/venv"
+        if [ -n "${2:-}" ]; then
+            case "$(realpath -e "$2")/" in
+                "$AIRFOIL_SCRATCH/"*) ;;
+                *) echo 'Cache seed must be on study scratch' >&2; exit 2 ;;
+            esac
+            mkdir -p "$UV_CACHE_DIR"
+            rsync -a "$2/" "$UV_CACHE_DIR/"
+        fi
         "$AIRFOIL_UV" venv --python 3.12 "$UV_PROJECT_ENVIRONMENT"
         "$UV_PROJECT_ENVIRONMENT/bin/python" - > "$EXP_OUT/requirements.txt" <<'PY'
 import tomllib
@@ -91,5 +104,5 @@ PY
         "$interpreter" -m airfoil_surrogate.data.fit_original_normaliser "$EXP_OUT/train" \
             --out "$EXP_OUT/normaliser.json"
         ;;
-    *) echo 'Specify dataset, environment, sources or stages' >&2; exit 2 ;;
+    *) echo 'Specify dataset, dataset-ranges, environment, sources or stages' >&2; exit 2 ;;
 esac

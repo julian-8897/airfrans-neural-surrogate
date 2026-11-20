@@ -16,6 +16,9 @@ if [ "$#" -ne 6 ]; then
 fi
 
 : "${EXP_OUT:?Set EXP_OUT with the registered experiment run}"
+if [ -n "${AIRFOIL_SCRATCH:-}" ]; then
+    source configs/eureka2-scratch.sh
+fi
 export OMP_NUM_THREADS=2
 nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
 python -m airfoil_surrogate.models.transolver_parity "$1" "$2" "$4" \

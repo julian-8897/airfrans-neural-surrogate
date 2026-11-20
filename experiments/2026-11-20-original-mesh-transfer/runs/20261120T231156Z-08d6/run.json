@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "run_id": "20261120T231156Z-08d6",
+  "experiment": "2026-11-20-original-mesh-transfer",
+  "status": "succeeded",
+  "backend": {
+    "kind": "local",
+    "job_id": null
+  },
+  "command": [
+    "sh",
+    "-c",
+    "uv run --locked --no-sync python -m airfoil_surrogate.cfd.reproduction plan data/raw/airfrans_remeshed/airfrans_manifest.json --out \"$EXP_OUT/reproduction-plan.json\""
+  ],
+  "cwd": ".",
+  "started": "2026-11-20T23:11:56+00:00",
+  "ended": "2026-11-20T23:12:00+00:00",
+  "duration_s": 4.613,
+  "exit_code": 0,
+  "git": {
+    "commit": "bd96eae042bc62f8b8ca988aa6bb3e057d76a062",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": null,
+  "seeds": [],
+  "data": [
+    {
+      "path": "data/raw/airfrans_remeshed/airfrans_manifest.json",
+      "version": null,
+      "exists": true,
+      "size_bytes": 187191,
+      "sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13"
+    }
+  ],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T231156Z-08d6",
+  "metrics": null,
+  "note": null
+}
