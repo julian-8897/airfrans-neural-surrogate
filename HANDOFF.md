@@ -1,4 +1,4 @@
-# Last session (2026-11-18)
+# Last session (2026-11-20)
 
 The [original-mesh Transolver and geometry-transfer protocol](docs/methodology/original-mesh-transfer-protocol.md) awaits approval. It covers forward and force qualification, one full-task seed, the official test evaluation, and 30 UIUC plus 30 NACA CFD cases at matched conditions. Proposed caps are 24 full A100-hours and 600 allocated CPU-core-hours. Approval also covers executing the pinned upstream Transolver module and NACA case generator.
 
@@ -29,5 +29,7 @@ Added the [shared OpenFOAM runner](docs/methodology/cfd-reproduction.md) and `co
 Added the [matched-cohort preparation command](docs/methodology/matched-cohorts.md). A geometry-only preview on the current UIUC archive and official AirfRANS case IDs filled the proposed primary groups and ranked 678 UIUC, 55 four-digit and 47 five-digit reserves. It verified the contour hashes and common operating point. The preview was temporary. The source snapshot and final CFD-qualified cohorts have yet to be frozen for the campaign.
 
 Added [CFD campaign accounting and cohort freeze](docs/methodology/cfd-campaign.md). The matched runner requires three qualifying reproduction reports. The final freeze verifies the ranked prefix, registered terminal attempts and native mesh hashes. It distinguishes scientific replacements from infrastructure retries. Fixtures verified the 60-case freeze, rejection of a changed mesh and allocation accounting, including the 40 CPU-core-hour reservation for the initial three reproduction jobs. No live allocation evidence has been collected.
+
+Added the [matched transfer evaluator](docs/methodology/matched-transfer-evaluation.md). It scores the frozen model on the 60 CFD-qualified native meshes and records per-shape predictions, area- and arc-length-weighted errors, independent shape bootstrap intervals, rank displacements, all discordant pairs and exact ties. Analytic tests checked unequal-area and unequal-length weights, ties and undefined bootstrap draws. A 60-case synthetic CPU fixture verified native prediction alignment and hashes, changed-mesh rejection before inference and byte-identical report regeneration. Real matched CFD and inference remain pending.
 
 The prior pilot is closed (job `891545`, run `20261117T221946Z-2bdb`), with accounting and outputs under `outputs/2026-11-17-original-a100-pilot/20261117T221946Z-2bdb/` and cluster files at `/parallel_scratch/jc02423/airfrans-original-pilot-c58aa88`. This session launched no jobs and opened no official test fields. After approval, record the agreed decisions, register the campaign in `exp`, and complete the original-mesh workflow and its qualification before full training and matched CFD.

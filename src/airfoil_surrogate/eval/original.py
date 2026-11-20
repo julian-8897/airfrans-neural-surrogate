@@ -34,7 +34,7 @@ BOOTSTRAP_SEED = 0
 BOOTSTRAP_DRAWS = 10_000
 
 
-def _frozen_inputs(run: Path, baselines: Path, frozen: dict) -> dict[str, bytes]:
+def frozen_inputs(run: Path, baselines: Path, frozen: dict) -> dict[str, bytes]:
     paths = {
         name: run / name
         for name in (
@@ -55,6 +55,18 @@ def _frozen_inputs(run: Path, baselines: Path, frozen: dict) -> dict[str, bytes]
             raise ValueError(f"frozen evaluation input changed: {name}")
         inputs[name] = data
     return inputs
+
+
+def load_frozen_model(
+    inputs: dict[str, bytes], device: torch.device
+) -> tuple[Transolver, Normaliser]:
+    norm = Normaliser.from_dict(json.loads(inputs["normaliser.json"]))
+    checkpoint = torch.load(
+        io.BytesIO(inputs["model.pt"]), map_location="cpu", weights_only=True
+    )
+    model = Transolver(TransolverConfig(**checkpoint["config"]))
+    model.load_state_dict(checkpoint["model"], strict=True)
+    return model.to(device).eval(), norm
 
 
 @torch.inference_mode()
@@ -215,15 +227,9 @@ def evaluate_official(
     frozen_bytes = freeze_path.read_bytes()
     frozen_digest = hashlib.sha256(frozen_bytes).hexdigest()
     frozen = json.loads(frozen_bytes)
-    inputs = _frozen_inputs(run, baselines, frozen)
-    norm = Normaliser.from_dict(json.loads(inputs["normaliser.json"]))
+    inputs = frozen_inputs(run, baselines, frozen)
+    model, norm = load_frozen_model(inputs, device)
     baseline = OriginalBaselines.from_dict(json.loads(inputs["baselines"]))
-    checkpoint = torch.load(
-        io.BytesIO(inputs["model.pt"]), map_location="cpu", weights_only=True
-    )
-    model = Transolver(TransolverConfig(**checkpoint["config"]))
-    model.load_state_dict(checkpoint["model"], strict=True)
-    model.to(device).eval()
     rows, test_digest = read_complete_partition(
         test_stage, "test", pin, frozen_sha256=frozen_digest
     )

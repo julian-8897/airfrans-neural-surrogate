@@ -423,3 +423,124 @@ def test_cfd_reproduction_gate_checks_both_surfaces_independently(mesh_files):
     assert failed["mesh_ok"] and failed["convergence"]["passed"]
     assert_allclose(failed["coefficient_absolute_difference"], [0, 0], atol=1e-12)
     assert_allclose(failed["cp_rmse"], [0.1, 0.1], atol=1e-12)
+
+
+def test_transfer_evaluation_freezes_full_cohorts_and_rebuilds_reports(
+    tmp_path, mesh_files
+):
+    transfer = pytest.importorskip("airfoil_surrogate.eval.transfer")
+    internal, wall, *_ = mesh_files
+    norm = Normaliser(np.zeros(7), np.ones(7), np.zeros(4), np.ones(4))
+    cfg = TransolverConfig(n_hidden=8, n_layers=1, n_head=2, slice_num=4, ref=2)
+    torch.manual_seed(0)
+    model = Transolver(cfg)
+
+    def digest(path):
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    def write_json(name, data):
+        path = tmp_path / name
+        path.write_text(json.dumps(data))
+        return path
+
+    torch.save(
+        {"config": asdict(cfg), "model": model.state_dict()}, tmp_path / "model.pt"
+    )
+    write_json("normaliser.json", norm.to_dict())
+    for name in ("run.json", "selection.json", "metrics.jsonl", "baselines"):
+        write_json(name, {})
+    inputs = {
+        name: digest(tmp_path / name)
+        for name in (
+            "run.json",
+            "selection.json",
+            "metrics.jsonl",
+            "normaliser.json",
+            "model.pt",
+            "baselines",
+        )
+    }
+    frozen = write_json("frozen.json", {"schema": 1, "sha256": inputs})
+    pin = {"split_sha256": "pinned-split"}
+    gate = write_json(
+        "gate.json", {"passed": True, "official_split_sha256": pin["split_sha256"]}
+    )
+    candidate = write_json(
+        "candidate.json", {"sources": {"airfrans_split_sha256": pin["split_sha256"]}}
+    )
+
+    cases = []
+    for (group, family), count in transfer.QUOTAS.items():
+        for index in range(count):
+            case_id = f"{family or group}-{index}"
+            cases.append(
+                {
+                    "id": case_id,
+                    "group": group,
+                    "family": family,
+                    "inlet_velocity": 4e6 * transfer.AIRFRANS_VISCOSITY,
+                    "reynolds": 4e6,
+                    "aoa_deg": 4.0,
+                    "iteration_limit": 20_000,
+                    "run_id": f"cfd-{case_id}",
+                    "job_id": str(len(cases)),
+                    "native": {
+                        path.name: {
+                            "path": str(path),
+                            "sha256": digest(path),
+                            "size": path.stat().st_size,
+                        }
+                        for path in (internal, wall)
+                    },
+                }
+            )
+    cohorts = {
+        "schema": 1,
+        "budget": {"within_cap": True},
+        "qualification": {"path": str(gate), "sha256": digest(gate)},
+        "candidate_manifest": {"path": str(candidate), "sha256": digest(candidate)},
+        "cases": cases,
+    }
+    cohort_path = write_json("cohorts.json", cohorts)
+    out = tmp_path / "output"
+    device = torch.device("cpu")
+    transfer.evaluate_transfer(
+        tmp_path, tmp_path / "baselines", frozen, cohort_path, pin, out, device
+    )
+
+    entries = [
+        json.loads(line) for line in (out / "cases.jsonl").read_text().splitlines()
+    ]
+    assert [row["case"] for row in entries] == [case["id"] for case in cases]
+    assert entries[0]["cfd_run_id"] == "cfd-uiuc-0"
+    pred = out / entries[0]["prediction"]["path"]
+    assert digest(pred) == entries[0]["prediction"]["sha256"]
+    with np.load(pred) as arrays:
+        fields = arrays["fields"]
+    assert fields.shape == (49, 4) and np.isfinite(fields).all()
+
+    rebuilt = tmp_path / "rebuilt"
+    transfer.rebuild_summary(out, rebuilt)
+    for name in ("summary.json", "rankings.json"):
+        assert (rebuilt / name).read_bytes() == (out / "report" / name).read_bytes()
+    with pytest.raises(FileExistsError):
+        transfer.evaluate_transfer(
+            tmp_path, tmp_path / "baselines", frozen, cohort_path, pin, out, device
+        )
+
+    changed = tmp_path / "changed"
+    cases[-1]["native"]["internal.vtu"]["sha256"] = "wrong"
+    write_json("cohorts.json", cohorts)
+    with pytest.raises(ValueError, match="frozen native mesh changed"):
+        transfer.evaluate_transfer(
+            tmp_path, tmp_path / "baselines", frozen, cohort_path, pin, changed, device
+        )
+    assert not changed.exists()
+
+    cases.pop()
+    write_json("cohorts.json", cohorts)
+    with pytest.raises(ValueError, match="invalid frozen cohort membership"):
+        transfer.evaluate_transfer(
+            tmp_path, tmp_path / "baselines", frozen, cohort_path, pin, changed, device
+        )
+    assert not changed.exists()
