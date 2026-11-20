@@ -25,6 +25,7 @@ from airfoil_surrogate.cfd.geometry import (
 )
 from airfoil_surrogate.cfd.reproduction import GENERATOR_REVISION
 from airfoil_surrogate.data.stage_original import PIN
+from airfoil_surrogate.data.staged_original import case_order_sha256
 from airfoil_surrogate.eval.forces import AIRFRANS_VISCOSITY
 
 UIUC_INDEX = "https://m-selig.ae.illinois.edu/ads/coord_database.html"
@@ -157,6 +158,46 @@ def _geometry_key(profile: Profile) -> bytes:
     return np.rint(profile.ordinate_samples * 1e12).astype("<i8").tobytes()
 
 
+def original_split_audit(splits: dict, profiles: dict[str, Profile], pin: dict) -> dict:
+    """Check the pinned case order and canonical NACA shape isolation."""
+    train_size = pin["partitions"]["train"]["size"]
+    groups = {
+        "train": splits["full_train"][:train_size],
+        "validation": splits["full_train"][train_size:],
+        "test": splits["full_test"],
+    }
+    fingerprints = {
+        case: _sha256(_geometry_key(profile)) for case, profile in profiles.items()
+    }
+    cases = [case for group in groups.values() for case in group]
+    partitions = {}
+    for name, group in groups.items():
+        expected = pin["partitions"][name]
+        order = case_order_sha256(group)
+        if len(group) != expected["size"] or order != expected["order_sha256"]:
+            raise ValueError(f"original {name} cases differ from the pinned order")
+        partitions[name] = {
+            "size": len(group),
+            "order_sha256": order,
+            "distinct_shapes": len({fingerprints[case] for case in group}),
+        }
+    shapes = {
+        name: {fingerprints[case] for case in group} for name, group in groups.items()
+    }
+    overlaps = {
+        f"{a}_{b}": sorted(shapes[a] & shapes[b])
+        for a, b in (("train", "validation"), ("train", "test"), ("validation", "test"))
+    }
+    return {
+        "schema": 1,
+        "passed": len(cases) == len(set(cases)) and not any(overlaps.values()),
+        "source_split_sha256": pin["split_sha256"],
+        "partitions": partitions,
+        "overlapping_shapes": overlaps,
+        "case_shape_sha256": fingerprints,
+    }
+
+
 def rank_controls(
     splits: dict, profiles: dict[str, Profile]
 ) -> tuple[list[dict], list[dict]]:
@@ -211,11 +252,16 @@ def prepare_cohorts(
         contour = naca_generator(shape, nb_samples=2000, verbose=False, CTE=True)
         profiles[case_id] = align_profile(*split_contour(contour))
 
+    audit = original_split_audit(splits, profiles, pin)
+    out.mkdir(parents=True, exist_ok=False)
+    audit_bytes = (json.dumps(audit, indent=2, allow_nan=False) + "\n").encode()
+    (out / "split-audit.json").write_bytes(audit_bytes)
+    if not audit["passed"]:
+        raise ValueError("case IDs or canonical NACA geometries overlap across splits")
     index, raw_archive = index_path.read_bytes(), archive_path.read_bytes()
     with ZipFile(io.BytesIO(raw_archive)) as archive:
         uiuc_audit, retained = screen_uiuc(index, archive, profiles)
     naca_audit, controls = rank_controls(splits, profiles)
-    out.mkdir(parents=True, exist_ok=False)
     (out / "uiuc-index.html").write_bytes(index)
     (out / "uiuc-coordinates.zip").write_bytes(raw_archive)
     sources = {
@@ -265,6 +311,7 @@ def prepare_cohorts(
         "schema": 1,
         "generator_revision": GENERATOR_REVISION,
         "sources": sources,
+        "split_audit_sha256": _sha256(audit_bytes),
         "cases": cases,
     }
     (out / "cohorts.json").write_text(

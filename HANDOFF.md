@@ -8,8 +8,9 @@ Registered `2026-11-20-original-mesh-transfer`. Eureka2 study root is `/parallel
 - `898904`, `20261120T231044Z-9f86`, first Python environment attempt. Terminal failure after 71 seconds on two CPUs due to an HTTP timeout for a wheel.
 - `898905`, `20261120T231048Z-9482`, pinned source preparation. Completed, with the Transolver hash and NACA generator revision checked and the UIUC snapshots on scratch.
 - `20261120T231156Z-08d6`, the completed three-case reproduction plan derived from the pinned split IDs. The plan was copied to the corresponding scratch output directory.
-- `898926`, `20261120T231524Z-1d38`, environment retry with longer HTTP timeouts. Active at the last check.
+- `898926`, `20261120T231524Z-1d38`, environment retry with longer HTTP timeouts. Completed in 264 seconds on two CPUs. The scratch `venv` imports the force, mesh and upstream model dependencies.
 - `898929`, `20261120T231526Z-647b`, verified range transfer reusing the first 750 MB of the active archive. Active at the last check. Success produces `ranges/Dataset.zip`.
+- First reproduction attempts `898940`, `898941` and `898942` are registered as `20261120T231831Z-75ce`, `20261120T231832Z-93bb` and `20261120T231834Z-2a11`. They failed before solver setup because the OpenFOAM bashrc inherited the job's positional arguments. The OpenFOAM activation function now keeps those arguments out of the source call. Verified the updated initialisation against the Eureka2 module with a case-argument fixture. The same three cases will be used on retry.
 
 The [original VTU/VTP reader](src/airfoil_surrogate/data/original.py) preserves native connectivity and matches wall vertices independently of the field values. On the available original training probe, `airFoil2D_SST_31.283_-4.156_0.919_6.98_14.32`, the reader agreed with `airfrans.Simulation` for all input and target arrays. All 994 wall nodes satisfied no-slip and zero signed distance, and the normals were checked against adjacent fluid cells.
 

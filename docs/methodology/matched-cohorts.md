@@ -2,6 +2,8 @@
 
 Use the official AirfRANS split manifest, the saved UIUC coordinate index and the Standard `.dat` ZIP linked by the UIUC site. The command works from these snapshots and records their hashes. [UIUC coordinate archive and format notes](https://m-selig.ae.illinois.edu/ads/coord_database.html#archives).
 
+The command writes `split-audit.json` with the pinned partition orders, canonical NACA shape fingerprints and their cross-partition intersections. It stops before selecting matched cases if any case ID repeats or any canonical geometry crosses partitions.
+
 ```bash
 uv run --locked --extra forces python -m airfoil_surrogate.cfd.cohorts \
   /path/to/Dataset/manifest.json /path/to/uiuc-index.html \

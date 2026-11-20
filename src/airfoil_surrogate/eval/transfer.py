@@ -83,6 +83,18 @@ def frozen_cases(cohorts: dict, pin: dict) -> list[dict]:
         raise ValueError(
             "frozen CFD cohorts require qualification against the pinned split"
         )
+    if "split_audit_sha256" in candidate:
+        audit_path = Path(cohorts["candidate_manifest"]["path"]).with_name(
+            "split-audit.json"
+        )
+        audit = _linked_json(
+            {"path": str(audit_path), "sha256": candidate["split_audit_sha256"]}
+        )
+        if (
+            audit["passed"] is not True
+            or audit["source_split_sha256"] != pin["split_sha256"]
+        ):
+            raise ValueError("canonical original split audit did not qualify")
     return cases
 
 

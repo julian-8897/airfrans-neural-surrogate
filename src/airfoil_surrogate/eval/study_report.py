@@ -285,9 +285,12 @@ def assemble_report(spec_path: Path, pin: dict, root: Path, out: Path) -> None:
     candidate = _checked_path(cohorts["candidate_manifest"])
     paths["candidate_manifest"] = candidate
     paths["screening"] = candidate.with_name("screening.json")
-    sources = _json(candidate)["sources"]
+    candidate_manifest = _json(candidate)
+    sources = candidate_manifest["sources"]
     if sources != _json(paths["screening"])["sources"]:
         raise ValueError("CFD screening and frozen candidates used different sources")
+    if "split_audit_sha256" in candidate_manifest:
+        paths["split_audit"] = candidate.with_name("split-audit.json")
     for kind, filename in (
         ("uiuc_index", "uiuc-index.html"),
         ("uiuc_coordinates", "uiuc-coordinates.zip"),

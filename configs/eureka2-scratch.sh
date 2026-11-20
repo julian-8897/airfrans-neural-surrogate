@@ -21,3 +21,16 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/cuda" TRITON_CACHE_DIR="$XDG_CACHE_HOME/
 export HF_HOME="$XDG_CACHE_HOME/huggingface" PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1
 mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME"
 umask 077
+
+load_eureka2_openfoam() {
+    if ! command -v module >/dev/null; then
+        source /usr/share/lmod/lmod/init/bash
+    fi
+    module load GCC/10.2.0 OpenMPI/4.0.5 OpenFOAM/v2112
+    # Use empty positional arguments for the OpenFOAM initialisation.
+    set +u
+    source "$FOAM_BASH"
+    set -eu
+    test "$WM_PROJECT_VERSION" = v2112
+    command -v simpleFoam checkMesh foamToVTK mpirun
+}

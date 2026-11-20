@@ -104,5 +104,10 @@ PY
         "$interpreter" -m airfoil_surrogate.data.fit_original_normaliser "$EXP_OUT/train" \
             --out "$EXP_OUT/normaliser.json"
         ;;
-    *) echo 'Specify dataset, dataset-ranges, environment, sources or stages' >&2; exit 2 ;;
+    cohorts)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m airfoil_surrogate.cfd.cohorts "$3" "$4" "$5" \
+            --out "$EXP_OUT/cohorts"
+        ;;
+    *) echo 'Specify dataset, dataset-ranges, environment, sources, stages or cohorts' >&2; exit 2 ;;
 esac
