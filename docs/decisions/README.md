@@ -7,14 +7,14 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 | Item | PLAN.md section | Status | Record |
 |---|---|---|---|
 | Prototype data: AirfRANS_remeshed (reported-run data still open) | Data | accepted | [2026-11-17](2026-11-17-prototype-data-remeshed.md) |
-| Leakage check and shape-held-out split | Data | evidence recorded (no shape repeats); awaiting agreement | [2026-11-17](2026-11-17-prototype-data-remeshed.md) |
-| Data for reported runs (official processed vs remeshed) | Data | open | |
-| Out-of-family set selection rule | Data | open | |
-| Solver reproduction tolerance (CL, CD, surface pressure) | Solver reproduction | open | |
-| Architectures and hyperparameters for reported runs | Models | open | |
-| Metric set and which runs count | Evaluation harness | open | |
+| Leakage check and shape-held-out split | Data | accepted for this study | [2026-11-20](2026-11-20-reported-airfrans-data.md) |
+| Data for reported runs (official processed vs remeshed) | Data | accepted for this study | [2026-11-20](2026-11-20-reported-airfrans-data.md) |
+| Out-of-family set selection rule | Data | accepted for this study | [2026-11-20](2026-11-20-matched-airfoil-cohorts.md) |
+| Solver reproduction tolerance (CL, CD, surface pressure) | Solver reproduction | accepted for this study | [2026-11-20](2026-11-20-openfoam-reproduction.md) |
+| Architectures and hyperparameters for reported runs | Models | accepted for this study | [2026-11-20](2026-11-20-original-transolver-training.md) |
+| Metric set and which runs count | Evaluation harness | accepted for this study | [2026-11-20](2026-11-20-original-transfer-measures.md) |
 | Design-loop objectives (A lift-led, B CL/CD) | Design loop (Q3) | open | |
-| Compute budget (GPU and OpenFOAM node-hours) | Compute budget | open | |
+| Compute budget (GPU and OpenFOAM node-hours) | Compute budget | accepted for this study | [2026-11-20](2026-11-20-original-transfer-budget.md) |
 
 ## Template
 
@@ -43,4 +43,4 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 
 The approved original-mesh hardware pilot is scoped separately from the reported-run decisions. [Pilot decision](2026-11-17-original-a100-pilot.md)
 
-The [original-mesh Transolver and geometry-transfer protocol](../methodology/original-mesh-transfer-protocol.md) bundles the decisions for a one-seed, full-task study and awaits approval.
+The [original-mesh Transolver and geometry-transfer protocol](../methodology/original-mesh-transfer-protocol.md) bundles the decisions for a one-seed, full-task study and was approved on 2026-11-20.

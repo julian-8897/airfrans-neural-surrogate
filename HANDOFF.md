@@ -1,6 +1,6 @@
 # Last session (2026-11-20)
 
-The [original-mesh Transolver and geometry-transfer protocol](docs/methodology/original-mesh-transfer-protocol.md) awaits approval. It covers forward and force qualification, one full-task seed, the official test evaluation, and 30 UIUC plus 30 NACA CFD cases at matched conditions. Proposed caps are 24 full A100-hours and 600 allocated CPU-core-hours. Approval also covers executing the pinned upstream Transolver module and NACA case generator.
+The [original-mesh Transolver and geometry-transfer protocol](docs/methodology/original-mesh-transfer-protocol.md) was approved on 2026-11-20. It covers forward and force qualification, one full-task seed, the official test evaluation, and 30 UIUC plus 30 NACA CFD cases at matched conditions. The approved caps are 24 full A100-hours and 600 allocated CPU-core-hours. All cluster study files go on Eureka2 parallel scratch. Approval also covers executing the pinned upstream Transolver module and NACA case generator.
 
 The [original VTU/VTP reader](src/airfoil_surrogate/data/original.py) preserves native connectivity and matches wall vertices independently of the field values. On the available original training probe, `airFoil2D_SST_31.283_-4.156_0.919_6.98_14.32`, the reader agreed with `airfrans.Simulation` for all input and target arrays. All 994 wall nodes satisfied no-slip and zero signed distance, and the normals were checked against adjacent fluid cells.
 

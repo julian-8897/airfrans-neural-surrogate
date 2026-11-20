@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "2026-11-20-original-mesh-transfer",
+  "title": "Original-mesh Transolver and matched geometry transfer",
+  "status": "registered",
+  "created": "2026-11-20T23:05:32+00:00",
+  "question": "Does a single original-mesh Transolver improve on training-only baselines on official AirfRANS test cases, and how do field and CL/CD errors and rankings change from unseen NACA to UIUC at matched conditions?",
+  "hypothesis": "The field model can improve on regional means on official meshes. Geometry transfer and lift and drag performance are assessed independently.",
+  "protocol": "docs/methodology/original-mesh-transfer-protocol.md, approved 2026-11-20. Use the pinned data, solver and upstream sources, with all Eureka2 study files on parallel scratch.",
+  "decision_rule": "Pass force, parity and CFD reproduction gates. Freeze selection and case manifests before inference. Compare prespecified absolute and field errors and Spearman estimates with case bootstrap intervals. Report weak performance as an outcome.",
+  "budget": "24 full A100-hours and 600 allocated CPU-core-hours including failures and recovery. No automatic requeue. Eureka2 parallel scratch only.",
+  "linear": [],
+  "parent": "2026-11-17-original-a100-pilot",
+  "tags": [],
+  "verdict": null
+}
