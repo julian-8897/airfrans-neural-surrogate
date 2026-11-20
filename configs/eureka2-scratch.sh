@@ -31,6 +31,10 @@ load_eureka2_openfoam() {
     set +u
     source "$FOAM_BASH"
     set -eu
+    export PATH="$AIRFOIL_RUNTIME/bin:$PATH" PYTHONPATH="$PWD/src"
+    unset PYTHONHOME
+    hash -r
     test "$WM_PROJECT_VERSION" = v2112
     command -v simpleFoam checkMesh foamToVTK mpirun
+    python -c 'import sys; assert sys.version_info >= (3, 12); print(sys.executable)'
 }

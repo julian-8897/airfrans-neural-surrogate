@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "run_id": "20261120T232258Z-dbcd",
+  "experiment": "2026-11-20-original-mesh-transfer",
+  "status": "succeeded",
+  "backend": {
+    "kind": "slurm",
+    "job_id": "898962"
+  },
+  "command": [
+    "sbatch",
+    "--cpus-per-task=1",
+    "--time=10",
+    "configs/original-eureka2-preparation.sbatch",
+    "cohorts"
+  ],
+  "cwd": ".",
+  "started": "2026-11-20T23:22:58+00:00",
+  "ended": "2026-11-20T23:24:27+00:00",
+  "duration_s": 89.785,
+  "exit_code": 0,
+  "git": {
+    "commit": "71393defce4c76c2eb331c5525e12fcef630c996",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "configs/original-eureka2-preparation.sbatch",
+    "sha256": "6cca55dbf22beea1dccd90c8b10807656dd0fc024962558a25ac86dd26bfbf87",
+    "copy": "experiments/2026-11-20-original-mesh-transfer/runs/20261120T232258Z-dbcd/config.sbatch"
+  },
+  "seeds": [],
+  "data": [
+    {
+      "path": "data/raw/airfrans_remeshed/airfrans_manifest.json",
+      "version": null,
+      "exists": true,
+      "size_bytes": 187191,
+      "sha256": "3d1320005bcf3d94df80df2bf8338dd6ce6d394c6beafa14849b4ce1de7def13"
+    }
+  ],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd",
+  "metrics": {
+    "split_audit_passed": true,
+    "train_distinct_shapes": 720,
+    "validation_distinct_shapes": 80,
+    "test_distinct_shapes": 200,
+    "cross_partition_shape_repeats": 0,
+    "primary_uiuc": 30,
+    "primary_naca": 30
+  },
+  "note": "Metadata and geometry only. Verified pinned partitions and the complete primary and reserve candidate manifest. No official test flow field opened. Slurm completed with exit 0:0."
+}
