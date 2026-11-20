@@ -337,6 +337,7 @@ def main() -> None:
     for action in (estimate, qualify, freeze):
         action.add_argument("ledger", type=Path)
         action.add_argument("accounting", type=Path)
+        action.add_argument("--preparation-accounting", type=Path)
         action.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     allocations = read_allocations(args.accounting.read_text())
@@ -347,10 +348,17 @@ def main() -> None:
         if args.command == "budget"
         else {}
     )
-    accounting = budget(allocations, phases, proposals) | {
+    preparation = (
+        read_allocations(args.preparation_accounting.read_text(), required_cpus=None)
+        if args.preparation_accounting is not None
+        else None
+    )
+    accounting = budget(allocations, phases, proposals, preparation=preparation) | {
         "ledger": _record(args.ledger),
         "sacct": _record(args.accounting),
     }
+    if args.preparation_accounting is not None:
+        accounting["preparation_sacct"] = _record(args.preparation_accounting)
     if args.command == "budget":
         if args.matched:
             if args.qualification is None:

@@ -18,6 +18,10 @@ def test_budget_charges_terminal_elapsed_and_live_requested_wall_time():
         "within_cap": True,
     }
     assert not budget(rows, phases, {"matched": 63})["within_cap"]
+    prep = read_allocations("12|2|2|5400|120|COMPLETED|0:0\n", required_cpus=None)
+    setup_budget = budget(rows, phases, {"matched": 63}, preparation=prep)
+    assert setup_budget["preparation_core_seconds"] == 10_800
+    assert not setup_budget["within_cap"]
     with pytest.raises(ValueError, match="registered job IDs differ"):
         budget(rows, {"10": "reproduction"}, {})
     with pytest.raises(ValueError, match="ambiguous allocation record"):

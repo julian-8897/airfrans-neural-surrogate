@@ -52,7 +52,9 @@ class Allocation:
         return self.allocated_cpus * self.elapsed_seconds
 
 
-def read_allocations(text: str) -> dict[str, Allocation]:
+def read_allocations(
+    text: str, *, required_cpus: int | None = CORES
+) -> dict[str, Allocation]:
     """Read sacct -X -n -P with the fields documented for the CFD campaign."""
     records = {}
     for line in text.splitlines():
@@ -70,7 +72,8 @@ def read_allocations(text: str) -> dict[str, Allocation]:
         if (
             not 0 <= a.allocated_cpus
             or not 0 <= a.elapsed_seconds
-            or a.requested_cpus != CORES
+            or a.requested_cpus <= 0
+            or (required_cpus is not None and a.requested_cpus != required_cpus)
             or a.limit_minutes <= 0
             or (a.elapsed_seconds and not a.allocated_cpus)
         ):
@@ -83,6 +86,8 @@ def budget(
     allocations: dict[str, Allocation],
     phases: dict[str, str],
     proposals: dict[str, int],
+    *,
+    preparation: dict[str, Allocation] | None = None,
 ) -> dict:
     if allocations.keys() != phases.keys():
         raise ValueError("accounting snapshot and registered job IDs differ")
@@ -96,9 +101,16 @@ def budget(
         count * CORES * WALL_LIMIT_MINUTES[phase] * 60
         for phase, count in proposals.items()
     )
-    return {
+    other = preparation or {}
+    if allocations.keys() & other.keys():
+        raise ValueError("a preparation job also appears in CFD accounting")
+    setup_charge = sum(a.charge for a in other.values())
+    totals = {
         "charged_core_seconds": charged,
         "proposed_core_seconds": proposed,
         "cap_core_seconds": TOTAL_CORE_SECONDS,
-        "within_cap": charged + proposed <= TOTAL_CORE_SECONDS,
+        "within_cap": setup_charge + charged + proposed <= TOTAL_CORE_SECONDS,
     }
+    if preparation is not None:
+        totals["preparation_core_seconds"] = setup_charge
+    return totals

@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "run_id": "20261120T231526Z-647b",
+  "experiment": "2026-11-20-original-mesh-transfer",
+  "status": "running",
+  "backend": {
+    "kind": "slurm",
+    "job_id": null
+  },
+  "command": [
+    "sbatch",
+    "--time=30",
+    "configs/original-eureka2-preparation.sbatch",
+    "dataset-ranges"
+  ],
+  "cwd": ".",
+  "started": "2026-11-20T23:15:26+00:00",
+  "ended": null,
+  "duration_s": null,
+  "exit_code": null,
+  "git": {
+    "commit": "043ea43743ccbc8c32d802f4ac150de1825f1aab",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "configs/original-eureka2-preparation.sbatch",
+    "sha256": "f56b185b656abf49af7f02c6c820fb1bb736b05c913929123a3dfab03a489546",
+    "copy": "experiments/2026-11-20-original-mesh-transfer/runs/20261120T231526Z-647b/config.sbatch"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T231526Z-647b",
+  "metrics": null,
+  "note": "Recover dataset-ranges in a new run on Eureka2 scratch"
+}

@@ -21,6 +21,8 @@ Use `phase: matched` for the matched cases. For failed attempts, set `outcome` t
 
 Save the allocation rows for **all** submitted jobs in the campaign, including failures and active jobs. Use the raw fields below. `ElapsedRaw` is in seconds and `TimelimitRaw` is in minutes. The budget command charges actual allocated CPU time for terminal jobs and reserves the full wall limit for jobs that are active or pending. [Slurm accounting fields](https://slurm.schedmd.com/sacct.html#SECTION_Job-Accounting-Fields).
 
+Keep CPU preparation and verification jobs in a separate snapshot with the same fields. Pass it to `budget`, `qualify` and `freeze` with `--preparation-accounting` so these allocations count towards the same cap. Use the full reserved wall time when proposing a new preparation allocation.
+
 ```bash
 sacct -X -n -P -j "$JOB_IDS" \
   --format=JobIDRaw,AllocCPUS,ReqCPUS,ElapsedRaw,TimelimitRaw,State,ExitCode \

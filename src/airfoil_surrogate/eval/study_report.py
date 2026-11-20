@@ -114,6 +114,8 @@ def _cfd_reports(
     budget = cohorts["budget"]
     _checked_path(budget["sacct"])
     _checked_path(budget["ledger"])
+    if "preparation_sacct" in budget:
+        _checked_path(budget["preparation_sacct"])
     attempts = {}
     for row in cohorts["attempts"]:
         source = _checked_path(row["exp_run"])
@@ -131,7 +133,8 @@ def _cfd_reports(
     if (
         budget["within_cap"] is not True
         or budget["proposed_core_seconds"] != 0
-        or budget["charged_core_seconds"] > budget["cap_core_seconds"]
+        or budget["charged_core_seconds"] + budget.get("preparation_core_seconds", 0)
+        > budget["cap_core_seconds"]
         or budget["charged_core_seconds"]
         != sum(row["core_seconds"] for row in attempts.values())
     ):
@@ -530,6 +533,7 @@ def _render(
     point = allocations["point"]
     gpu_hours = allocations["gpu"]["charged_gpu_seconds"] / 3600
     cfd_hours = allocations["cfd"]["charged_core_seconds"] / 3600
+    prep_hours = allocations["cfd"].get("preparation_core_seconds", 0) / 3600
     return "\n".join(
         [
             "# Original-mesh Transolver on AirfRANS",
@@ -612,7 +616,8 @@ def _render(
             "## Reproduction",
             "",
             f"The campaign used {gpu_hours:.2f} A100-hours and {cfd_hours:.2f} "
-            "CFD CPU-core-hours. "
+            f"CFD CPU-core-hours, plus {prep_hours:.2f} CPU-core-hours "
+            "for preparation. "
             f"{artifact('gpu_budget', 'A100 accounting')}, "
             f"{artifact('cohorts', 'CFD accounting')}.",
             "",
