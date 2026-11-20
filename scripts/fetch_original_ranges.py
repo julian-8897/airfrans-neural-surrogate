@@ -75,7 +75,7 @@ def download(
     prefix_bytes: int,
     out: Path,
     workers: int,
-    previous: Path | None = None,
+    previous: tuple[Path, ...] = (),
 ) -> None:
     pin = json.loads(PIN.read_text())
     size = pin["size"]
@@ -83,8 +83,8 @@ def download(
         raise ValueError("expected a complete prefix of the pinned ZIP")
     out.mkdir(parents=True, exist_ok=False)
     available = [(0, prefix_bytes - 1, prefix)]
-    if previous is not None:
-        available.extend(_available_ranges(previous, size))
+    for source in previous:
+        available.extend(_available_ranges(source, size))
     intervals, missing = [], []
     cursor = 0
     for first, last, path in sorted(available):
@@ -132,11 +132,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("prefix", type=Path)
     parser.add_argument("--prefix-bytes", type=int, required=True)
-    parser.add_argument("--reuse-ranges", type=Path)
+    parser.add_argument("--reuse-ranges", type=Path, action="append", default=[])
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     download(
-        args.prefix, args.prefix_bytes, args.out, workers=4, previous=args.reuse_ranges
+        args.prefix,
+        args.prefix_bytes,
+        args.out,
+        workers=4,
+        previous=tuple(args.reuse_ranges),
     )
 
 

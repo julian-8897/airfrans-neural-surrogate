@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261120T233027Z-27c0",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "killed",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899000"
   },
   "command": [
     "sbatch",
@@ -17,9 +17,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-20T23:30:27+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-20T23:46:47+00:00",
+  "duration_s": 980.528,
+  "exit_code": 0,
   "git": {
     "commit": "e553795e5c95ae205be7e0d746ad30db1930cccb",
     "branch": "prototype-evaluation",
@@ -44,5 +44,5 @@
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T233027Z-27c0",
   "metrics": null,
-  "note": "Scratch preparation stages with dependency 898929"
+  "note": "Scratch preparation stages with dependency 898929\nSlurm CANCELLED after the archive dependency timed out. The job never started and consumed zero allocated time."
 }

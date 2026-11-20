@@ -42,13 +42,43 @@ case "${1:-}" in
         mv -n "$EXP_OUT/Dataset.zip.partial" "$EXP_OUT/Dataset.zip"
         ;;
     dataset-ranges)
+        interpreter=${AIRFOIL_RUNTIME:?Provide the scratch Python environment}/bin/python
         reuse=()
-        if [ -n "${4:-}" ]; then
-            reuse=(--reuse-ranges "$4")
-        fi
-        python3 scripts/fetch_original_ranges.py "${2:?Provide existing ZIP prefix}" \
+        for donor in "${@:4}"; do
+            reuse+=(--reuse-ranges "$donor")
+        done
+        "$interpreter" scripts/fetch_original_ranges.py "${2:?Provide existing ZIP prefix}" \
             --prefix-bytes "${3:?Provide verified prefix byte count}" \
             --out "$EXP_OUT/ranges" "${reuse[@]}"
+        "$interpreter" - "$EXP_OUT" <<'PY'
+import hashlib
+import json
+import sys
+from pathlib import Path
+from zipfile import ZipFile
+
+from airfoil_surrogate.data.stage_original import PIN, zip_index_sha256
+
+root = Path(sys.argv[1])
+path = root / "ranges/Dataset.zip"
+pin = json.loads(PIN.read_text())
+with ZipFile(path) as archive:
+    index_digest = zip_index_sha256(archive)
+    split_digest = hashlib.sha256(archive.read(pin["split_path"])).hexdigest()
+size = path.stat().st_size
+if (size, index_digest, split_digest) != (
+    pin["size"], pin["zip_index_sha256"], pin["split_sha256"]
+):
+    raise ValueError("assembled ZIP differs from the original AirfRANS pin")
+with (root / "archive-verification.json").open("x") as out:
+    json.dump(
+        {"size": size, "zip_index_sha256": index_digest, "split_sha256": split_digest},
+        out,
+        indent=2,
+    )
+    out.write("\n")
+print(f"Verified original archive index and split manifest ({size} bytes)")
+PY
         ;;
     environment)
         # Eureka2's 535-series driver ran the pilot's CUDA 12.6 build.

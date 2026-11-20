@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261120T231526Z-647b",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "killed",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "898929"
   },
   "command": [
     "sbatch",
@@ -15,9 +15,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-20T23:15:26+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-20T23:46:47+00:00",
+  "duration_s": 1881.447,
+  "exit_code": 0,
   "git": {
     "commit": "043ea43743ccbc8c32d802f4ac150de1825f1aab",
     "branch": "prototype-evaluation",
@@ -42,5 +42,5 @@
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T231526Z-647b",
   "metrics": null,
-  "note": "Recover dataset-ranges in a new run on Eureka2 scratch"
+  "note": "Recover dataset-ranges in a new run on Eureka2 scratch\nTIMEOUT after 1803 s with two CPUs. Retained verified HTTP data from the pinned URL for archive recovery. The previous job wrote no final archive."
 }
