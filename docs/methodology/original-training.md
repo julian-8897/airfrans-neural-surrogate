@@ -5,16 +5,18 @@ After protocol approval and data and model qualification, use the [staged full-t
 ```bash
 python -m airfoil_surrogate.train_original \
   /path/to/train /path/to/validation /path/to/normaliser.json \
+  --qualification /path/to/qualification-output \
   --out "$EXP_OUT/training"
 ```
 
-The command accepts the pinned training and validation stages. It checks the normaliser's training provenance and hashes each file before loading it. Original-mesh features are packed once in CPU memory. Each update draws a wall-retaining sample and transfers it to the GPU. Validation uses fixed samples from an independent seeded generator. The checkpoint is selected by the lowest validation score, with the earlier epoch breaking an exact tie.
+The command accepts the pinned training and validation stages. It checks the normaliser's training provenance, verifies successful parity and preflight on the same inputs and CUDA environment, and hashes each mesh before loading it. Original-mesh features are packed once in CPU memory. Each update draws a wall-retaining sample and transfers it to the GPU. Validation uses fixed samples from an independent seeded generator. The checkpoint is selected by the lowest validation score, with the earlier epoch breaking an exact tie. Use the [allocation ledger and training job template](gpu-campaign.md) when submitting.
 
 After a scheduler interruption, start a new tracked attempt with the same code, environment and pinned inputs. Pass the prior attempt's `resume.pt` and a new output directory:
 
 ```bash
 python -m airfoil_surrogate.train_original \
   /path/to/train /path/to/validation /path/to/normaliser.json \
+  --qualification /path/to/qualification-output \
   --resume /path/to/prior/training/resume.pt --out "$EXP_OUT/training"
 ```
 
@@ -38,4 +40,4 @@ python -m airfoil_surrogate.eval.freeze_original \
   /path/to/completed/training /path/to/baselines.json --out "$EXP_OUT/frozen.json"
 ```
 
-The freeze command checks that training and the baselines used the same pinned training cases. It verifies the complete validation schedule and checkpoint selection, then binds the baseline, checkpoint, normaliser, run metadata and recorded metrics by SHA-256.
+The freeze command requires the prespecified full training configuration and qualification provenance. It checks that training and the baselines used the same pinned training cases, verifies the complete validation schedule and checkpoint selection, and binds the baseline, checkpoint, normaliser, run metadata and recorded metrics by SHA-256.

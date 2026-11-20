@@ -7,12 +7,14 @@ import hashlib
 import json
 import statistics
 import time
-from dataclasses import replace
+from dataclasses import asdict, replace
 from pathlib import Path
 
 import torch
 
 from airfoil_surrogate.data.features import Normaliser
+from airfoil_surrogate.gpu_budget import TRAINING_MAX_SECONDS
+from airfoil_surrogate.models.transolver_parity import verified_parity
 from airfoil_surrogate.train_original import (
     OriginalTrainConfig,
     full_a100,
@@ -21,7 +23,6 @@ from airfoil_surrogate.train_original import (
     training_inputs,
 )
 
-MAX_TRAINING_SECONDS = 23 * 3600
 PROBE_EPOCHS = 11
 
 
@@ -53,18 +54,27 @@ def project_training(
     return {
         "components_seconds": components,
         "total_seconds": total,
-        "max_training_seconds": MAX_TRAINING_SECONDS,
-        "within_training_reservation": total <= MAX_TRAINING_SECONDS,
+        "max_training_seconds": TRAINING_MAX_SECONDS,
+        "within_training_reservation": total <= TRAINING_MAX_SECONDS,
     }
 
 
 def measure_preflight(
-    train: Path, validation: Path, normaliser: Path, audit_path: Path, out: Path
+    train: Path,
+    validation: Path,
+    normaliser: Path,
+    audit_path: Path,
+    parity_path: Path,
+    out: Path,
 ) -> bool:
     if out.exists():
         raise FileExistsError(out)
     train_rows, val_rows, norm_bytes, inputs = training_inputs(
         train, validation, normaliser
+    )
+    norm_sha = hashlib.sha256(norm_bytes).hexdigest()
+    parity, parity_sha = verified_parity(
+        parity_path, inputs["train_stage_sha256"], norm_sha
     )
     audit_bytes = audit_path.read_bytes()
     audit = json.loads(audit_bytes)
@@ -83,6 +93,13 @@ def measure_preflight(
         )
     norm = Normaliser.from_dict(json.loads(norm_bytes))
     device = full_a100()
+    gpu = torch.cuda.get_device_name(device)
+    if (gpu, str(torch.__version__), torch.version.cuda) != (
+        parity["gpu"],
+        parity["versions"]["torch"],
+        parity["cuda"],
+    ):
+        raise ValueError("parity and timing need the same A100 model and PyTorch build")
     torch.set_float32_matmul_precision("highest")
     start = time.perf_counter()
     training = pack_cases(train, [by_case[case] for case in audit_ids], norm)
@@ -124,7 +141,15 @@ def measure_preflight(
             {
                 "schema": 1,
                 "inputs": inputs,
+                "normaliser_sha256": norm_sha,
+                "parity_sha256": parity_sha,
                 "force_audit_sha256": hashlib.sha256(audit_bytes).hexdigest(),
+                "production_config": asdict(config),
+                "environment": {
+                    "gpu": gpu,
+                    "torch": str(torch.__version__),
+                    "cuda": torch.version.cuda,
+                },
                 "timing_case_ids": audit_ids,
                 "validation_cases": len(val_rows),
                 "trial_seconds": trial_seconds,
@@ -148,10 +173,16 @@ def main() -> None:
     parser.add_argument("validation", type=Path)
     parser.add_argument("normaliser", type=Path)
     parser.add_argument("force_audit", type=Path)
+    parser.add_argument("parity", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     if not measure_preflight(
-        args.train, args.validation, args.normaliser, args.force_audit, args.out
+        args.train,
+        args.validation,
+        args.normaliser,
+        args.force_audit,
+        args.parity,
+        args.out,
     ):
         raise SystemExit(1)
 

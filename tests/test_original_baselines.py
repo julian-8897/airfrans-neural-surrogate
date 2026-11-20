@@ -1,11 +1,13 @@
 import hashlib
 import json
+from dataclasses import asdict
 
 import numpy as np
 import pytest
 
 from airfoil_surrogate.data.staged_original import case_order_sha256
 from airfoil_surrogate.eval.freeze_original import freeze_evaluation
+from airfoil_surrogate.train_original import OriginalTrainConfig
 
 
 def test_ridge_is_family_specific_and_leaves_intercept_unpenalised():
@@ -70,15 +72,21 @@ def test_freeze_binds_pinned_training_artifacts_and_rejects_a_later_tie(tmp_path
     def digest(path):
         return hashlib.sha256(path.read_bytes()).hexdigest()
 
-    (training / "run.json").write_text(
-        json.dumps(
-            {
-                "inputs": {"train_stage_sha256": fitting["fit_stage_sha256"]},
-                "normaliser_sha256": digest(normaliser),
-                "config": {"epochs": 3, "val_every": 2},
-            }
-        )
-    )
+    config = OriginalTrainConfig(epochs=3, val_every=2)
+    metadata = {
+        "inputs": {
+            "train_stage_sha256": fitting["fit_stage_sha256"],
+            "qualification": {
+                "parity_sha256": "parity",
+                "preflight_sha256": "preflight",
+                "force_audit_sha256": "force-audit",
+            },
+        },
+        "normaliser_sha256": digest(normaliser),
+        "config": asdict(config),
+    }
+    run_file = training / "run.json"
+    run_file.write_text(json.dumps(metadata))
     metrics = [
         {"epoch": 1},
         {"epoch": 2, "validation_score": 1.0},
@@ -94,7 +102,7 @@ def test_freeze_binds_pinned_training_artifacts_and_rejects_a_later_tie(tmp_path
     selection_file = training / "selection.json"
     selection_file.write_text(json.dumps(selection))
     frozen = tmp_path / "frozen.json"
-    freeze_evaluation(training, baselines, pin, frozen)
+    freeze_evaluation(training, baselines, pin, frozen, config=config)
     initial = json.loads(frozen.read_text())
     assert initial["selected"] == {"epoch": 2, "score": 1.0}
     assert initial["sha256"]["model.pt"] == digest(training / "model.pt")
@@ -102,14 +110,27 @@ def test_freeze_binds_pinned_training_artifacts_and_rejects_a_later_tie(tmp_path
     assert initial["sha256"]["selection.json"] == digest(selection_file)
 
     with pytest.raises(FileExistsError):
-        freeze_evaluation(training, baselines, pin, frozen)
+        freeze_evaluation(training, baselines, pin, frozen, config=config)
     selection_file.write_text(json.dumps(selection | {"epoch": 3}))
     retry = tmp_path / "retry.json"
     with pytest.raises(ValueError, match="recorded validation rule"):
-        freeze_evaluation(training, baselines, pin, retry)
+        freeze_evaluation(training, baselines, pin, retry, config=config)
 
     selection_file.write_text(json.dumps(selection))
+    with pytest.raises(ValueError, match="complete prespecified training run"):
+        freeze_evaluation(training, baselines, pin, retry, config=OriginalTrainConfig())
+    metadata["inputs"]["timing_subset"] = fit_cases
+    run_file.write_text(json.dumps(metadata))
+    with pytest.raises(ValueError, match="complete prespecified training run"):
+        freeze_evaluation(training, baselines, pin, retry, config=config)
+    del metadata["inputs"]["timing_subset"]
+    proof = metadata["inputs"].pop("qualification")
+    run_file.write_text(json.dumps(metadata))
+    with pytest.raises(ValueError, match="provenance from the training qualification"):
+        freeze_evaluation(training, baselines, pin, retry, config=config)
+    metadata["inputs"]["qualification"] = proof
+    run_file.write_text(json.dumps(metadata))
     baselines.write_text(json.dumps(fitting | {"fit_cases": fit_cases[::-1]}))
     with pytest.raises(ValueError, match="pinned training stage"):
-        freeze_evaluation(training, baselines, pin, retry)
+        freeze_evaluation(training, baselines, pin, retry, config=config)
     assert not retry.exists()

@@ -17,7 +17,9 @@ import torch
 from airfoil_surrogate.data.features import NodeFeatures, Normaliser
 from airfoil_surrogate.data.stage_original import PIN
 from airfoil_surrogate.data.staged_original import read_complete_partition
+from airfoil_surrogate.gpu_budget import TRAINING_MAX_SECONDS
 from airfoil_surrogate.models.transolver import Transolver, TransolverConfig
+from airfoil_surrogate.models.transolver_parity import verified_parity
 from airfoil_surrogate.train import Case, evaluate, field_losses, git_state
 
 
@@ -279,11 +281,48 @@ def pack_cases(stage: Path, rows: list[dict], norm: Normaliser) -> list[PackedCa
     return [PackedCase.pack(load_staged_features(stage, row), norm) for row in rows]
 
 
+def check_training_qualification(
+    root: Path,
+    inputs: dict,
+    normaliser_bytes: bytes,
+    config: OriginalTrainConfig,
+    environment: dict,
+) -> dict[str, str]:
+    """Bind the launch and any recovery to the successful qualification reports."""
+    norm_sha = hashlib.sha256(normaliser_bytes).hexdigest()
+    parity, parity_sha = verified_parity(
+        root / "transolver-parity.json", inputs["train_stage_sha256"], norm_sha
+    )
+    raw = (root / "training-preflight" / "preflight.json").read_bytes()
+    preflight = json.loads(raw)
+    projection = preflight["projection"]
+    if (
+        preflight["schema"] != 1
+        or preflight["inputs"] != inputs
+        or preflight["normaliser_sha256"] != norm_sha
+        or preflight["parity_sha256"] != parity_sha
+        or preflight["production_config"] != json.loads(json.dumps(asdict(config)))
+        or preflight["environment"] != environment
+        or parity["gpu"] != environment["gpu"]
+        or parity["versions"]["torch"] != environment["torch"]
+        or parity["cuda"] != environment["cuda"]
+        or projection["within_training_reservation"] is not True
+        or not 0 < projection["total_seconds"] <= TRAINING_MAX_SECONDS
+    ):
+        raise ValueError("training requires a matching successful A100 preflight")
+    return {
+        "parity_sha256": parity_sha,
+        "preflight_sha256": hashlib.sha256(raw).hexdigest(),
+        "force_audit_sha256": preflight["force_audit_sha256"],
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("train_stage", type=Path)
     parser.add_argument("validation_stage", type=Path)
     parser.add_argument("normaliser", type=Path)
+    parser.add_argument("--qualification", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True, help="new attempt directory")
     parser.add_argument("--resume", type=Path, help="resume.pt from a prior attempt")
     args = parser.parse_args()
@@ -295,6 +334,18 @@ def main() -> None:
     train_rows, val_rows, normaliser_bytes, inputs = training_inputs(
         args.train_stage, args.validation_stage, args.normaliser
     )
+    config = OriginalTrainConfig()
+    inputs["qualification"] = check_training_qualification(
+        args.qualification,
+        inputs,
+        normaliser_bytes,
+        config,
+        {
+            "gpu": torch.cuda.get_device_name(device),
+            "torch": str(torch.__version__),
+            "cuda": torch.version.cuda,
+        },
+    )
     norm = Normaliser.from_dict(json.loads(normaliser_bytes))
 
     training = pack_cases(args.train_stage, train_rows, norm)
@@ -305,7 +356,7 @@ def main() -> None:
     )
     print(
         train_original(
-            OriginalTrainConfig(),
+            config,
             training,
             validation,
             device=device,

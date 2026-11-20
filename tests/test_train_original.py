@@ -158,3 +158,77 @@ def test_preflight_scales_training_but_not_full_validation_timings():
 
     rows[2]["seconds"] = 4.0
     assert not project_training(rows, **inputs)["within_training_reservation"]
+
+
+def test_training_binds_qualification_to_the_inputs_and_cuda_environment(tmp_path):
+    import hashlib
+    import json
+    from dataclasses import asdict
+
+    from airfoil_surrogate.models import transolver_parity
+
+    cfg = runner.OriginalTrainConfig()
+    inputs = {"train_stage_sha256": "training", "validation_stage_sha256": "validation"}
+    normaliser = b"normaliser bytes"
+    norm_sha = hashlib.sha256(normaliser).hexdigest()
+    env = {"gpu": "NVIDIA A100 80GB PCIe", "torch": "2.0.0+cuda", "cuda": "12.0"}
+    parity_path = tmp_path / "transolver-parity.json"
+    parity = {
+        "passed": True,
+        "upstream_revision": transolver_parity.UPSTREAM_REVISION,
+        "upstream_sha256": transolver_parity.UPSTREAM_SHA256,
+        "seed": 0,
+        "dtype": "float32",
+        "float32_matmul_precision": "highest",
+        "rtol": 1e-4,
+        "atol": 1e-5,
+        "train_stage_sha256": "training",
+        "normaliser_sha256": norm_sha,
+        "checks": {
+            name: {"passed": True} for name in ("subset_1", "subset_2", "full_mesh")
+        },
+        "gpu": env["gpu"],
+        "cuda": env["cuda"],
+        "versions": {"torch": env["torch"]},
+    }
+    parity_path.write_text(json.dumps(parity))
+    parity_sha = hashlib.sha256(parity_path.read_bytes()).hexdigest()
+    preflight_dir = tmp_path / "training-preflight"
+    preflight_dir.mkdir()
+    preflight = preflight_dir / "preflight.json"
+    preflight.write_text(
+        json.dumps(
+            {
+                "schema": 1,
+                "inputs": inputs,
+                "normaliser_sha256": norm_sha,
+                "parity_sha256": parity_sha,
+                "force_audit_sha256": "force-audit",
+                "production_config": asdict(cfg),
+                "environment": env,
+                "projection": {
+                    "within_training_reservation": True,
+                    "total_seconds": 65_000,
+                },
+            }
+        )
+    )
+    verified = runner.check_training_qualification(
+        tmp_path, inputs, normaliser, cfg, env
+    )
+    assert verified["parity_sha256"] == parity_sha
+    assert (
+        verified["preflight_sha256"]
+        == hashlib.sha256(preflight.read_bytes()).hexdigest()
+    )
+    different = inputs | {"validation_stage_sha256": "modified"}
+    with pytest.raises(ValueError, match="successful A100 preflight"):
+        runner.check_training_qualification(tmp_path, different, normaliser, cfg, env)
+    with pytest.raises(ValueError, match="successful A100 preflight"):
+        runner.check_training_qualification(
+            tmp_path, inputs, normaliser, cfg, env | {"cuda": "11.8"}
+        )
+    parity["checks"]["full_mesh"]["passed"] = False
+    parity_path.write_text(json.dumps(parity))
+    with pytest.raises(ValueError, match="passing pinned Transolver parity"):
+        runner.check_training_qualification(tmp_path, inputs, normaliser, cfg, env)

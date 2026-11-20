@@ -269,6 +269,8 @@ def test_frozen_evaluation_uses_each_native_mesh_once_and_rebuilds_summary(
     baselines = pytest.importorskip("airfoil_surrogate.eval.original_baselines")
     freeze = pytest.importorskip("airfoil_surrogate.eval.freeze_original")
     evaluation = pytest.importorskip("airfoil_surrogate.eval.original")
+    from airfoil_surrogate.train_original import OriginalTrainConfig
+
     train_root, pin, train = training_stage
 
     def sha(path):
@@ -283,15 +285,23 @@ def test_frozen_evaluation_uses_each_native_mesh_once_and_rebuilds_summary(
     baseline_file = tmp_path / "baselines.json"
     baselines.fit_staged_baselines(train_root, pin, baseline_file)
     cfg = TransolverConfig(n_hidden=8, n_layers=1, n_head=2, slice_num=4, ref=2)
+    training_cfg = OriginalTrainConfig(epochs=1, val_every=1, model=cfg)
     torch.manual_seed(0)
     model = Transolver(cfg)
     torch.save({"model": model.state_dict(), "config": asdict(cfg)}, run / "model.pt")
     (run / "run.json").write_text(
         json.dumps(
             {
-                "inputs": {"train_stage_sha256": sha(train_root / "stage.json")},
+                "inputs": {
+                    "train_stage_sha256": sha(train_root / "stage.json"),
+                    "qualification": {
+                        "parity_sha256": "parity",
+                        "preflight_sha256": "preflight",
+                        "force_audit_sha256": "force-audit",
+                    },
+                },
                 "normaliser_sha256": sha(norm_file),
-                "config": {"epochs": 1, "val_every": 1},
+                "config": asdict(training_cfg),
             }
         )
     )
@@ -309,7 +319,7 @@ def test_frozen_evaluation_uses_each_native_mesh_once_and_rebuilds_summary(
         )
     )
     frozen = tmp_path / "frozen.json"
-    freeze.freeze_evaluation(run, baseline_file, pin, frozen)
+    freeze.freeze_evaluation(run, baseline_file, pin, frozen, config=training_cfg)
 
     test_root = tmp_path / "test"
     test_rows = []

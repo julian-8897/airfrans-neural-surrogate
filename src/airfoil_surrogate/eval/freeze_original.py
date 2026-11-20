@@ -6,10 +6,12 @@ import argparse
 import hashlib
 import json
 import math
+from dataclasses import asdict
 from pathlib import Path
 
 from airfoil_surrogate.data.stage_original import PIN
 from airfoil_surrogate.data.staged_original import case_order_sha256
+from airfoil_surrogate.train_original import OriginalTrainConfig
 
 
 def _sha256(path: Path) -> str:
@@ -17,7 +19,14 @@ def _sha256(path: Path) -> str:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
-def freeze_evaluation(run_dir: Path, baselines: Path, pin: dict, out: Path) -> None:
+def freeze_evaluation(
+    run_dir: Path,
+    baselines: Path,
+    pin: dict,
+    out: Path,
+    *,
+    config: OriginalTrainConfig,
+) -> None:
     """Check completed training and baseline provenance without accessing test data."""
     if out.exists():
         raise FileExistsError(out)
@@ -27,6 +36,19 @@ def freeze_evaluation(run_dir: Path, baselines: Path, pin: dict, out: Path) -> N
     }
     artifacts["baselines"] = baselines.read_bytes()
     run = json.loads(artifacts["run.json"])
+    if (
+        run["config"] != json.loads(json.dumps(asdict(config)))
+        or "timing_subset" in run["inputs"]
+    ):
+        raise ValueError("evaluation requires the complete prespecified training run")
+    if set(run["inputs"].get("qualification", {})) != {
+        "parity_sha256",
+        "preflight_sha256",
+        "force_audit_sha256",
+    }:
+        raise ValueError(
+            "evaluation requires provenance from the training qualification"
+        )
     selection = json.loads(artifacts["selection.json"])
     normaliser = json.loads(artifacts["normaliser.json"])
     baseline = json.loads(artifacts["baselines"])
@@ -54,7 +76,7 @@ def freeze_evaluation(run_dir: Path, baselines: Path, pin: dict, out: Path) -> N
             "the normaliser and baselines must match the pinned training stage"
         )
 
-    epochs, interval = run["config"]["epochs"], run["config"]["val_every"]
+    epochs, interval = config.epochs, config.val_every
     scheduled = sorted(set(range(interval, epochs + 1, interval)) | {epochs})
     metrics = [json.loads(line) for line in artifacts["metrics.jsonl"].splitlines()]
     scores = [
@@ -97,7 +119,11 @@ def main() -> None:
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     freeze_evaluation(
-        args.training_run, args.baselines, json.loads(PIN.read_text()), args.out
+        args.training_run,
+        args.baselines,
+        json.loads(PIN.read_text()),
+        args.out,
+        config=OriginalTrainConfig(),
     )
     print(args.out)
 

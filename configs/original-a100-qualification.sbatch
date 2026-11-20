@@ -21,4 +21,4 @@ nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv
 python -m airfoil_surrogate.models.transolver_parity "$1" "$2" "$4" \
     --case "$6" --out "$EXP_OUT/transolver-parity.json"
 python -m airfoil_surrogate.preflight_original "$2" "$3" "$4" "$5" \
-    --out "$EXP_OUT/training-preflight"
+    "$EXP_OUT/transolver-parity.json" --out "$EXP_OUT/training-preflight"

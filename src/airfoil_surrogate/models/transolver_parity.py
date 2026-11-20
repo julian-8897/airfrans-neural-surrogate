@@ -25,6 +25,29 @@ SEED = 0
 SUBSET_SIZE = 4096
 
 
+def verified_parity(
+    path: Path, train_sha: str, normaliser_sha: str
+) -> tuple[dict, str]:
+    """Bind a successful FP32 parity report to the staged training inputs."""
+    raw = path.read_bytes()
+    report = json.loads(raw)
+    if (
+        report["passed"] is not True
+        or report["upstream_revision"] != UPSTREAM_REVISION
+        or report["upstream_sha256"] != UPSTREAM_SHA256
+        or report["seed"] != SEED
+        or report["dtype"] != "float32"
+        or report["float32_matmul_precision"] != "highest"
+        or (report["rtol"], report["atol"]) != (RTOL, ATOL)
+        or report["train_stage_sha256"] != train_sha
+        or report["normaliser_sha256"] != normaliser_sha
+        or set(report["checks"]) != {"subset_1", "subset_2", "full_mesh"}
+        or not all(check["passed"] is True for check in report["checks"].values())
+    ):
+        raise ValueError("expected passing pinned Transolver parity for these inputs")
+    return report, hashlib.sha256(raw).hexdigest()
+
+
 def copy_upstream_weights(
     model: Transolver, upstream: dict[str, torch.Tensor]
 ) -> tuple[dict[str, str], list[str]]:
@@ -180,7 +203,8 @@ def run_parity(
         "passed": all(check["passed"] for check in checks.values()),
         "upstream_revision": UPSTREAM_REVISION,
         "upstream_sha256": UPSTREAM_SHA256,
-        "versions": {key: version(key) for key in ("torch", "timm", "einops")},
+        "versions": {"torch": str(torch.__version__)}
+        | {key: version(key) for key in ("timm", "einops")},
         "cuda": torch.version.cuda,
         "gpu": gpu,
         "dtype": "float32",
