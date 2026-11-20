@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import shutil
+import re
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -52,36 +52,77 @@ def fetch_range(pin: dict, first: int, last: int, out: Path) -> Path:
     return path
 
 
-def download(prefix: Path, prefix_bytes: int, out: Path, workers: int) -> None:
+def _available_ranges(previous: Path, size: int) -> list[tuple[int, int, Path]]:
+    parts = []
+    for path in previous.glob("range-*.part"):
+        match = re.fullmatch(r"range-(\d+)-(\d+)\.part", path.name)
+        if match is None:
+            continue
+        first, last = map(int, match.groups())
+        headers = path.with_suffix(".headers").read_text().lower().splitlines()
+        count = path.stat().st_size
+        if (
+            f"content-range: bytes {first}-{last}/{size}" in headers
+            and 0 < count <= last - first + 1
+            and 0 <= first <= last < size
+        ):
+            parts.append((first, first + count - 1, path))
+    return parts
+
+
+def download(
+    prefix: Path,
+    prefix_bytes: int,
+    out: Path,
+    workers: int,
+    previous: Path | None = None,
+) -> None:
     pin = json.loads(PIN.read_text())
     size = pin["size"]
     if not 0 < prefix_bytes < size or prefix.stat().st_size < prefix_bytes:
         raise ValueError("expected a complete prefix of the pinned ZIP")
     out.mkdir(parents=True, exist_ok=False)
-    chunk = (size - prefix_bytes + workers - 1) // workers
+    available = [(0, prefix_bytes - 1, prefix)]
+    if previous is not None:
+        available.extend(_available_ranges(previous, size))
+    intervals, missing = [], []
+    cursor = 0
+    for first, last, path in sorted(available):
+        if last < cursor:
+            continue
+        if first > cursor:
+            missing.append((cursor, first - 1))
+            cursor = first
+        intervals.append((cursor, last, path, cursor - first))
+        cursor = last + 1
+    if cursor < size:
+        missing.append((cursor, size - 1))
+
+    chunk = (sum(last - first + 1 for first, last in missing) + workers - 1) // workers
     ranges = [
-        (start, min(start + chunk, size) - 1)
-        for start in range(prefix_bytes, size, chunk)
+        (start, min(start + chunk - 1, last))
+        for first, last in missing
+        for start in range(first, last + 1, chunk)
     ]
     with ThreadPoolExecutor(workers) as pool:
         futures = [
             pool.submit(fetch_range, pin, first, last, out) for first, last in ranges
         ]
-        parts = [future.result() for future in futures]
+        for (first, last), future in zip(ranges, futures, strict=True):
+            intervals.append((first, last, future.result(), 0))
 
     partial = out / "Dataset.zip.assembling"
     with partial.open("xb") as target:
-        with prefix.open("rb") as stream:
-            remaining = prefix_bytes
-            while remaining:
-                block = stream.read(min(remaining, BLOCK))
-                if not block:
-                    raise ValueError("dataset prefix shortened while being copied")
-                target.write(block)
-                remaining -= len(block)
-        for path in parts:
+        for first, last, path, offset in sorted(intervals):
             with path.open("rb") as stream:
-                shutil.copyfileobj(stream, target, BLOCK)
+                stream.seek(offset)
+                remaining = last - first + 1
+                while remaining:
+                    block = stream.read(min(remaining, BLOCK))
+                    if not block:
+                        raise ValueError(f"dataset byte range shortened: {path}")
+                    target.write(block)
+                    remaining -= len(block)
     if partial.stat().st_size != size:
         raise ValueError("assembled dataset has an unexpected size")
     partial.rename(out / "Dataset.zip")
@@ -91,9 +132,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("prefix", type=Path)
     parser.add_argument("--prefix-bytes", type=int, required=True)
+    parser.add_argument("--reuse-ranges", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    download(args.prefix, args.prefix_bytes, args.out, workers=4)
+    download(
+        args.prefix, args.prefix_bytes, args.out, workers=4, previous=args.reuse_ranges
+    )
 
 
 if __name__ == "__main__":

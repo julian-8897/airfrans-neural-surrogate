@@ -42,8 +42,13 @@ case "${1:-}" in
         mv -n "$EXP_OUT/Dataset.zip.partial" "$EXP_OUT/Dataset.zip"
         ;;
     dataset-ranges)
+        reuse=()
+        if [ -n "${4:-}" ]; then
+            reuse=(--reuse-ranges "$4")
+        fi
         python3 scripts/fetch_original_ranges.py "${2:?Provide existing ZIP prefix}" \
-            --prefix-bytes "${3:?Provide verified prefix byte count}" --out "$EXP_OUT/ranges"
+            --prefix-bytes "${3:?Provide verified prefix byte count}" \
+            --out "$EXP_OUT/ranges" "${reuse[@]}"
         ;;
     environment)
         # Eureka2's 535-series driver ran the pilot's CUDA 12.6 build.
@@ -109,5 +114,18 @@ PY
         "$interpreter" -m airfoil_surrogate.cfd.cohorts "$3" "$4" "$5" \
             --out "$EXP_OUT/cohorts"
         ;;
-    *) echo 'Specify dataset, dataset-ranges, environment, sources, stages or cohorts' >&2; exit 2 ;;
+    force-audit)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m pytest -q tests/test_original.py \
+            -o "cache_dir=$EXP_OUT/cache/pytest" --basetemp "$TMPDIR/pytest" \
+            -k 'original_force_adapter_on_known_fields or original_input_qualification'
+        "$interpreter" -m airfoil_surrogate.eval.qualify_forces "$3" "$4" \
+            --out "$EXP_OUT/force-audit.json"
+        ;;
+    baselines)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m airfoil_surrogate.eval.original_baselines "$3" \
+            --out "$EXP_OUT/baselines.json"
+        ;;
+    *) echo 'Specify dataset, dataset-ranges, environment, sources, stages, cohorts, force-audit or baselines' >&2; exit 2 ;;
 esac
