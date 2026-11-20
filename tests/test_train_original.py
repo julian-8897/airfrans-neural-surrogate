@@ -127,3 +127,34 @@ def test_resume_matches_uninterrupted_training_and_preserves_prior_attempt(
             cfg, cases[:3], cases[3:], out=rejected, resume=checkpoint, **incompatible
         )
     assert not rejected.exists()
+
+
+def test_preflight_scales_training_but_not_full_validation_timings():
+    from airfoil_surrogate.preflight_original import project_training
+
+    rows = [
+        {"seconds": 4.0},
+        {"seconds": 2.0},
+        {"seconds": 3.0},
+        {"seconds": 8.0, "validation_score": 1.0},
+    ]
+    inputs = {
+        "trial_cases": 12,
+        "full_cases": 720,
+        "training_load_seconds": 1.5,
+        "validation_load_seconds": 2.0,
+        "trial_seconds": 21.0,
+        "config": runner.OriginalTrainConfig(),
+    }
+    projection = project_training(rows, **inputs)
+    assert projection["components_seconds"] == {
+        "training_updates": 71_640.0,
+        "validation": 220.0,
+        "loading": 92.0,
+        "outside_epoch": 398.0,
+    }
+    assert projection["total_seconds"] == 72_350.0
+    assert projection["within_training_reservation"]
+
+    rows[2]["seconds"] = 4.0
+    assert not project_training(rows, **inputs)["within_training_reservation"]

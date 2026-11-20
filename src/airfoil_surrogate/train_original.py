@@ -240,6 +240,45 @@ def train_original(
     return checkpoint
 
 
+def full_a100() -> torch.device:
+    if torch.cuda.device_count() != 1:
+        raise RuntimeError("original-mesh training requires one visible full A100")
+    device = torch.device("cuda:0")
+    gpu = torch.cuda.get_device_name(device)
+    if "A100" not in gpu or "MIG" in gpu:
+        raise RuntimeError(f"expected a full A100, found {gpu}")
+    return device
+
+
+def training_inputs(
+    train_stage: Path, validation_stage: Path, normaliser: Path
+) -> tuple[list[dict], list[dict], bytes, dict]:
+    pin = json.loads(PIN.read_text())
+    train_rows, train_sha256 = read_complete_partition(train_stage, "train", pin)
+    val_rows, val_sha256 = read_complete_partition(validation_stage, "validation", pin)
+    normaliser_bytes = normaliser.read_bytes()
+    fit = json.loads(normaliser_bytes)
+    if fit["fit_stage_sha256"] != train_sha256 or fit["fit_cases"] != [
+        row["id"] for row in train_rows
+    ]:
+        raise ValueError("normaliser provenance does not match the training stage")
+    return (
+        train_rows,
+        val_rows,
+        normaliser_bytes,
+        {
+            "train_stage_sha256": train_sha256,
+            "validation_stage_sha256": val_sha256,
+        },
+    )
+
+
+def pack_cases(stage: Path, rows: list[dict], norm: Normaliser) -> list[PackedCase]:
+    from airfoil_surrogate.data.original import load_staged_features
+
+    return [PackedCase.pack(load_staged_features(stage, row), norm) for row in rows]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("train_stage", type=Path)
@@ -250,34 +289,16 @@ def main() -> None:
     args = parser.parse_args()
     if args.out.exists():
         raise FileExistsError(args.out)
-    if torch.cuda.device_count() != 1:
-        raise RuntimeError("original-mesh training requires one visible full A100")
-    device = torch.device("cuda:0")
-    gpu = torch.cuda.get_device_name(device)
-    if "A100" not in gpu or "MIG" in gpu:
-        raise RuntimeError(f"expected a full A100, found {gpu}")
+    device = full_a100()
     torch.set_float32_matmul_precision("highest")
 
-    from airfoil_surrogate.data.original import load_staged_features
-
-    pin = json.loads(PIN.read_text())
-    train_rows, train_sha256 = read_complete_partition(args.train_stage, "train", pin)
-    val_rows, val_sha256 = read_complete_partition(
-        args.validation_stage, "validation", pin
+    train_rows, val_rows, normaliser_bytes, inputs = training_inputs(
+        args.train_stage, args.validation_stage, args.normaliser
     )
-    normaliser_bytes = args.normaliser.read_bytes()
-    fit = json.loads(normaliser_bytes)
-    if fit["fit_stage_sha256"] != train_sha256 or fit["fit_cases"] != [
-        row["id"] for row in train_rows
-    ]:
-        raise ValueError("normaliser provenance does not match the training stage")
-    norm = Normaliser.from_dict(fit)
+    norm = Normaliser.from_dict(json.loads(normaliser_bytes))
 
-    def pack(stage: Path, rows: list[dict]) -> list[PackedCase]:
-        return [PackedCase.pack(load_staged_features(stage, row), norm) for row in rows]
-
-    training = pack(args.train_stage, train_rows)
-    validation = pack(args.validation_stage, val_rows)
+    training = pack_cases(args.train_stage, train_rows, norm)
+    validation = pack_cases(args.validation_stage, val_rows, norm)
     print(
         f"Loaded {len(training)} training and {len(validation)} validation cases",
         flush=True,
@@ -290,10 +311,7 @@ def main() -> None:
             device=device,
             out=args.out,
             normaliser_bytes=normaliser_bytes,
-            inputs={
-                "train_stage_sha256": train_sha256,
-                "validation_stage_sha256": val_sha256,
-            },
+            inputs=inputs,
             resume=args.resume,
         )
     )
