@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-20-original-mesh-transfer",
   "title": "Original-mesh Transolver and matched geometry transfer",
-  "status": "registered",
+  "status": "running",
   "created": "2026-11-20T23:05:32+00:00",
   "question": "Does a single original-mesh Transolver improve on training-only baselines on official AirfRANS test cases, and how do field and CL/CD errors and rankings change from unseen NACA to UIUC at matched conditions?",
   "hypothesis": "The field model can improve on regional means on official meshes. Geometry transfer and lift and drag performance are assessed independently.",

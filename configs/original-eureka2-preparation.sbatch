@@ -28,7 +28,8 @@ export HF_HOME="$XDG_CACHE_HOME/huggingface" MPLCONFIGDIR="$XDG_CONFIG_HOME/matp
 export PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 export OPENBLAS_NUM_THREADS="$OMP_NUM_THREADS" MKL_NUM_THREADS="$OMP_NUM_THREADS"
 mkdir -p "$TMPDIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_DATA_HOME"
-cd "$AIRFOIL_SCRATCH/checkout"
+cd "${AIRFOIL_CHECKOUT:-$AIRFOIL_SCRATCH/checkout}"
+export PYTHONPATH="$PWD/src"
 
 case "${1:-}" in
     dataset)
@@ -40,16 +41,55 @@ case "${1:-}" in
         mv -n "$EXP_OUT/Dataset.zip.partial" "$EXP_OUT/Dataset.zip"
         ;;
     environment)
+        # Eureka2's 535-series driver ran the pilot's CUDA 12.6 build.
+        # The PyPI torch wheel in uv.lock requests CUDA 13.
         export UV_PROJECT_ENVIRONMENT="$EXP_OUT/venv"
-        "$AIRFOIL_UV" sync --locked --extra forces --python 3.12
-        "$AIRFOIL_UV" export --locked --extra forces --no-hashes --no-emit-project \
-            > "$EXP_OUT/locked-constraints.txt"
+        "$AIRFOIL_UV" venv --python 3.12 "$UV_PROJECT_ENVIRONMENT"
+        "$UV_PROJECT_ENVIRONMENT/bin/python" - > "$EXP_OUT/requirements.txt" <<'PY'
+import tomllib
+from pathlib import Path
+
+packages = tomllib.loads(Path("uv.lock").read_text())["package"]
+wanted = ("airfrans", "huggingface-hub", "matplotlib", "numpy", "pyarrow",
+          "pyvista", "pyyaml", "scipy", "vtk")
+for name in wanted:
+    versions = {pkg["version"] for pkg in packages if pkg["name"] == name}
+    (version,) = versions
+    print(f"{name}=={version}")
+PY
         "$AIRFOIL_UV" pip install --python "$UV_PROJECT_ENVIRONMENT/bin/python" \
-            --constraint "$EXP_OUT/locked-constraints.txt" 'timm<2' 'einops==0.8.2' 'seaborn==0.13.2'
+            --index https://download.pytorch.org/whl/cu126 --index-strategy unsafe-best-match \
+            --requirement "$EXP_OUT/requirements.txt" \
+            'torch==2.14.1+cu126' 'torchvision==0.29.1+cu126' 'timm<2' \
+            'einops==0.8.2' 'seaborn==0.13.2' 'pytest>=9.2.0'
         "$AIRFOIL_UV" pip freeze --python "$UV_PROJECT_ENVIRONMENT/bin/python" \
             > "$EXP_OUT/environment.txt"
         "$UV_PROJECT_ENVIRONMENT/bin/python" -c \
-            'import airfrans, einops, pyvista, seaborn, timm, torch; print(torch.__version__, torch.version.cuda)'
+            'import airfrans, einops, pyvista, seaborn, timm, torch; assert torch.version.cuda == "12.6"; print(torch.__version__, torch.version.cuda)'
         ;;
-    *) echo 'Specify dataset or environment' >&2; exit 2 ;;
+    sources)
+        fetch=(curl --fail --silent --show-error --location --retry 3 --connect-timeout 20)
+        "${fetch[@]}" --output "$EXP_OUT/Transolver.py" \
+            https://raw.githubusercontent.com/thuml/Transolver/75e0f67643806a81cd1d3f6adc88dd8c02416fe7/Airfoil-Design-AirfRANS/models/Transolver.py
+        printf '%s  %s\n' \
+            1d0c1b932411ac408d8d00ca047d7f875c3176e7b001db802d30c065a7416d74 \
+            "$EXP_OUT/Transolver.py" | sha256sum --check
+        git clone --no-checkout https://github.com/Extrality/NACA_simulation.git "$EXP_OUT/NACA_simulation"
+        git -C "$EXP_OUT/NACA_simulation" cat-file -e 2dbf00c5ecbb8d6cef720db1e72c1fe40307eeab^{commit}
+        "${fetch[@]}" --output "$EXP_OUT/uiuc-index.html" \
+            https://m-selig.ae.illinois.edu/ads/coord_database.html
+        "${fetch[@]}" --output "$EXP_OUT/uiuc-coordinates.zip" \
+            https://m-selig.ae.illinois.edu/ads/archives/coord_seligFmt.zip
+        ;;
+    stages)
+        interpreter=${2:?Provide the scratch Python environment}
+        archive=${3:?Provide the pinned Dataset.zip on scratch}
+        "$interpreter" -m airfoil_surrogate.data.stage_original "$archive" \
+            --partition train --out "$EXP_OUT/train"
+        "$interpreter" -m airfoil_surrogate.data.stage_original "$archive" \
+            --partition validation --out "$EXP_OUT/validation"
+        "$interpreter" -m airfoil_surrogate.data.fit_original_normaliser "$EXP_OUT/train" \
+            --out "$EXP_OUT/normaliser.json"
+        ;;
+    *) echo 'Specify dataset, environment, sources or stages' >&2; exit 2 ;;
 esac
