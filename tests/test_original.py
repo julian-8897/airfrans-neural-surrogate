@@ -77,6 +77,38 @@ def test_original_mesh_rejects_a_mismatched_wall_patch(mesh_files):
         original.load_original_mesh(internal_path, patch_path)
 
 
+def test_original_input_qualification_uses_the_adjacent_fluid_cells(mesh_files):
+    audit = pytest.importorskip("airfoil_surrogate.eval.qualify_forces")
+    mesh = original.load_original_mesh(*mesh_files[:2])
+    sim = audit.OriginalForceSimulation(mesh, inlet_velocity=2.0, aoa=0.0)
+    passed = audit.input_checks(mesh, sim)
+    assert passed["passed"] and passed["wall_nodes"] == 4
+    assert passed["min_segment_alignment"] > 0
+    assert passed["min_point_alignment"] > 0
+    mesh.aerofoil.cell_data["Normals"] *= -1
+    failed = audit.input_checks(mesh, sim)
+    assert not failed["passed"] and failed["min_segment_alignment"] < 0
+    assert failed["max_normal_length_error"] == passed["max_normal_length_error"]
+
+
+def test_force_qualification_checks_components_and_the_two_stored_totals():
+    audit = pytest.importorskip("airfoil_surrogate.eval.qualify_forces")
+    reference = np.array([[0.5, 0.4, 0.1], [0.04, 0.03, 0.01]])
+    stored = reference[:, 0].copy()
+    assert audit.compare_forces(reference, reference, stored)["passed"]
+
+    adapter = reference.copy()
+    adapter[1, 1:] += [2e-8, -2e-8]
+    result = audit.compare_forces(adapter, reference, stored)
+    assert not result["adapter_passed"] and result["stored_label_passed"]
+    assert_allclose(result["adapter_minus_direct"][1], [0.0, 2e-8, -2e-8])
+
+    stored[0] -= 2e-5
+    result = audit.compare_forces(reference, reference, stored)
+    assert result["adapter_passed"] and not result["stored_label_passed"]
+    assert_allclose(result["direct_minus_stored"], [2e-5, 0.0])
+
+
 def test_original_force_adapter_on_known_fields(mesh_files):
     forces = pytest.importorskip("airfoil_surrogate.eval.forces")
     internal_path, patch_path, _, _, _, outward = mesh_files
