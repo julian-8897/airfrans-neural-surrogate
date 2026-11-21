@@ -31,6 +31,16 @@ def test_gpu_budget_charges_terminal_use_and_full_live_wall_limit():
     assert result["within_cap"]
     assert result["unsettled_jobs"] == ["11"]
     assert not result["can_submit"]
+    queued = gpu_budget(
+        entries, rows, phase="official", minutes=30, after_training="11"
+    )
+    assert queued["can_submit"] and queued["after_training"] == "11"
+    assert queued["proposed_gpu_seconds"] == 1800
+    assert not gpu_budget(
+        entries, rows, phase="official", minutes=30, after_training="10"
+    )["can_submit"]
+    with pytest.raises(ValueError, match="only to official"):
+        gpu_budget(entries, rows, phase="transfer", minutes=30, after_training="11")
 
     with pytest.raises(ValueError, match="registered job IDs differ"):
         gpu_budget(entries, {key: rows[key] for key in ("10", "11")})

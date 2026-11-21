@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261120T235223Z-540b",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899094"
   },
   "command": [
     "sbatch",
@@ -15,9 +15,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-20T23:52:23+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T00:05:40+00:00",
+  "duration_s": 797.478,
+  "exit_code": 0,
   "git": {
     "commit": "016ea7ca81eecd99ade1dc1ddcaeff2ab5a294d4",
     "branch": "prototype-evaluation",
@@ -41,6 +41,11 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T235223Z-540b",
-  "metrics": null,
-  "note": "Scratch a100-qualification run from the verified original archive. Dependency 899092, code 016ea7c."
+  "metrics": {
+    "parity_passed": true,
+    "full_mesh_max_abs": 2.391636371612549e-06,
+    "projected_training_hours": 14.406048930442418,
+    "peak_cuda_allocated_bytes": 3965927936
+  },
+  "note": "Scratch a100-qualification run from the verified original archive. Dependency 899092, code 016ea7c.\nBoth disjoint samples and the full original training mesh passed pinned same-weight FP32 parity. Training and validation timing projected 14.406 hours. Slurm allocated one full A100 for 123 s on gpu-node02."
 }

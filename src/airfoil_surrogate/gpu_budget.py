@@ -125,12 +125,15 @@ def gpu_budget(
     phase: str | None = None,
     minutes: int = 0,
     reserve_minutes: int = 0,
+    after_training: str | None = None,
 ) -> dict:
     """Charge terminal use and active reservations before proposing one allocation."""
     if ledger.keys() != allocations.keys():
         raise ValueError("GPU accounting snapshot and registered job IDs differ")
     if reserve_minutes < 0 or phase is None and minutes != 0:
         raise ValueError("invalid GPU reservation")
+    if after_training is not None and phase != "official":
+        raise ValueError("a training dependency applies only to official inference")
     if phase is not None and not 0 < minutes <= PHASE_LIMIT_MINUTES[phase]:
         raise ValueError(f"requested wall time exceeds or is outside the {phase} limit")
 
@@ -172,6 +175,14 @@ def gpu_budget(
         "official": "training",
         "transfer": "training",
     }.get(phase)
+    serial_dependency = (
+        after_training is not None
+        and unsettled == [after_training]
+        and ledger[after_training]["phase"] == "training"
+        and ledger[after_training]["status"] == "running"
+        and allocations[after_training].state in LIVE
+        and "qualification" in succeeded
+    )
     return {
         "charged_gpu_seconds": charged,
         "proposed_gpu_seconds": proposed,
@@ -179,14 +190,15 @@ def gpu_budget(
         "cap_gpu_seconds": GPU_CAP_SECONDS,
         "within_cap": within_cap,
         "phase": phase,
+        "after_training": after_training,
         "unsettled_jobs": unsettled,
         "successful_phases": sorted(succeeded),
         "can_submit": (
             phase is not None
             and within_cap
-            and not unsettled
+            and (serial_dependency if after_training is not None else not unsettled)
             and phase not in succeeded
-            and (prerequisite is None or prerequisite in succeeded)
+            and (prerequisite is None or prerequisite in succeeded or serial_dependency)
         ),
         "attempts": attempts,
     }
@@ -200,6 +212,7 @@ def main() -> None:
     parser.add_argument("--phase", choices=PHASE_LIMIT_MINUTES)
     parser.add_argument("--minutes", type=int, default=0)
     parser.add_argument("--reserve-minutes", type=int, default=0)
+    parser.add_argument("--after-training", help="active training job dependency")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     accounting = args.accounting.read_bytes()
@@ -209,6 +222,7 @@ def main() -> None:
         phase=args.phase,
         minutes=args.minutes,
         reserve_minutes=args.reserve_minutes,
+        after_training=args.after_training,
     )
     with args.out.open("x") as stream:
         json.dump(

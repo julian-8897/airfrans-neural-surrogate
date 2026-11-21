@@ -157,5 +157,21 @@ PY
         "$interpreter" -m airfoil_surrogate.eval.original_baselines "$3" \
             --out "$EXP_OUT/baselines.json"
         ;;
-    *) echo 'Specify dataset, dataset-ranges, environment, sources, stages, cohorts, force-audit or baselines' >&2; exit 2 ;;
+    official-stage)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m airfoil_surrogate.eval.freeze_original "$3" "$4" \
+            --out "$EXP_OUT/frozen.json"
+        "$interpreter" -m airfoil_surrogate.data.stage_original "$5" \
+            --partition test --frozen "$EXP_OUT/frozen.json" --out "$EXP_OUT/test"
+        ;;
+    reproduction-verify)
+        interpreter=${2:?Provide the scratch Python environment}
+        case_root=${6:?Provide the completed CFD output directory}
+        "$interpreter" -m airfoil_surrogate.cfd.reproduction verify "$3" "$4" "$5" \
+            "$case_root/native/internal.vtu" "$case_root/native/aerofoil.vtp" \
+            "$case_root/case/log.checkMesh" "$case_root/case/log.simpleFoam" \
+            "$case_root/case/postProcessing/forceCoeffs1/0/coefficient.dat" \
+            --out "$EXP_OUT/verification"
+        ;;
+    *) echo 'Specify a Eureka2 preparation or verification mode' >&2; exit 2 ;;
 esac

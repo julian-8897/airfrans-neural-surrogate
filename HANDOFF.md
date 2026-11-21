@@ -1,4 +1,4 @@
-# Last session (2026-11-20)
+# Last session (2026-11-21)
 
 The [original-mesh Transolver and geometry-transfer protocol](docs/methodology/original-mesh-transfer-protocol.md) was approved on 2026-11-20. It covers forward and force qualification, one full-task seed, the official test evaluation, and 30 UIUC plus 30 NACA CFD cases at matched conditions. The approved caps are 24 full A100-hours and 600 allocated CPU-core-hours. All cluster study files go on Eureka2 parallel scratch. Approval also covers executing the pinned upstream Transolver module and NACA case generator.
 
@@ -20,6 +20,10 @@ Registered `2026-11-20-original-mesh-transfer`. Eureka2 study root is `/parallel
 Archive range job `898929` reached its time limit with fragments retained. Its four dependent qualification jobs were cancelled before any allocation started. Recovery job `899067` (`20261120T234647Z-2dca`) fetched and verified all remaining ranges before the assembler hit the cluster's system Python 3.8. Its dependent jobs `899070`–`899073` likewise consumed zero allocation. The range command now uses the verified scratch Python 3.12 environment, can assemble fragments from both donor directories and verifies the original archive index and split. The third reproduction is still independent; matched CFD remains gated.
 
 Archive assembly `899088` (`20261120T235023Z-f8c3`) succeeded in 20 seconds on two CPUs. Its `ranges/Dataset.zip` on scratch has the pinned 10,029,067,577 bytes, ZIP index SHA-256 and split SHA-256. Staging and normalisation `899091` (`20261120T235218Z-abba`) is running on a compute node. Force audit `899092` (`20261120T235220Z-a7b9`) and baselines `899093` (`20261120T235221Z-fd04`) depend on staging. A100 qualification `899094` (`20261120T235223Z-540b`) depends on a successful force audit. The earlier A100 allocations never started.
+
+Staging and normalisation `899091` completed in 461 seconds on two CPUs, with both manifests in official order and the 720-case fit verified against an independent accumulator. The 12-case force audit `899092` passed, with maximum adapter error 2.22 × 10⁻¹⁶, CL label error 3.23 × 10⁻⁶ and CD label error 1.03 × 10⁻⁶. The A100 qualification `899094` passed full-mesh parity at a maximum absolute difference of 2.39 × 10⁻⁶ and projected 14.406 training hours. It charged 123 A100-seconds. Baselines `899093` are running.
+
+The single production training allocation is `899153` (`20261121T000542Z-7845`) on `gpu-node02`. It starts from `checkout-016ea7c` with the successful qualification and normaliser. The registered 23-hour request plus 30-minute inference reservation and qualification together reserve 84,723 of the 86,400 permitted A100-seconds. It is in the data-loading phase at the last check. Outputs, Slurm logs and the atomic per-epoch checkpoint are on scratch under the run ID.
 
 The [original VTU/VTP reader](src/airfoil_surrogate/data/original.py) preserves native connectivity and matches wall vertices independently of the field values. On the available original training probe, `airFoil2D_SST_31.283_-4.156_0.919_6.98_14.32`, the reader agreed with `airfrans.Simulation` for all input and target arrays. All 994 wall nodes satisfied no-slip and zero signed distance, and the normals were checked against adjacent fluid cells.
 

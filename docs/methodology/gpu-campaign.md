@@ -34,6 +34,8 @@ python -m airfoil_surrogate.gpu_budget "$EXPERIMENT" "$LEDGER" "$NEW_SNAPSHOT/sa
 
 Qualification and training replace a smaller future reservation with 30 minutes for both evaluations. For either evaluation, explicitly retain the other evaluation's wall-time reservation if it is still pending. For recovery, choose the new training limit from the epochs left, the observed timings and the remaining allocation. A budget pass means the requested allocation fits. The completed qualification and latest checkpoint are the evidence that the proposed job has time to finish.
 
+Official inference can be reserved behind running training with `--after-training "$TRAIN_JOB"`. The check requires that job to be the sole unsettled GPU allocation and includes both wall-time reservations in the cap. Submit the test-stage CPU job with an `afterok` dependency on training and the baseline fit. Submit inference with `afterok` dependencies on both the tested training allocation and the official test-stage job. The CPU job freezes the selected checkpoint before opening the held-out fields. A failed prerequisite cancels the dependent jobs.
+
 | Phase | Job template | Inputs |
 | --- | --- | --- |
 | Qualification | [original-a100-qualification.sbatch](../../configs/original-a100-qualification.sbatch) | Pinned upstream module, training stage, validation stage, normaliser, force audit JSON and parity case ID |
