@@ -37,3 +37,13 @@ exp run "$EXPERIMENT" --config "$SPEC" -- python -m airfoil_surrogate.eval.study
 The command checks that both evaluations used the same frozen checkpoint, compares the ordered case rows with the staged test and matched-cohort manifests, and verifies each saved prediction digest. It regenerates the summaries and all transfer rankings from the saved per-case metrics. The report links the qualification, official and matched results to their `exp` records and links the selected checkpoint, normaliser, data manifests, pressure plots and run evidence. Assembly reads no mesh fields and does no inference.
 
 The command requires the complete study. If a qualification gate fails or a cohort falls short, retain the completed artefacts and record the failed milestone and allocation evidence in the experiment verdict and the report.
+
+When the matched CFD gate fails and the official test completes, use
+`python -m airfoil_surrogate.eval.official_report INPUTS --out REPORT_DIRECTORY`
+on a CPU allocation with successful official inference as its dependency. It
+rebuilds the official metrics, verifies their links to the frozen checkpoint
+and case predictions, and includes the registered CFD failure and Slurm
+accounting. The input maps the official study roles to their registered run
+and job IDs and lists all study CPU and GPU allocations. Preserve the tracked
+run records and reproduction evidence beside the scratch checkout. The
+archived inputs and raw accounting snapshots record the provenance.

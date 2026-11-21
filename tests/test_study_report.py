@@ -10,6 +10,7 @@ report = pytest.importorskip("airfoil_surrogate.eval.study_report")
 
 def test_assemble_reproduces_reports_from_registered_cases_and_rejects_changed_evidence(
     tmp_path,
+    monkeypatch,
 ):
     def write(name, data):
         path = tmp_path / name
@@ -382,6 +383,69 @@ def test_assemble_reproduces_reports_from_registered_cases_and_rejects_changed_e
     evidence = json.loads((out / "evidence.json").read_text())
     assert evidence["artifacts"]["checkpoint"]["sha256"] == frozen_hashes["model.pt"]
     assert len(evidence["cfd_reproductions"]) == 3
+
+    from airfoil_surrogate.eval import official_report
+
+    study = "synthetic-study"
+    roles = {
+        role: json.loads(runs[role].read_text())
+        for role in official_report.ROLES
+        if role in runs
+    }
+    roles["official_stage"] = json.loads(registered("official-stage", 501).read_text())
+    roles["official_stage"]["output_dir"] = "."
+    gate_record = json.loads(registered("reproduction-gate", 502).read_text())
+    gate_out = gate_record["output_dir"]
+    write(f"{gate_out}/reproduction-gate.md", "Two mesh failures and one timeout")
+    write(
+        f"{gate_out}/metrics.json",
+        {
+            "reproduction_gate_passed": False,
+            "mesh_failures": 2,
+            "solver_timeouts": 1,
+        },
+    )
+    cpu_jobs = [record["backend"]["job_id"] for record in roles.values()]
+    gpu_jobs = [
+        roles[key]["backend"]["job_id"]
+        for key in ("qualification", "training", "official")
+    ]
+    roles["reproduction_gate"] = gate_record
+    records = {}
+    for role, record in roles.items():
+        run_id = record["run_id"]
+        write(f"experiments/{study}/runs/{run_id}/run.json", record)
+        records[role] = {"run_id": run_id, "job_id": record["backend"]["job_id"]}
+    partial = write(
+        "official-report-inputs.json",
+        {
+            "experiment": study,
+            "runs": records,
+            "cpu_jobs": cpu_jobs,
+            "gpu_jobs": gpu_jobs,
+            "report_reserved_core_seconds": 600,
+        },
+    )
+    monkeypatch.setattr(official_report, "PIN", write("pin.json", pin))
+
+    def accounting(ids, fields, out):
+        if "AllocTRES" in fields:
+            result = "".join(
+                f"{job}|gres/gpu:a100=1|gres/gpu:a100=1|15|30|COMPLETED|0:0\n"
+                for job in ids
+            )
+        else:
+            result = "".join(f"{job}|2|2|15|30|COMPLETED|0:0\n" for job in ids)
+        out.write_text(result)
+        return result
+
+    monkeypatch.setattr(official_report, "_sacct", accounting)
+    partial_out = tmp_path / "official-report"
+    official_report.assemble(partial, tmp_path, partial_out)
+    partial_text = (partial_out / "report.md").read_text()
+    assert "The approved reproduction gate failed. 2 mesh checks failed" in partial_text
+    assert "30 UIUC" not in partial_text
+    assert "| CL absolute error | 0.5 | 1 | -0.5 [-0.5, -0.5] | yes |" in partial_text
 
     invalid_out = tmp_path / "rejected"
     training_record = runs["training"].read_text()
