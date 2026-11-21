@@ -1,5 +1,13 @@
 # Last session (2026-11-21)
 
+The active goal is the frozen model's matched UIUC and NACA evaluation against CFD lift, drag and flow fields. On Eureka2 parallel scratch, `sha256sum` verified the retained checkpoint and freeze against the official evidence. `cmp` verified that the checkpoint's normaliser matches the 720-case training fit. The scratch candidate manifest matches the local copy and has 30 primary cases in each group. The 60 CFD reference solutions and held-out inference are pending.
+
+The prior mesh failures reproduce features of the released AirfRANS grids. I compared the first two reproduction meshes from jobs `898973` and `898998` against their checksum-verified original training meshes from staging job `899091`. Nearest-neighbour matching from the published crop to the projected OpenFOAM points gave a unique vertex map for every point. Every published quad matched the four vertices of a reproduced cell. This included all 4 and 96 cells flagged by `checkMesh`, with worst differences below 3 × 10⁻⁸ chord for those cells. The [read-only audit and its output](outputs/2026-11-21-frozen-transfer-preflight/reference-mesh-audit.txt) are in ignored local outputs. Input copies and the force-monitor tail are in `/private/tmp/airfrans-cfd-audit.cGJq3I`. The scratch CFD case folders and original staging manifest retain the source data.
+
+Recommended decision pending approval. Preserve the pinned grading and allow a reference-backed exception only for the aspect-ratio check on the two reproduced reference cases, contingent on matching the published near-wall cells and passing the other mesh checks. Keep the existing CL, CD, Cp and force convergence acceptance criteria. Request up to 60 minutes per 16-core reproduction allocation so the third case can reach its existing iteration limit and export. The requalification envelope is 50 allocated CPU-core-hours with zero GPU-hours, entirely on parallel scratch. The matched runs still depend on qualification and an approved rule for their mesh checks. No jobs are in flight for this goal.
+
+## Official benchmark closeout
+
 The registered [original-mesh study](experiments/2026-11-20-original-mesh-transfer/experiment.json) is closed. Seed 0 completed all 398 epochs on one full Eureka2 A100. All cluster artefacts are on parallel scratch, and Slurm ran the compute on allocated nodes.
 
 | Step | Slurm | exp run | Verified outcome |
