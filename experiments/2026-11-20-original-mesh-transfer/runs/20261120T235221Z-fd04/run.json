@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261120T235221Z-fd04",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899093"
   },
   "command": [
     "sbatch",
@@ -15,9 +15,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-20T23:52:21+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T00:11:43+00:00",
+  "duration_s": 1162.066,
+  "exit_code": 0,
   "git": {
     "commit": "016ea7ca81eecd99ade1dc1ddcaeff2ab5a294d4",
     "branch": "prototype-evaluation",
@@ -41,6 +41,9 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T235221Z-fd04",
-  "metrics": null,
-  "note": "Scratch baselines run from the verified original archive. Dependency 899091, code 016ea7c."
+  "metrics": {
+    "fitting_cases": 720,
+    "training_provenance_verified": true
+  },
+  "note": "Scratch baselines run from the verified original archive. Dependency 899091, code 016ea7c.\nOfficial field-mean and NACA-family force baselines fitted on the 720-case training stage. Verified fit IDs and manifest hash. Slurm completed in 632 s on two CPUs."
 }
