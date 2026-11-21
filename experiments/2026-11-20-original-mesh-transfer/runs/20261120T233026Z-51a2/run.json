@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261120T233026Z-51a2",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "killed",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "898999"
   },
   "command": [
     "sbatch",
@@ -14,9 +14,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-20T23:30:26+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T00:21:23+00:00",
+  "duration_s": 3057.656,
+  "exit_code": 0,
   "git": {
     "commit": "e553795e5c95ae205be7e0d746ad30db1930cccb",
     "branch": "prototype-evaluation",
@@ -48,6 +48,11 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261120T233026Z-51a2",
-  "metrics": null,
-  "note": "Same approved reproduction case after OpenFOAM startup failed before solver setup"
+  "metrics": {
+    "mesh_qualified": true,
+    "solver_complete": false,
+    "last_logged_iteration": 38478,
+    "planned_iteration_limit": 40000
+  },
+  "note": "Same approved reproduction case after OpenFOAM startup failed before solver setup\nOpenFOAM mesh passed. simpleFoam reached the 50-minute Slurm wall cap before its prespecified 40000 iterations. The final observed solver iteration and log tail are saved. No accepted native CFD output was produced."
 }
