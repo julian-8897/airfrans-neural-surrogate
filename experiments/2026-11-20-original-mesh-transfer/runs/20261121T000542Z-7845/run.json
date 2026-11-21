@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261121T000542Z-7845",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899153"
   },
   "command": [
     "sbatch",
@@ -14,9 +14,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-21T00:05:42+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T14:26:02+00:00",
+  "duration_s": 51620.425,
+  "exit_code": 0,
   "git": {
     "commit": "df1e6cb75d85c7b3fe993f8a1fb2492f8d8947e5",
     "branch": "prototype-evaluation",
@@ -78,6 +78,13 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261121T000542Z-7845",
-  "metrics": null,
-  "note": "Only production seed. Execute qualification code revision 016ea7c with unchanged input manifest digests on Eureka2 parallel scratch."
+  "metrics": {
+    "completed_epochs": 398,
+    "selected_epoch": 390,
+    "selected_validation_score": 0.004902259700429568,
+    "checkpoint_sha256": "0753ab2aa7048c54f0fdee9a972f3729c4abc9540aca4e5eb4b6f1a3667dd543",
+    "gpu_seconds": 51571,
+    "allocated_cpu_core_seconds": 103142
+  },
+  "note": "Only production seed. Execute qualification code revision 016ea7c with unchanged input manifest digests on Eureka2 parallel scratch.\nCompleted seed 0 on one full A100 in 51571 allocated GPU-seconds. Verified 398 ordered metrics, the minimum eligible validation score at epoch 390, and the selected checkpoint SHA-256 on scratch."
 }

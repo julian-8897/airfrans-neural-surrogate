@@ -1,5 +1,22 @@
 # Last session (2026-11-21)
 
+The registered [original-mesh study](experiments/2026-11-20-original-mesh-transfer/experiment.json) is closed. Seed 0 completed all 398 epochs on one full Eureka2 A100. All cluster artefacts are on parallel scratch, and Slurm ran the compute on allocated nodes.
+
+| Step | Slurm | exp run | Verified outcome |
+| --- | --- | --- | --- |
+| Training | `899153` | `20261121T000542Z-7845` | 398 ordered epochs. Selected epoch 390, validation score 0.00490226. |
+| Freeze and test staging | `899166` | `20261121T000901Z-2157` | Checkpoint SHA-256 matched training. Staged 200 distinct original test meshes after the freeze. |
+| Official evaluation | `899167` | `20261121T000903Z-5494` | One complete held-out forward pass per case. Retained 200 predictions and case metrics. |
+| Evidence report | `899248` | `20261121T002731Z-34b1` | Verified the checkpoint and 200 prediction digests, rebuilt the official summary and recorded the failed reproduction gate. |
+
+Transolver beat the regional training means on all four off-wall channels and wall pressure. The integrated CL mean absolute error was 0.02468 versus 0.03367 for the quadratic NACA regression. CL Spearman ρ was 0.9985 versus 0.9965. CD error was 0.07531 versus 0.0008841, with Spearman ρ of 0.5343 versus 0.9450. The paired 95% intervals for Transolver minus regression mean absolute error were [−0.01451, −0.003461] for CL and [0.07083, 0.07835] for CD. The descriptive component check found a mean viscous CD overprediction of 0.07025, positive on all 200 cases, and a mean pressure CD overprediction of 0.00506. These are from [the official evaluation record](experiments/2026-11-20-original-mesh-transfer/runs/20261121T000903Z-5494/run.json) and [the report verification record](experiments/2026-11-20-original-mesh-transfer/runs/20261121T002731Z-34b1/run.json).
+
+The matched CFD study ended at the documented reproduction gate. Two NACA cases failed mesh quality, and one reached the 50-minute limit at iteration 38,478 of 40,000. The screened candidates and solver logs are retained. No matched-case simulation or surrogate scoring was dispatched. Total allocations including reporting were 14.50 A100-hours and 45.55 CPU-core-hours, including GPU host CPUs.
+
+The authoritative report is `/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261121T002731Z-34b1/report/report.md`. Its relative links resolve on Eureka2. A [local report copy](outputs/2026-11-20-original-mesh-transfer/20261121T002731Z-34b1/report/report.md) and [local official summary](outputs/2026-11-20-original-mesh-transfer/20261121T000903Z-5494/retained/summary.json) are under ignored outputs. The private checkpoint, normaliser, case manifests and dimensional predictions are linked by the report on scratch. The training code was archived at `016ea7c` and the report code at `01cfdbd`.
+
+## Execution log
+
 The [original-mesh Transolver and geometry-transfer protocol](docs/methodology/original-mesh-transfer-protocol.md) was approved on 2026-11-20. It covers forward and force qualification, one full-task seed, the official test evaluation, and 30 UIUC plus 30 NACA CFD cases at matched conditions. The approved caps are 24 full A100-hours and 600 allocated CPU-core-hours. All cluster study files go on Eureka2 parallel scratch. Approval also covers executing the pinned upstream Transolver module and NACA case generator.
 
 Registered `2026-11-20-original-mesh-transfer`. Eureka2 study root is `/parallel_scratch/jc02423/airfrans-original-20261120`. Remote run outputs are below `checkout/outputs/2026-11-20-original-mesh-transfer/<run-id>` and archive checkouts use their Git suffix. Login-node activity is limited to transfer, inspection and submission. The scratch OpenFOAM setup is GCC 10.2.0, OpenMPI 4.0.5 and OpenFOAM v2112, with the module's `FOAM_BASH` sourced before running. The GPU runtime uses the pilot's PyTorch 2.14.1 CUDA 12.6 build for the existing driver.

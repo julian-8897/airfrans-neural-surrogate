@@ -14,15 +14,12 @@ Stage 2 (3D car aerodynamics, AhmedML, multi-GPU) is a separate, later plan.
 
 ## Current state
 
-- 2026-11-17: repo scaffolded (uv skeleton, plan, licence, pre-commit).
-- 2026-11-17: **prototyping on `PLAID-datasets/AirfRANS_remeshed`**; see [the decision record](docs/decisions/2026-11-17-prototype-data-remeshed.md). The data comes from `scripts/download_remeshed.py`, with revisions and SHA-256 checksums pinned in `manifests/airfrans_remeshed.json`, and lands in `data/raw/airfrans_remeshed/`. The loader is `airfoil_surrogate.data.remeshed`. Remeshed results are **not comparable** with published AirfRANS or Transolver numbers; the data for reported runs is still open.
-- 2026-11-17: **model inputs examined and Transolver drafted.**
-  - Features: `airfoil_surrogate.data.features` (7 AirfRANS input channels, wall mask from mesh topology, normals pointing into the fluid, normaliser fitted on training cases only). Findings are in [docs/methodology/model-inputs.md](docs/methodology/model-inputs.md); notably, the remeshed fields violate no-slip on the wall.
-  - Model: `airfoil_surrogate.models.transolver`, a reimplementation of the authors' AirfRANS code with the AirfRANS config (3.89M parameters). It has not yet been checked numerically against the official weights.
-  - Training: `python -m airfoil_surrogate.train` follows the authors' recipe, using the full remeshed mesh instead of subsampled nodes. Validation is the last 10% of the task's training list, and the test split is never loaded. Each run writes `run.json`, `metrics.jsonl`, `normaliser.json` and `model.pt` to a new `runs/<stamp>-<name>-<task>-s<seed>/` directory.
-  - Cost: about 0.175 s per step on the Mac GPU, so the full 398-epoch schedule is about 14 h locally. Reported training needs the cluster.
-- 2026-11-17: **validation evaluation prototyped.** The evaluator reuses each checkpoint's saved validation indices and normaliser. It writes nodewise field errors aggregated per case, P95/P99 across cases, and optional `airfrans` coefficient and wall-shear diagnostics. See [the evaluation methodology](docs/methodology/prototype-evaluation.md) for usage and the three-case ground-truth check.
-- Next: agree the reported data and metric protocol before registering the `exp` experiment. Original-mesh drag qualification and Transolver parity are still open.
+- The [remeshed prototype](docs/methodology/prototype-evaluation.md) qualified the basic loader and exposed no-slip and drag errors in the remeshed reference fields. Reproduce its input audit with `scripts/examine_inputs.py`. Treat its metrics as prototype diagnostics.
+- The [approved original-mesh protocol](docs/methodology/original-mesh-transfer-protocol.md) is registered as `2026-11-20-original-mesh-transfer`. The original VTU/VTP meshes preserve wall topology and near-wall resolution. The audit verified disjoint canonical NACA shapes across 720 training, 80 validation and 200 test cases, and independently verified the training-only normaliser.
+- The 12-case [force qualification](docs/methodology/original-force-qualification.md) passed. The original-mesh force adapter recovered the stored coefficients to within the approved absolute tolerance of `1e-5`. [A100 forward parity](docs/methodology/transolver-parity.md) passed on two subsets and one complete mesh with identical upstream-initialised weights.
+- Seed 0 completed all 398 epochs on one full Eureka2 A100. The validation rule selected epoch 390. The checkpoint, normaliser, frozen evaluation inputs and test meshes are under `/parallel_scratch/jc02423/airfrans-original-20261120`. See [HANDOFF.md](HANDOFF.md) for job and `exp` identifiers.
+- The verified evaluation of all 200 official test meshes found lower error than the training means for all off-wall fields and wall pressure. Integrated CL beat the NACA regression in mean absolute error. Integrated CD overpredicted drag on all 200 cases and had substantially worse magnitude and ranking than the regression. See the [official evaluation record](experiments/2026-11-20-original-mesh-transfer/runs/20261121T000903Z-5494/run.json) and [report verification](experiments/2026-11-20-original-mesh-transfer/runs/20261121T002731Z-34b1/run.json).
+- The matched CFD gate failed. Two NACA reproduction cases failed `checkMesh`, and the third reached the allocation limit before solver completion. The 30 UIUC and 30 NACA candidates were screened. Matched simulations and model scoring await a qualified CFD setup.
 
 ## Repo rules
 
@@ -73,10 +70,9 @@ Subpackages are created when their first code lands, not ahead of time.
 ## Open items
 
 - Whether trained weights are an ODbL derivative database or a Produced Work. Do not publish weights until this is settled.
-- OpenFOAM reproduction: the authors provide the original NACA case generator in [Extrality/NACA_simulation](https://github.com/Extrality/NACA_simulation). Reproduction on existing NACA cases and adaptation to non-NACA coordinates gate Q2 and Q3.
-- Transolver: the official code is MIT (checked 2026-11-17), and the authors quote 20 to 24 h on one A100 for AirfRANS. Our reimplementation has not been checked numerically against the official module; the proposed check loads the official weights into ours and compares outputs. Running the downloaded official code was blocked by the permission policy and needs the user's go-ahead.
-- Leakage check: done 2026-11-17. There are 1000 distinct NACA shapes and none is shared between train and test, so no extra split is proposed. Awaiting the user's agreement.
-- Remeshed data: the meaning of the `zone_0..5` cell indicators is undocumented. The stored CL/CD are consistent with original-mesh integration on three checked cases. The remeshed ground-truth fields substantially underpredict CD on those cases.
+- OpenFOAM reproduction on existing NACA cases and adaptation to non-NACA coordinates gate Q2 and Q3. Any change to the approved reproduction settings needs a new decision record.
+- The broader Q1 comparison across model classes, seeds and AirfRANS tasks remains open. The original-mesh study covers the full task with one Transolver seed.
+- The meaning of the remeshed `zone_0..5` indicators is undocumented.
 
 ## Verification commands
 

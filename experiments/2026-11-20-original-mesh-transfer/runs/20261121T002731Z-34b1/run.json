@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261121T002731Z-34b1",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899248"
   },
   "command": [
     "sbatch",
@@ -16,9 +16,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-21T00:27:31+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T14:36:53+00:00",
+  "duration_s": 50962.291,
+  "exit_code": 0,
   "git": {
     "commit": "01cfdbd58951bf12e028a8233c6c3b4a98a3da46",
     "branch": "prototype-evaluation",
@@ -42,6 +42,53 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261121T002731Z-34b1",
-  "metrics": null,
-  "note": "Assemble verified official-test and CFD-gate evidence on scratch after official inference. No extra GPU allocation."
+  "metrics": {
+    "case_count": 200,
+    "drag_components_descriptive": {
+      "coefficients": {
+        "total": {
+          "reference_mean": 0.012652397398126933,
+          "mean_signed_error": 0.07531059011794872,
+          "mean_absolute_error": 0.07531059011794872,
+          "positive_error_case_count": 200
+        },
+        "pressure": {
+          "reference_mean": 0.005615388390098478,
+          "mean_signed_error": 0.005064742683484816,
+          "mean_absolute_error": 0.006168286727158867,
+          "positive_error_case_count": 165
+        },
+        "viscous": {
+          "reference_mean": 0.007037009008028455,
+          "mean_signed_error": 0.07024584743446391,
+          "mean_absolute_error": 0.07024584743446391,
+          "positive_error_case_count": 200
+        }
+      },
+      "raw_coefficients": {
+        "total": {
+          "reference_mean": 0.012652397398126933,
+          "mean_signed_error": 0.0770740684100279,
+          "mean_absolute_error": 0.0770740684100279,
+          "positive_error_case_count": 200
+        },
+        "pressure": {
+          "reference_mean": 0.005615388390098478,
+          "mean_signed_error": 0.005064742683484816,
+          "mean_absolute_error": 0.006168286727158867,
+          "positive_error_case_count": 165
+        },
+        "viscous": {
+          "reference_mean": 0.007037009008028455,
+          "mean_signed_error": 0.07200932572654307,
+          "mean_absolute_error": 0.07200932572654307,
+          "positive_error_case_count": 200
+        }
+      }
+    },
+    "gpu_seconds": 52197,
+    "cpu_core_seconds_through_inference": 163932,
+    "cpu_core_seconds_including_report": 163992
+  },
+  "note": "Assemble verified official-test and CFD-gate evidence on scratch after official inference. No extra GPU allocation.\nIndependently verified 200 prediction digests, the frozen epoch 390 checkpoint, regenerated the official summary, and audited Slurm allocations and the failed CFD gate. Local closeout metrics also summarise pressure and viscous drag errors from the verified case rows."
 }

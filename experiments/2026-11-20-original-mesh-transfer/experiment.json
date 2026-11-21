@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-20-original-mesh-transfer",
   "title": "Original-mesh Transolver and matched geometry transfer",
-  "status": "running",
+  "status": "complete",
   "created": "2026-11-20T23:05:32+00:00",
   "question": "Does a single original-mesh Transolver improve on training-only baselines on official AirfRANS test cases, and how do field and CL/CD errors and rankings change from unseen NACA to UIUC at matched conditions?",
   "hypothesis": "The field model can improve on regional means on official meshes. Geometry transfer and lift and drag performance are assessed independently.",
@@ -12,5 +12,9 @@
   "linear": [],
   "parent": "2026-11-17-original-a100-pilot",
   "tags": [],
-  "verdict": null
+  "verdict": {
+    "status": "complete",
+    "text": "Official single-seed original-mesh benchmark completed on 200 held-out NACA cases. Transolver improved all off-wall field errors, wall pressure and CL MAE. The NACA regression substantially outperformed it on CD magnitude and rank. Matched geometry transfer stopped at the documented CFD reproduction milestone after two failed mesh checks and one solver time limit; no matched case was inferred. The verified report is run 20261121T002731Z-34b1. Total allocations including reporting were 52197 A100-seconds and 163992 CPU-core-seconds.",
+    "date": "2026-11-21T14:36:53+00:00"
+  }
 }

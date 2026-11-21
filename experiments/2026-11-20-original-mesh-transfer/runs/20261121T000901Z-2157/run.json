@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261121T000901Z-2157",
   "experiment": "2026-11-20-original-mesh-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "899166"
   },
   "command": [
     "sbatch",
@@ -16,9 +16,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-21T00:09:01+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-21T14:28:25+00:00",
+  "duration_s": 51564.572,
+  "exit_code": 0,
   "git": {
     "commit": "6c4787ce60dde6c19fc22707e61d69ee0502bd88",
     "branch": "prototype-evaluation",
@@ -42,6 +42,12 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-20-original-mesh-transfer/20261121T000901Z-2157",
-  "metrics": null,
-  "note": "Scratch official-stage. Bound to Slurm afterok:899153:899093. Code revision 6c4787c."
+  "metrics": {
+    "test_cases": 200,
+    "frozen_sha256": "fa69f019e9827302fed2e6d37998139973c36260c7965ff040d09d9a4acd6063",
+    "stage_sha256": "e7a0043f1526ef4d756ca471b79f12cdfdbeb8dea7f00ae64260bd19614c145e",
+    "checkpoint_sha256": "0753ab2aa7048c54f0fdee9a972f3729c4abc9540aca4e5eb4b6f1a3667dd543",
+    "allocated_cpu_core_seconds": 126
+  },
+  "note": "Scratch official-stage. Bound to Slurm afterok:899153:899093. Code revision 6c4787c.\nFroze the verified epoch 390 checkpoint and staged 200 distinct official original meshes. Captured the freeze and stage SHA-256 digests."
 }
