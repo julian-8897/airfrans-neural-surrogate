@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe629.dat",
+    "source_sha256": "2a1c7879d361f65a08634002d06c7d92fed7fd9c9e3eac33a10a358ccf25ba28",
+    "index_labels": [
+      "Gottingen 629 airfoil"
+    ],
+    "order_sha256": "2345a29f6a731d98aaee13aca736d68992376ee45e928dce0da48cb609660b54",
+    "coordinate_label": "GOE 629 AIRFOIL",
+    "thickness": 0.13666854911549736,
+    "absolute_camber": 0.028152162073571328,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_76.656_14.794_2.878_4.67_13.867",
+    "nearest_naca_rms": 0.001540670222719161,
+    "status": "eligible",
+    "rank": 108,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe629",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe629.csv",
+    "geometry_sha256": "0a9667c2bcfd92777c7c5e40e0ecc836f62164483978c8eae53a1a49d78c0fbe"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

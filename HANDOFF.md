@@ -28,6 +28,8 @@ At 18:51 UTC, 51 matched cases had qualified, including all 30 NACA controls and
 
 The local control scripts are under `outputs/2026-11-23-airfrans-frozen-geometry-transfer/control/`. `reconcile.py` closes terminal attempts from `sacct` and immutable CFD evidence. `matched-wave.py N initial` admits only new ranked cases and reserves the full allocation for every live case. `freeze.py` and `infer-transfer.py` are prepared for use after the 30 + 30 allocation and mesh evidence is complete. No matched-model inference has run yet.
 
+The user subsequently approved the [710 CPU-core-hour cap and 45-minute same-input retries](docs/decisions/2026-11-23-matched-timeout-recovery.md). Initial attempts keep the original 35 minutes. Use `--cpu-core-hours 710 --matched-timeout-recovery` to seal the final ledger. The campaign verifier checks that any matched job longer than 35 minutes follows a recorded timeout on the same case. `uiuc-s3016` became the sixth unresolved timeout at iteration 16,312 of 20,000.
+
 ## Official benchmark closeout
 
 The registered [original-mesh study](experiments/2026-11-20-original-mesh-transfer/experiment.json) is closed. Seed 0 completed all 398 epochs on one full Eureka2 A100. All cluster artefacts are on parallel scratch, and Slurm ran the compute on allocated nodes.

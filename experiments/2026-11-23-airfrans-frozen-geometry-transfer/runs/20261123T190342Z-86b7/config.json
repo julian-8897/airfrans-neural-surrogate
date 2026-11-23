@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "hq208.dat",
+    "source_sha256": "f33b561a4c831912b7c14e9475d5a33004af2d47d416d5f1b3311cc834246b7f",
+    "index_labels": [
+      "Quabeck HQ 2.0/8 R/C sailplane airfoil"
+    ],
+    "order_sha256": "233ac47ab15c3343d192029554256d8bd647bb4806130bf0e350f938f9bece5e",
+    "coordinate_label": "HQ 2.0/8 AIRFOIL",
+    "thickness": 0.0797747034309984,
+    "absolute_camber": 0.019944999999999997,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_74.259_-3.09_2.43_4.486_7.835",
+    "nearest_naca_rms": 0.002728416853421689,
+    "status": "eligible",
+    "rank": 107,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-hq208",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-hq208.csv",
+    "geometry_sha256": "c3200713440cd0b3b226077079428e25a280a2815964872657596173e928fbf6"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

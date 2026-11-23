@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe701.dat",
+    "source_sha256": "796124d6c2622924aa18c929275927f0a2f0fb373f506c3db793b46f86db92df",
+    "index_labels": [
+      "Gottingen 701 airfoil"
+    ],
+    "order_sha256": "22d5a5fb8609f62b6d57811af69a87ca207b1f61fc7865c98fdebab14509632d",
+    "coordinate_label": "GOE 701 AIRFOIL",
+    "thickness": 0.12498926908194216,
+    "absolute_camber": 0.04890277265180615,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_86.375_5.649_5.559_3.348_12.866",
+    "nearest_naca_rms": 0.003311118973742956,
+    "status": "eligible",
+    "rank": 104,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe701",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe701.csv",
+    "geometry_sha256": "d24519086eaf9d41d791094f7921453502c20e37e06ee2a34d013c16de43adda"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

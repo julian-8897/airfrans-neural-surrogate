@@ -12,6 +12,7 @@ from pathlib import Path
 from airfoil_surrogate.cfd.accounting import (
     TERMINAL,
     TOTAL_CORE_SECONDS,
+    WALL_LIMIT_MINUTES,
     Allocation,
     budget,
     read_allocations,
@@ -117,6 +118,29 @@ def _terminal_attempts(
             | {"allocation": asdict(allocation), "core_seconds": allocation.charge}
         )
     return by_case
+
+
+def matched_timeout_retries(
+    attempts: list[dict], allocations: dict[str, Allocation]
+) -> frozenset[str]:
+    previous = {}
+    approved = set()
+    for row in attempts:
+        if row["phase"] != "matched":
+            continue
+        job, case = row["job_id"], row["case"]
+        if allocations[job].limit_minutes > WALL_LIMIT_MINUTES["matched"]:
+            prior = previous.get(case)
+            if (
+                prior is None
+                or prior["outcome"] != "retry"
+                or prior.get("reason") != "allocation_timeout"
+                or allocations[prior["job_id"]].state != "TIMEOUT"
+            ):
+                raise ValueError(f"{job} has no same-case allocation timeout to retry")
+            approved.add(job)
+        previous[case] = row
+    return frozenset(approved)
 
 
 def verify_case_outputs(
@@ -356,6 +380,7 @@ def main() -> None:
         action.add_argument("accounting", type=Path)
         action.add_argument("--preparation-accounting", type=Path)
         action.add_argument("--reference-requalification", action="store_true")
+        action.add_argument("--matched-timeout-recovery", action="store_true")
         action.add_argument(
             "--cpu-core-hours", type=int, default=TOTAL_CORE_SECONDS // 3600
         )
@@ -381,6 +406,11 @@ def main() -> None:
         preparation=preparation,
         reference_requalification=args.reference_requalification,
         cap_core_seconds=args.cpu_core_hours * 3600,
+        matched_recovery_jobs=(
+            matched_timeout_retries(attempts, allocations)
+            if args.matched_timeout_recovery
+            else frozenset()
+        ),
     ) | {
         "ledger": _record(args.ledger),
         "sacct": _record(args.accounting),

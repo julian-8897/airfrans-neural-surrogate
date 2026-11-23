@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 TOTAL_CORE_SECONDS = 600 * 3600
 WALL_LIMIT_MINUTES = {"reproduction": 50, "matched": 35}
+MATCHED_RECOVERY_LIMIT_MINUTES = 45
 CORES = 16
 LIVE = {
     "PENDING",
@@ -90,6 +91,7 @@ def budget(
     preparation: dict[str, Allocation] | None = None,
     reference_requalification: bool = False,
     cap_core_seconds: int = TOTAL_CORE_SECONDS,
+    matched_recovery_jobs: frozenset[str] = frozenset(),
 ) -> dict:
     if cap_core_seconds <= 0:
         raise ValueError("the CPU budget must be positive")
@@ -99,7 +101,12 @@ def budget(
         {"reproduction": 60} if reference_requalification else {}
     )
     for job, phase in phases.items():
-        if allocations[job].limit_minutes > wall_limits[phase]:
+        wall_limit = (
+            MATCHED_RECOVERY_LIMIT_MINUTES
+            if phase == "matched" and job in matched_recovery_jobs
+            else wall_limits[phase]
+        )
+        if allocations[job].limit_minutes > wall_limit:
             raise ValueError(f"{job} exceeds its phase's wall-time limit")
     if any(count < 0 for count in proposals.values()):
         raise ValueError("proposed job count must be non-negative")

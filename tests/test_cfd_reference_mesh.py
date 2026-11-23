@@ -5,7 +5,8 @@ import json
 import pytest
 
 from airfoil_surrogate.cfd import reference_mesh
-from airfoil_surrogate.cfd.accounting import budget
+from airfoil_surrogate.cfd.accounting import Allocation, budget
+from airfoil_surrogate.cfd.campaign import matched_timeout_retries
 
 
 def test_reference_exception_binds_plan_case_mesh_and_the_single_failure(
@@ -65,3 +66,21 @@ def test_revised_cpu_cap_requires_an_explicit_argument():
     raised = budget({}, {}, proposed, cap_core_seconds=675 * 3600)
     assert raised["within_cap"]
     assert raised["cap_core_seconds"] == 675 * 3600
+
+
+def test_longer_matched_wall_time_requires_a_same_case_timeout():
+    allocations = {
+        "1": Allocation(16, 16, 2110, 35, "TIMEOUT", "0:0"),
+        "2": Allocation(0, 16, 0, 45, "PENDING", "0:0"),
+    }
+    first = dict(phase="matched", job_id="1", case="uiuc", outcome="retry")
+    retry = dict(phase="matched", job_id="2", case="uiuc", outcome="pending")
+    phases = {"1": "matched", "2": "matched"}
+    with pytest.raises(ValueError, match="no same-case allocation timeout"):
+        matched_timeout_retries([first, retry], allocations)
+    with pytest.raises(ValueError, match="exceeds its phase's wall-time limit"):
+        budget(allocations, phases, {})
+    first["reason"] = "allocation_timeout"
+    permitted = matched_timeout_retries([first, retry], allocations)
+    recorded = budget(allocations, phases, {}, matched_recovery_jobs=permitted)
+    assert recorded["charged_core_seconds"] == 16 * (2110 + 45 * 60)

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "fx66s171.dat",
+    "source_sha256": "e05edc7a8c25a12dadcb8d0431d9328d41c29d90bb3719dc9431d9be818cd041",
+    "index_labels": [
+      "Wortmann FX 66-S-171 airfoil"
+    ],
+    "order_sha256": "2339c3433ecbc3b63666b1be07d0730c06c1bde24ab8dbc16dafc194f0916d3f",
+    "coordinate_label": "FX 66-S-171 AIRFOIL",
+    "thickness": 0.17127555020780075,
+    "absolute_camber": 0.038883055772580874,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_78.079_9.32_4.225_3.07_14.673",
+    "nearest_naca_rms": 0.006604712082141737,
+    "status": "eligible",
+    "rank": 106,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-fx66s171",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-fx66s171.csv",
+    "geometry_sha256": "3848c9322cf5195cdcbab23f77fafa6b60823020b3c9f723c596005e261e712e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

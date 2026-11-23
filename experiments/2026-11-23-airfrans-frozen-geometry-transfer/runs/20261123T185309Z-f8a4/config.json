@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e337.dat",
+    "source_sha256": "accb88e1af6f7a4a557db0f51d36bfd9f01d3f5f1c3146fda4e907c665e52253",
+    "index_labels": [
+      "Eppler E337 flying wing airfoil"
+    ],
+    "order_sha256": "23183be4704ba2f0a93b0c34812080ffe76bb55c8138a7c492a6fe2933f255e9",
+    "coordinate_label": "EPPLER 337 AIRFOIL",
+    "thickness": 0.13110445024930614,
+    "absolute_camber": 0.03213132123768646,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_86.419_5.574_3.194_3.726_0.0_12.775",
+    "nearest_naca_rms": 0.004510085423676654,
+    "status": "eligible",
+    "rank": 105,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e337",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e337.csv",
+    "geometry_sha256": "491581d4cfb39b5808691a9552dcff398483c7fde42a443a6bda7396d934ca93"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}
