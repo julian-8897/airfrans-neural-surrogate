@@ -173,6 +173,11 @@ PY
             "$case_root/case/postProcessing/forceCoeffs1/0/coefficient.dat" \
             --out "$EXP_OUT/verification"
         ;;
+    cfd-campaign)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m airfoil_surrogate.cfd.campaign "${@:3}" \
+            --out "$EXP_OUT/campaign.json"
+        ;;
     official-report)
         interpreter=${2:?Provide the scratch Python environment}
         "$interpreter" -m airfoil_surrogate.eval.official_report "$3" \
