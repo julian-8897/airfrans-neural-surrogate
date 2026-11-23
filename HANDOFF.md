@@ -1,4 +1,4 @@
-# Last session (2026-11-21)
+# Last session (2026-11-23)
 
 The active goal is the frozen model's matched UIUC and NACA evaluation against CFD lift, drag and flow fields. On Eureka2 parallel scratch, `sha256sum` verified the retained checkpoint and freeze against the official evidence. `cmp` verified that the checkpoint's normaliser matches the 720-case training fit. The scratch candidate manifest matches the local copy and has 30 primary cases in each group. The 60 CFD reference solutions and held-out inference are pending.
 
@@ -6,7 +6,17 @@ An offline preflight materialised the actual OpenFOAM inputs for all 60 primary 
 
 The prior mesh failures reproduce features of the released AirfRANS grids. I compared the first two reproduction meshes from jobs `898973` and `898998` against their checksum-verified original training meshes from staging job `899091`. Nearest-neighbour matching from the published crop to the projected OpenFOAM points gave a unique vertex map for every point. Every published quad matched the four vertices of a reproduced cell. This included all 4 and 96 cells flagged by `checkMesh`, with worst differences below 3 × 10⁻⁸ chord for those cells. The [read-only audit and its output](outputs/2026-11-21-frozen-transfer-preflight/reference-mesh-audit.txt) are in ignored local outputs. Input copies and the force-monitor tail are in `/private/tmp/airfrans-cfd-audit.cGJq3I`. The scratch CFD case folders and original staging manifest retain the source data.
 
-Recommended decision pending approval. Preserve the pinned grading and allow a reference-backed exception only for the aspect-ratio check on the two reproduced reference cases, contingent on matching the published near-wall cells and passing the other mesh checks. Keep the existing CL, CD, Cp and force convergence acceptance criteria. Request up to 60 minutes per 16-core reproduction allocation so the third case can reach its existing iteration limit and export. The requalification envelope is 50 allocated CPU-core-hours with zero GPU-hours, entirely on parallel scratch. The matched runs still depend on qualification and an approved rule for their mesh checks. No jobs are in flight for this goal.
+The user approved the [reference mesh requalification](docs/decisions/2026-11-23-reference-mesh-requalification.md) on 2026-11-23. It preserves the pinned grading and the existing CL, CD, surface pressure and force convergence criteria. The exception is accepted only for the two pinned cases if the sole failure and all regenerated mesh and flagged-cell digests match. Local `uv run --locked --no-sync pytest -q` passed all 76 tests, with 10 CFD tests rerun after formatting and final provenance checks. Ruff, `bash -n` and both retained mesh checks also passed. The cluster runs archive `657e1a4`.
+
+The three 60-minute jobs reserve 48 of the 50 approved allocated CPU-core-hours, with zero GPU-hours. All compute and outputs use Eureka2 parallel scratch below `/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/`. Each job independently verifies its exported fields in the same allocation and writes `verification/reproduction.json` plus a surface-pressure comparison.
+
+| Slurm | exp run | Reproduction |
+| --- | --- | --- |
+| `912168` | `20261123T121602Z-cd61` | First reference, pinned aspect-ratio exception |
+| `912169` | `20261123T121607Z-15c3` | Second reference, pinned aspect-ratio exception |
+| `912170` | `20261123T121611Z-e60d` | Third reference, standard mesh check |
+
+All three were `RUNNING` at the first scheduler check. The matched runs and frozen-model inference depend on all three passing verification.
 
 ## Official benchmark closeout
 
