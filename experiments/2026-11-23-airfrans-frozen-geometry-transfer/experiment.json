@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "title": "Frozen Transolver on matched non-NACA and unseen NACA airfoils",
+  "status": "registered",
+  "created": "2026-11-23T14:50:40+00:00",
+  "question": "How do field and aerodynamic errors of the frozen Transolver change on non-NACA airfoils compared with unseen NACA controls at the same flow conditions?",
+  "hypothesis": "The frozen model may transfer differently for pressure and lift than for near-wall velocity and drag.",
+  "protocol": "Approved docs/methodology/original-mesh-transfer-protocol.md and docs/decisions/2026-11-23-reference-mesh-requalification.md. Same retained checkpoint, normaliser, fixed geometry ranks and operating point.",
+  "decision_rule": "Qualify and freeze 30 UIUC and 30 NACA cases using the unchanged matched mesh and convergence checks. Compare matched field and integrated force errors and rankings by group without using either for selection.",
+  "budget": "Original cap 600 allocated CPU-core-hours and 24 A100-hours cumulatively, counting prior benchmark, requalification, matched solves, verification and inference. Reserve 35 min on 16 cores per matched attempt and up to 30 min on one A100 for transfer inference.",
+  "linear": [],
+  "parent": "2026-11-23-airfrans-reference-requalification",
+  "tags": [],
+  "verdict": null
+}

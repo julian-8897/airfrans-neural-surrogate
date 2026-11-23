@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-23-airfrans-reference-requalification",
   "title": "Requalify the AirfRANS CFD reference",
-  "status": "running",
+  "status": "complete",
   "created": "2026-11-23T12:14:37+00:00",
   "question": "Does the pinned OpenFOAM workflow reproduce the three AirfRANS reference solutions under the approved reference-mesh exception?",
   "hypothesis": "The reference-equivalent meshes and full iteration schedules will permit the original force and surface-pressure criteria to be tested.",
@@ -12,5 +12,9 @@
   "linear": [],
   "parent": "2026-11-20-original-mesh-transfer",
   "tags": [],
-  "verdict": null
+  "verdict": {
+    "status": "complete",
+    "text": "All three CFD controls passed. The first two passed only the approved reference-specific mesh exception and met the unchanged CL, CD, Cp and convergence criteria. The third passed the standard mesh check and all scientific criteria on recovery. Slurm charged 164092 allocated CPU-core-seconds including the gate, within the 50-hour cap.",
+    "date": "2026-11-23T14:50:40+00:00"
+  }
 }

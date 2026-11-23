@@ -16,8 +16,9 @@ The three 60-minute jobs reserve 48 of the 50 approved allocated CPU-core-hours,
 | `912169` | `20261123T121607Z-15c3` | Second reference, pinned aspect-ratio exception |
 | `912170` | `20261123T121611Z-e60d` | Third reference, standard mesh check |
 | `912372` | `20261123T131711Z-2a24` | Same third reference, recovery on `node22` |
+| `912707` | `20261123T144952Z-5130` | Seal the three verification reports and accounting |
 
-Jobs `912168` and `912169` passed all mesh, force, pressure and force convergence checks. Their maximum absolute drag differences from AirfRANS were 3.73 × 10⁻⁵ and 3.25 × 10⁻⁵ respectively. Job `912170` timed out on `node21` at 39,199 of 40,000 iterations and wrote no final fields. The three settled allocations used 31.76 CPU-core-hours. The same-input recovery on `node22` reserves another 16, bringing the maximum to 47.76 of the approved 50. The matched runs and frozen-model inference depend on the third reference passing verification.
+Jobs `912168` and `912169` passed all approved mesh, force, pressure and force convergence checks. Their absolute drag differences from AirfRANS were 3.73 × 10⁻⁵ and 3.25 × 10⁻⁵ respectively. Job `912170` timed out on `node21` at 39,199 of 40,000 iterations, with no final fields. The same-input recovery `912372` completed in 3,107 seconds on `node22`. It passed the standard mesh check, with absolute CL and CD differences of 2.33 × 10⁻⁴ and 1.70 × 10⁻⁵ and maximum surface Cp RMSE 2.26 × 10⁻⁴. The three passing reports are sealed in `20261123T144952Z-5130/campaign.json` on scratch. Total requalification spend including the gate was 45.58 CPU-core-hours. The matched study is registered as `2026-11-23-airfrans-frozen-geometry-transfer` and uses the standard mesh check and the existing cumulative campaign caps.
 
 ## Official benchmark closeout
 

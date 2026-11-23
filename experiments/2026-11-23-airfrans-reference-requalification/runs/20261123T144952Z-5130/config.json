@@ -1,0 +1,36 @@
+{
+  "attempts": [
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_35.575_-4.221_6.432_5.051_16.214",
+      "exp_run": "20261123T121602Z-cd61.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121602Z-cd61/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121602Z-cd61/verification/reproduction.json"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_62.357_4.75_1.794_6.505_0.0_6.123",
+      "exp_run": "20261123T121607Z-15c3.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121607Z-15c3/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121607Z-15c3/verification/reproduction.json"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_88.719_12.609_5.172_0.0_11.439",
+      "exp_run": "20261123T121611Z-e60d.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121611Z-e60d/slurm-912170.log"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_88.719_12.609_5.172_0.0_11.439",
+      "exp_run": "20261123T131711Z-2a24.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T131711Z-2a24/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T131711Z-2a24/verification/reproduction.json"
+    }
+  ]
+}

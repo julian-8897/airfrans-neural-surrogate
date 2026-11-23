@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261123T131711Z-2a24",
   "experiment": "2026-11-23-airfrans-reference-requalification",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "912372"
   },
   "command": [
     "sbatch",
@@ -21,9 +21,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-23T13:17:11+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-23T14:49:49+00:00",
+  "duration_s": 5558.636,
+  "exit_code": 0,
   "git": {
     "commit": "fd81d80ff90143e7f3a34f4f218fc4acc241ca7e",
     "branch": "prototype-evaluation",
@@ -53,6 +53,44 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-reference-requalification/20261123T131711Z-2a24",
-  "metrics": null,
-  "note": "Same-case recovery after 912170 timed out. Uses the same committed archive 657e1a4 on node22, where the original attempt reached iteration 38478 in 3006 seconds. Settled allocations plus this reservation use 47.765 of 50 core-hours."
+  "metrics": {
+    "passed": true,
+    "case": "airFoil2D_SST_88.719_12.609_5.172_0.0_11.439",
+    "strict_mesh_ok": true,
+    "coefficient_absolute_difference": [
+      0.0002328902340349437,
+      1.6980069480278942e-05
+    ],
+    "coefficient_tolerance": [
+      0.03946359788679863,
+      0.0008074661563565558
+    ],
+    "cp_rmse": [
+      0.00022629433905858295,
+      8.45836552104881e-05
+    ],
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 40000,
+      "previous_mean": [
+        1.3156269999999932,
+        0.016138731319999943
+      ],
+      "last_mean": [
+        1.3156269999999932,
+        0.016138717479999898
+      ],
+      "absolute_difference": [
+        0.0,
+        1.3840000045312051e-08
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    },
+    "allocated_cpu_core_seconds": 49712
+  },
+  "note": "Same-case recovery after 912170 timed out. Uses the same committed archive 657e1a4 on node22, where the original attempt reached iteration 38478 in 3006 seconds. Settled allocations plus this reservation use 47.765 of 50 core-hours.\nOpenFOAM completed all 40000 iterations on node22. The standard mesh check and the original CL, CD, Cp and convergence gates all passed."
 }
