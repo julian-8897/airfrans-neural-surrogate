@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "sd8000.dat",
+    "source_sha256": "072c8871a37ae31a35ccd05161aebdd4941d2110685b2957bcc8627522a117bd",
+    "index_labels": [
+      "Selig / Donovan SD8000 low Reynolds number airfoil"
+    ],
+    "order_sha256": "0bba5f3b32c82a6df008159e63da997ed1c0fe5176b52072de12b3f24748ceda",
+    "coordinate_label": "SD8000-089-88",
+    "thickness": 0.08879738508710674,
+    "absolute_camber": 0.01810189011290758,
+    "trailing_gap": 1.0002135140069328e-05,
+    "nearest_naca_id": "airFoil2D_SST_90.743_14.221_1.897_3.274_8.669",
+    "nearest_naca_rms": 0.0022048984125079226,
+    "status": "eligible",
+    "rank": 25,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-sd8000",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-sd8000.csv",
+    "geometry_sha256": "e890c7b42a3b39168e79ceca2e91d2f287afb05c9debbe833fd140afd506b239"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

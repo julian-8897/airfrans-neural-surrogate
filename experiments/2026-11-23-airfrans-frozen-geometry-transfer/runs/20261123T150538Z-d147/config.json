@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "ah80136.dat",
+    "source_sha256": "395aa058865f7fcc0081ac9c19f772a1f25057f4425a60c613193dbb4285f0b3",
+    "index_labels": [
+      "Althaus AH 80-136 airfoil"
+    ],
+    "order_sha256": "0bbb25b151a854ae04e7e779b677d280d91f216493da9c74a11b99cecac2bdd0",
+    "coordinate_label": "AH 80-136",
+    "thickness": 0.13551349235382815,
+    "absolute_camber": 0.033828883697820875,
+    "trailing_gap": 0.0017499997005532017,
+    "nearest_naca_id": "airFoil2D_SST_51.251_0.288_3.087_5.592_0.0_12.178",
+    "nearest_naca_rms": 0.006698759223259836,
+    "status": "eligible",
+    "rank": 26,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-ah80136",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-ah80136.csv",
+    "geometry_sha256": "4eacd201ddaed7144e7a699cfd98af8ae9cbaa3ed01deab3fa3c6e5dc5c7607a"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

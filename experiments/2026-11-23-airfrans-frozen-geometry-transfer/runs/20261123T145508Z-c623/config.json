@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s9026.dat",
+    "source_sha256": "55669aeb8d891eddb049140acaf5ffe5ace3ee1b4a77df0ae1e6bff4d1ccd4bc",
+    "index_labels": [
+      "Selig S9026 (9.5%) symmetrical horizontal stab airfoil used on the Opus R/C sailplane"
+    ],
+    "order_sha256": "08ad5b0ad1ec4e9b2134445916cc938e95804b83aafb8cf3bad0e71ab45c4c5d",
+    "coordinate_label": "S9026 (9.5%)",
+    "thickness": 0.09499992178052033,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_82.556_12.657_2.173_0.0_9.256",
+    "nearest_naca_rms": 0.0021093547803992243,
+    "status": "eligible",
+    "rank": 17,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s9026",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-s9026.csv",
+    "geometry_sha256": "e52da08f7576e99bf3825939fcc266f84639b978a7dff7fe559493b9caa74d9f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

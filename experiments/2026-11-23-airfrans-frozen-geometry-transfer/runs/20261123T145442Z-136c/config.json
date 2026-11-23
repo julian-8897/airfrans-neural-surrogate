@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e231.dat",
+    "source_sha256": "c620566f21542910c8192e648f0966b089ab24f79f9beef64505c5db3036b83b",
+    "index_labels": [
+      "Eppler E231 R/C sailplane airfoil"
+    ],
+    "order_sha256": "03a984eab835fdcfd879d9a152c42f9f76695cea8be94e217afbeb303279c1c7",
+    "coordinate_label": "E231",
+    "thickness": 0.12337154389466427,
+    "absolute_camber": 0.02459610130242328,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_81.514_-0.659_2.706_2.211_12.109",
+    "nearest_naca_rms": 0.00539438413055292,
+    "status": "eligible",
+    "rank": 9,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e231",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e231.csv",
+    "geometry_sha256": "5efd6abe370b2c0b0ce980bc5300ab067c153bbc4b06f4bd876172644ddc2d20"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

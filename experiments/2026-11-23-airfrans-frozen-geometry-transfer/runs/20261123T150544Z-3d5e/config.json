@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe559.dat",
+    "source_sha256": "6f4eea313e493d45830e48a813c68f26cbeb11e7eb986f3431037a5d2f08220b",
+    "index_labels": [
+      "Gottingen 559 airfoil"
+    ],
+    "order_sha256": "0c7683ed4155fd37fda43fd274c126d11f0a62cc3ef28c148d3e62899192d348",
+    "coordinate_label": "GOE 559 AIRFOIL",
+    "thickness": 0.11149947785544533,
+    "absolute_camber": 0.034249874019841454,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_81.781_2.334_3.114_3.469_10.511",
+    "nearest_naca_rms": 0.007382703556637773,
+    "status": "eligible",
+    "rank": 28,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe559",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-goe559.csv",
+    "geometry_sha256": "30b73c2d31f624b1358dc5fb0825f99f99073699e19c99e5275cef214cf67d61"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

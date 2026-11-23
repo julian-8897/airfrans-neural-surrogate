@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s4062.dat",
+    "source_sha256": "9460ce4f698c7edc473693dfa576f969be071f854881ac2758440f182d89642b",
+    "index_labels": [
+      "Selig S4062 low Reynolds number airfoil"
+    ],
+    "order_sha256": "08ed1f8db6096e95f8308e06c1300897655280ce9793f3b9cded1db2ffde9752",
+    "coordinate_label": "S4062-095-87",
+    "thickness": 0.09552436363332459,
+    "absolute_camber": 0.04284216973221936,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_87.86_9.36_4.554_3.608_8.92",
+    "nearest_naca_rms": 0.0032086391412706238,
+    "status": "eligible",
+    "rank": 20,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s4062",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-s4062.csv",
+    "geometry_sha256": "f5838ff0a538e122c94a5743e30b025b6e553cc433a6d8165297ec1cf8572a44"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

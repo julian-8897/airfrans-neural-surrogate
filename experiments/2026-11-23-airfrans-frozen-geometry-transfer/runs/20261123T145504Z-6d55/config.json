@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "clarkz.dat",
+    "source_sha256": "1236b7626612822b59111716a7b443835432a90fd92b739a22c1262c45fdb195",
+    "index_labels": [
+      "CLARK Z airfoil"
+    ],
+    "order_sha256": "08aa946c4ec7bb3ec458a29867aaf818b637e0002066b52794f1664545c67ac5",
+    "coordinate_label": "CLARK Z AIRFOIL",
+    "thickness": 0.11765816675960133,
+    "absolute_camber": 0.040394049992131816,
+    "trailing_gap": 0.0011999997840000582,
+    "nearest_naca_id": "airFoil2D_SST_74.165_1.138_4.452_3.087_12.674",
+    "nearest_naca_rms": 0.0028925267171030873,
+    "status": "eligible",
+    "rank": 16,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-clarkz",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-clarkz.csv",
+    "geometry_sha256": "aa5a291fe04bc6a2de73d6f812e954224b3a70b4ab630e4501113adb9c9e31cf"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

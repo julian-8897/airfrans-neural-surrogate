@@ -1,5 +1,6 @@
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -446,6 +447,61 @@ def test_assemble_reproduces_reports_from_registered_cases_and_rejects_changed_e
     assert "The approved reproduction gate failed. 2 mesh checks failed" in partial_text
     assert "30 UIUC" not in partial_text
     assert "| CL absolute error | 0.5 | 1 | -0.5 [-0.5, -0.5] | yes |" in partial_text
+
+    from airfoil_surrogate.eval import transfer_report
+
+    reference_study = "synthetic-requalification"
+    write(
+        f"experiments/{study}/experiment.json",
+        {"id": study, "parent": reference_study},
+    )
+    inference = json.loads(runs["transfer"].read_text())
+    inference_id = inference["run_id"]
+    write(f"experiments/{study}/runs/{inference_id}/run.json", inference)
+    split_cohorts = json.loads(cohorts.read_text())
+    for attempt in split_cohorts["attempts"]:
+        if attempt["phase"] == "reproduction":
+            source = json.loads(Path(attempt["exp_run"]["path"]).read_bytes())
+            linked = write(
+                f"requalification/{source['run_id']}/run.json",
+                source | {"experiment": reference_study},
+            )
+            attempt["exp_run"] = reference(linked)
+    requalified = write("requalified-cohorts.json", split_cohorts)
+    transfer_metadata = f"{transfer_dir}/evaluation.json"
+    original_metadata = json.loads((tmp_path / transfer_metadata).read_text())
+    write(
+        transfer_metadata,
+        original_metadata
+        | {
+            "cohort_sha256": reference(requalified)["sha256"],
+            "cases": [[case["id"], case["group"]] for case in matched],
+            "operating_point": {
+                key: matched[0][key]
+                for key in ("inlet_velocity", "aoa_deg", "reynolds")
+            },
+        },
+    )
+    matched_spec = write(
+        "matched-report-inputs.json",
+        {
+            "experiment": study,
+            "transfer_run_id": inference_id,
+            "training": str(tmp_path / training),
+            "baselines": str(tmp_path / output["baselines"] / "baselines.json"),
+            "freeze": str(frozen),
+            "cohorts": str(requalified),
+        },
+    )
+    monkeypatch.setattr(transfer_report, "PIN", write("pin.json", pin))
+    matched_out = tmp_path / "matched-report"
+    transfer_report.assemble(matched_spec, tmp_path, matched_out)
+    matched_result = json.loads((matched_out / "evidence.json").read_text())
+    assert matched_result["case_count"] == 60
+    assert len(matched_result["reproduction_reports"]) == 3
+    write(transfer_metadata, original_metadata)
+    with pytest.raises(ValueError, match="provenance differs"):
+        transfer_report.assemble(matched_spec, tmp_path, tmp_path / "wrong-matched")
 
     invalid_out = tmp_path / "rejected"
     training_record = runs["training"].read_text()

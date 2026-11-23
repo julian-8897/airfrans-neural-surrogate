@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "mh61.dat",
+    "source_sha256": "c4128cfbf597404956496ff5ff4171c77970ef2d6e120582ca731e5a45ea4b7e",
+    "index_labels": [
+      "Martin Hepperle MH 61 for flying wings"
+    ],
+    "order_sha256": "054b084046b33cc6b907b6884bbc6b964aa2d717662acd7430d38d9f83a4ef89",
+    "coordinate_label": "MH 61  10.26%",
+    "thickness": 0.1025541764820202,
+    "absolute_camber": 0.014901711316836392,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_58.253_4.47_1.554_4.779_1.0_9.828",
+    "nearest_naca_rms": 0.0038150913007443062,
+    "status": "eligible",
+    "rank": 11,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-mh61",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-mh61.csv",
+    "geometry_sha256": "1d63c97386ea7ae7262865a025fe3937c31ed660dd2fd37df4b744b6b81bf8ff"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

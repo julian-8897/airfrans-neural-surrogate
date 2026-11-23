@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "run_id": "20261123T145226Z-e042",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "failed",
+  "backend": {
+    "kind": "slurm",
+    "job_id": "912719"
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:35:00",
+    "--job-name=airfrans-matched-010",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "airFoil2D_SST_58.859_13.222_0.658_5.498_17.478",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T14:52:26+00:00",
+  "ended": "2026-11-23T14:53:47+00:00",
+  "duration_s": 81.066,
+  "exit_code": 1,
+  "git": {
+    "commit": "60f6cb6c1066ca865c608808c04b521bae107cfb",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-010.json",
+    "sha256": "0f6e4336929c09dc307d5c182b387ec4201d5ce08e64198b3dd97ef938153aca",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T145226Z-e042/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "julian-mac-mini.local",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145226Z-e042",
+  "metrics": {
+    "case": "airFoil2D_SST_58.859_13.222_0.658_5.498_17.478",
+    "job_id": "912719",
+    "allocated_cpu_core_seconds": 528,
+    "slurm_state": "FAILED",
+    "slurm_exit_code": "1:0",
+    "outcome": "reject",
+    "reason": "mesh",
+    "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145226Z-e042/cfd/case/log.checkMesh"
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nmesh"
+}

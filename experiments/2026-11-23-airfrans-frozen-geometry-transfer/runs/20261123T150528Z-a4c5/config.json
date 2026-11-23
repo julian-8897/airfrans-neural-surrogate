@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "fx60157.dat",
+    "source_sha256": "fa3df32fb0245cf6ef37e30762647b0e44c8fea6754baedcf3baea70ec7ee442",
+    "index_labels": [
+      "Wortmann FX 60-157 airfoil"
+    ],
+    "order_sha256": "0a88df0aae609a3497a29d6bceffa293e12c24eb0fdacbcd78739c4150d70354",
+    "coordinate_label": "FX 60-157 AIRFOIL",
+    "thickness": 0.1567263641964151,
+    "absolute_camber": 0.027162419825500723,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_72.981_0.671_2.926_6.76_15.634",
+    "nearest_naca_rms": 0.007241898063112299,
+    "status": "eligible",
+    "rank": 23,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-fx60157",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-fx60157.csv",
+    "geometry_sha256": "0c4625a4993920c261e3093e9c15140a3ea97cf3c7ddf0d2af4ff9d352dbd1e5"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

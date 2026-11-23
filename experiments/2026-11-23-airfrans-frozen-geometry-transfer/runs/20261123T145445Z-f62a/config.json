@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "la2573a.dat",
+    "source_sha256": "2116af70bcc96765772e163a4d5f98d6237a55a351589cc39e5b624e59104c75",
+    "index_labels": [
+      "Liebeck LA2573A airfoil"
+    ],
+    "order_sha256": "03b39162c3c4a3b133c00668886b17d741b22d3a53ce6eb4eddf9ef608c1afe0",
+    "coordinate_label": "LA2573A",
+    "thickness": 0.13700439253448626,
+    "absolute_camber": 0.0319368559845649,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_86.419_5.574_3.194_3.726_0.0_12.775",
+    "nearest_naca_rms": 0.007771728457063018,
+    "status": "eligible",
+    "rank": 10,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-la2573a",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-la2573a.csv",
+    "geometry_sha256": "cfa5026427334ffacecaf08d7968a9d2e320cea8d8df6ddad86a3a128d5511a6"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

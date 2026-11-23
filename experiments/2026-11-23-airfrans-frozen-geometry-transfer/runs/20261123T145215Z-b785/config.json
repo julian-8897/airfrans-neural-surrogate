@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "mh27.dat",
+    "source_sha256": "4e0ed3b136f37d3bb4784e4ed7f106bb15ef3befd2ce71fcdb3a37abbe28e154",
+    "index_labels": [
+      "Martin Hepperle MH 27 for F3D Pylon Racing (extended laminar flow)"
+    ],
+    "order_sha256": "009f172676ae7a0abe82289089ce97d37607ade937341c54bfd01dc94d8f5daa",
+    "coordinate_label": "MH 27  11.99%",
+    "thickness": 0.11983683433043096,
+    "absolute_camber": 0.014957814748897777,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_69.713_9.747_1.403_7.35_0.0_12.377",
+    "nearest_naca_rms": 0.008256954903183936,
+    "status": "eligible",
+    "rank": 2,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-mh27",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-mh27.csv",
+    "geometry_sha256": "5f93e55e87b4cf0ccd3dab7694bcdb9b86053d9b0f25ecf18349ffa7d3eec7db"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

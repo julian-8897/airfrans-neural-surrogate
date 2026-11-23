@@ -20,3 +20,5 @@ To regenerate both files from complete saved case scores, without inference:
 python -m airfoil_surrogate.eval.transfer summarise /path/to/transfer \
   --out /path/to/new/report
 ```
+
+For a matched study registered separately from its requalification, use `python -m airfoil_surrogate.eval.transfer_report INPUTS --out REPORT_DIR`. The inputs name the matched `experiment` and `transfer_run_id`, and supply the `training`, `baselines`, `freeze` and `cohorts` paths. The report checks that the reproduction attempts belong to the parent experiment. It verifies the frozen inputs and saved prediction digests, rebuilds the metrics and rankings, and links the evidence. On Eureka2, the preparation template runs this command in `transfer-report` mode.

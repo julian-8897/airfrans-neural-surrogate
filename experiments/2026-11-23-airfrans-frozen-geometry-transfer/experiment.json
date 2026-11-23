@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-23-airfrans-frozen-geometry-transfer",
   "title": "Frozen Transolver on matched non-NACA and unseen NACA airfoils",
-  "status": "registered",
+  "status": "running",
   "created": "2026-11-23T14:50:40+00:00",
   "question": "How do field and aerodynamic errors of the frozen Transolver change on non-NACA airfoils compared with unseen NACA controls at the same flow conditions?",
   "hypothesis": "The frozen model may transfer differently for pressure and lift than for near-wall velocity and drag.",

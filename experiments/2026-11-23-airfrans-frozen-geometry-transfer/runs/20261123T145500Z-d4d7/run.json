@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "run_id": "20261123T145500Z-d4d7",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "running",
+  "backend": {
+    "kind": "slurm",
+    "job_id": null
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:35:00",
+    "--job-name=airfrans-matched-028",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "airFoil2D_SST_91.602_10.45_2.763_4.44_0.0_16.132",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T14:55:00+00:00",
+  "ended": null,
+  "duration_s": null,
+  "exit_code": null,
+  "git": {
+    "commit": "60f6cb6c1066ca865c608808c04b521bae107cfb",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-028.json",
+    "sha256": "59ba92257cbb2fe6bd8a51c479b610f067a22f971f48e22df6699650fef80715",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T145500Z-d4d7/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "julian-mac-mini.local",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145500Z-d4d7",
+  "metrics": null,
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch."
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "stcyr172.dat",
+    "source_sha256": "0f20d75fb6c4a0d64749b3f5c0e3c02e7c00934c73471c9c8fc4a70523e5767e",
+    "index_labels": [
+      "St. CYR 172 (Royer) airfoil"
+    ],
+    "order_sha256": "07021bd381d33b0406576af64905879c21cbeebf56944e55b681fcc7caddee70",
+    "coordinate_label": "St. CYR 172 (Royer)",
+    "thickness": 0.13559618356176095,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_65.808_6.849_5.27_0.0_13.499",
+    "nearest_naca_rms": 0.002225795715871901,
+    "status": "eligible",
+    "rank": 12,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-stcyr172",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-stcyr172.csv",
+    "geometry_sha256": "2316609e5b3036831896787e04fb776d6d1d5c6318df1b2883723cec083246ca"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

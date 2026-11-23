@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s8052.dat",
+    "source_sha256": "ddc188eea5839c571b2369a9f4445ba69dc4398eac94d02762963848b9a89f56",
+    "index_labels": [
+      "Selig S8052 low Reynolds number airfoil"
+    ],
+    "order_sha256": "08e1a8edf50b213b3eb7b8c82f59b9dcfc3630f4116869ce8e09ca7b24368592",
+    "coordinate_label": "S8052 (11.88%)",
+    "thickness": 0.11892093667320389,
+    "absolute_camber": 0.01597412404694292,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_83.563_8.784_1.675_3.334_11.353",
+    "nearest_naca_rms": 0.0029606952661053523,
+    "status": "eligible",
+    "rank": 19,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s8052",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-s8052.csv",
+    "geometry_sha256": "aa18246846be933f9679c6cc8b17f88ad0449f164ed0fa382d975b5fd92647b9"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

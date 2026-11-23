@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e818.dat",
+    "source_sha256": "86393d8fbbdd51e78650061b990fb274fa89d6006bc97d3f0e399dbbf9e2d58a",
+    "index_labels": [
+      "Eppler E818 hydrofoil"
+    ],
+    "order_sha256": "0741f13d5f63e150b6ef36551a233cddbafd275d943f049ca527069d4839268d",
+    "coordinate_label": "EPPLER 818 HYDROFOIL AIRFOIL",
+    "thickness": 0.09371073254263204,
+    "absolute_camber": 0.028019490115585303,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_34.973_-4.736_2.29_6.323_9.19",
+    "nearest_naca_rms": 0.004655688223227101,
+    "status": "eligible",
+    "rank": 13,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e818",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e818.csv",
+    "geometry_sha256": "242fec607088987d328178c8a54e405e9c2afeb00cdd9849ef0d687d1c361d88"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

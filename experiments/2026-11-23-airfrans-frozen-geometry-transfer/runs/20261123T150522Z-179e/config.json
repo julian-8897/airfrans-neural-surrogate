@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "du8608418.dat",
+    "source_sha256": "ac26cff3df12c7637cae4a0bca830707029619407676538091ed36c92b7a79cb",
+    "index_labels": [
+      "Deflt University DU 86-084/18 low Reynolds number airfoil"
+    ],
+    "order_sha256": "0918c80b4b1257c629839409a3c044167f43d602d80779d34bb171e64f5653e1",
+    "coordinate_label": "DU86-084/18 8.44%",
+    "thickness": 0.08457603053963193,
+    "absolute_camber": 0.01146880126986431,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_71.701_6.987_0.974_7.918_0.0_8.579",
+    "nearest_naca_rms": 0.0029955574591780513,
+    "status": "eligible",
+    "rank": 21,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-du8608418",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-du8608418.csv",
+    "geometry_sha256": "4820e086fbf44305f76759b6482ecbdcf5e2ef38e9ab8a0ebfe604b84118ff09"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

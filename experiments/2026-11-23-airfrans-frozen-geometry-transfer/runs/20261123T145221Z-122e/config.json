@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e635.dat",
+    "source_sha256": "98489256e5134822e11d8078af8b2bc8e48d291f7568e7a4eb593f02ea27ff4b",
+    "index_labels": [
+      "Eppler E635 airfoil"
+    ],
+    "order_sha256": "0116d659d68139a8f1e778cc7b235fc337df86938f6bba95004bb3865fb5cf99",
+    "coordinate_label": "EPPLER 635 AIRFOIL",
+    "thickness": 0.11666537132651833,
+    "absolute_camber": 0.02889330348319537,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_55.325_1.589_3.555_3.041_1.0_10.736",
+    "nearest_naca_rms": 0.006307685756913825,
+    "status": "eligible",
+    "rank": 4,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e635",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e635.csv",
+    "geometry_sha256": "ca93700f6dd860762302a885dad341002afefd068ea9a21f71243c247464784e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

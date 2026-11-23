@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe613.dat",
+    "source_sha256": "a67a161e48049cc0317af1a41dbd9ae316431f0fdb40dbdfc2b88ab2b8820f2c",
+    "index_labels": [
+      "Gottingen 613 airfoil"
+    ],
+    "order_sha256": "023e706461f1de1783b7f8eec47ada4b1a85b15122e40fc68c53a7dca9a3e207",
+    "coordinate_label": "GOE 613 AIRFOIL",
+    "thickness": 0.10306941844363693,
+    "absolute_camber": 0.04095215606556014,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_76.383_3.684_4.72_2.452_9.924",
+    "nearest_naca_rms": 0.0030047772304380863,
+    "status": "eligible",
+    "rank": 7,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe613",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-goe613.csv",
+    "geometry_sha256": "29238598795ac59d3f954156a4240985d0b0b773b767ba682efed07db9607cb0"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

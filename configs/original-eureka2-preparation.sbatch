@@ -183,5 +183,10 @@ PY
         "$interpreter" -m airfoil_surrogate.eval.official_report "$3" \
             --out "$EXP_OUT/report"
         ;;
+    transfer-report)
+        interpreter=${2:?Provide the scratch Python environment}
+        "$interpreter" -m airfoil_surrogate.eval.transfer_report "$3" \
+            --out "$EXP_OUT/report"
+        ;;
     *) echo 'Specify a Eureka2 preparation or verification mode' >&2; exit 2 ;;
 esac

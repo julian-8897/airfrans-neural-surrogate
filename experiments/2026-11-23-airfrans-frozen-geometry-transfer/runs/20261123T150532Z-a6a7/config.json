@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e176.dat",
+    "source_sha256": "b3ab2b7933a9fd0855354e9da2c11892f2d29eeee1469a31890fe3d76d77a1b8",
+    "index_labels": [
+      "Eppler E176 low Reynolds number airfoil"
+    ],
+    "order_sha256": "0ac52ce512553cd755d8ae0fc5769239730601ce2cdd219ee2edc010e2e0e414",
+    "coordinate_label": "E176  (8.83%)",
+    "thickness": 0.08829943879433955,
+    "absolute_camber": 0.032560778275535454,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_39.204_6.325_3.319_3.611_8.695",
+    "nearest_naca_rms": 0.0029349876490110376,
+    "status": "eligible",
+    "rank": 24,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e176",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e176.csv",
+    "geometry_sha256": "0b95c7e1e2ddeb3ddcfee4399d3e097222cbdc81787b8974f9a8635383f134cf"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

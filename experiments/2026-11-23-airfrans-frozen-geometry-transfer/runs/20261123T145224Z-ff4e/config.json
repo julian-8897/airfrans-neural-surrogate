@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e342.dat",
+    "source_sha256": "7b17c226505b98a39a5ee7969a1640e46751b8417732bca4f1ccff693592ca9b",
+    "index_labels": [
+      "Eppler E342 flying wing airfoil"
+    ],
+    "order_sha256": "013910e8849b8e8f522ce3522353802ddf400d90b28d8ea933ab7b7a078efe32",
+    "coordinate_label": "EPPLER 342 AIRFOIL",
+    "thickness": 0.14264500786431233,
+    "absolute_camber": 0.03484920768259596,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_78.465_-2.113_3.461_4.125_0.0_14.354",
+    "nearest_naca_rms": 0.005140627245372914,
+    "status": "eligible",
+    "rank": 5,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e342",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e342.csv",
+    "geometry_sha256": "736e631d287bb4d0356dc049e16bc11dce721072c5d8dc399ccde4bf7a8d135c"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

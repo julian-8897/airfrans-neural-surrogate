@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e521.dat",
+    "source_sha256": "0034f611ba8324da3b5baed0fd97f814a3d63dce213fb572969a90794173c7df",
+    "index_labels": [
+      "Eppler E521 tailplane airfoil"
+    ],
+    "order_sha256": "02b56536f5eb6e121cc02b2d010cee10002cfbe8b7c2395ab52d8f3fe0700681",
+    "coordinate_label": "EPPLER 521 AIRFOIL",
+    "thickness": 0.1376858608158697,
+    "absolute_camber": 0.0007391196971850062,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_65.808_6.849_5.27_0.0_13.499",
+    "nearest_naca_rms": 0.003883142629047242,
+    "status": "eligible",
+    "rank": 8,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e521",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e521.csv",
+    "geometry_sha256": "7938942043930a4274508e80228d3ed810a45eecc0dcd816b4b4ab93fd12d39b"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

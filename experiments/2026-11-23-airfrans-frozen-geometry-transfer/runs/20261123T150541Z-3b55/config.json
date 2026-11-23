@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "usa45m.dat",
+    "source_sha256": "e334ffeeefabab8f0e5959560f2cdb96de148ec29148ce5e9d449117a95547e7",
+    "index_labels": [
+      "USA-45M airfoil"
+    ],
+    "order_sha256": "0c6f883966947d96674f622dd4a87362a2f5b6861866d351619d5524bd840c90",
+    "coordinate_label": "USA 45 M AIRFOIL",
+    "thickness": 0.116339685268286,
+    "absolute_camber": 0.03325300344055062,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_33.798_10.426_3.185_5.957_0.0_11.232",
+    "nearest_naca_rms": 0.002391102279737358,
+    "status": "eligible",
+    "rank": 27,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-usa45m",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-usa45m.csv",
+    "geometry_sha256": "264642a90cb23013395f62f4f1b7498edb71aca0986ca6e4d44f3351e8494b78"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

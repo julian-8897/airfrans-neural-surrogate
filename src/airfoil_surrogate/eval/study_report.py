@@ -107,7 +107,12 @@ def _checked_gpu_accounting(path: Path, experiment: str, runs: dict) -> dict:
 
 
 def _cfd_reports(
-    cohorts: dict, cases: list[dict], experiment: str, training_sha: str
+    cohorts: dict,
+    cases: list[dict],
+    experiment: str,
+    training_sha: str,
+    *,
+    reference_experiment: str | None = None,
 ) -> list[dict]:
     """Check links from each frozen CFD case to its registered attempt."""
     gate = check_qualification(_checked_path(cohorts["qualification"]))
@@ -120,8 +125,11 @@ def _cfd_reports(
     for row in cohorts["attempts"]:
         source = _checked_path(row["exp_run"])
         run = _json(source)
+        expected = experiment
+        if row["phase"] == "reproduction" and reference_experiment is not None:
+            expected = reference_experiment
         if (
-            run["experiment"] != experiment
+            run["experiment"] != expected
             or run["run_id"] != row["run_id"]
             or str(run["backend"]["job_id"]) != row["job_id"]
             or row["job_id"] in attempts

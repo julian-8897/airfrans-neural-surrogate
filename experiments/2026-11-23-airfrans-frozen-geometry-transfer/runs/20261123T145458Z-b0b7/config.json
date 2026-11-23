@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "hsnlf213.dat",
+    "source_sha256": "4083989ebf397d853bb8e1585921baaa9af0848dcb7cc80e17d62db40cad2bd0",
+    "index_labels": [
+      "NASA/Langley HSNLF(1)-0213 high speed natural laminar flow airfoil"
+    ],
+    "order_sha256": "080b6b5fc46206f9830f46a7467826be6991dce258f926aea9249c98fde7d07b",
+    "coordinate_label": "HSNLF(1)-0213 AIRFOIL",
+    "thickness": 0.13257835620642655,
+    "absolute_camber": 0.013740123892436642,
+    "trailing_gap": 0.0013398,
+    "nearest_naca_id": "airFoil2D_SST_59.251_2.558_1.39_5.544_0.0_12.531",
+    "nearest_naca_rms": 0.0059580950501323705,
+    "status": "eligible",
+    "rank": 14,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-hsnlf213",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-hsnlf213.csv",
+    "geometry_sha256": "95da50c19f93f37094a46948075a119c94fd060fb7c1c8e4bd1762abd2fd925e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}
