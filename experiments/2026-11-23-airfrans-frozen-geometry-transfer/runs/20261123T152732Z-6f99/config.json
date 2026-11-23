@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e654.dat",
+    "source_sha256": "2dfeb5c069c8263cb5c2037af254ab773797d6036e3c740929f0fb5d963b13a1",
+    "index_labels": [
+      "Eppler E654 sailplane airfoil"
+    ],
+    "order_sha256": "0dee99425dbce88be2d637c2a3066d3719b1aff82ba53eb4550b13015c2ab218",
+    "coordinate_label": "EPPLER 654 AIRFOIL",
+    "thickness": 0.17218810930101347,
+    "absolute_camber": 0.04861240826875858,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_78.333_-1.115_5.593_4.208_16.049",
+    "nearest_naca_rms": 0.0066645607090815425,
+    "status": "eligible",
+    "rank": 33,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e654",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e654.csv",
+    "geometry_sha256": "97f6e48e9809c7c742eb20af619e7cfbc7b402bc58cfb501ff887d361b496c33"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

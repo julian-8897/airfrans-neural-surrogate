@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "r140.dat",
+    "source_sha256": "35a8c59597ed1806930dd19cc74ec8d1f953d524932eb35685b9e8256f836924",
+    "index_labels": [
+      "R140 Quickee 500 airfoil (original)"
+    ],
+    "order_sha256": "15add812fdd5384bd7bbc436138bb625e3c05ab7d9bf33558e23526b271bddd4",
+    "coordinate_label": "R140 (original)",
+    "thickness": 0.1199985725662405,
+    "absolute_camber": 0.004661856944201757,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_35.823_8.293_0.329_6.252_0.0_11.422",
+    "nearest_naca_rms": 0.005129021063093906,
+    "status": "eligible",
+    "rank": 58,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-r140",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-r140.csv",
+    "geometry_sha256": "512327404a44b9ca72d5541dbaf57d978716f1bf2d3262e9a3acb24bc7ccbf62"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

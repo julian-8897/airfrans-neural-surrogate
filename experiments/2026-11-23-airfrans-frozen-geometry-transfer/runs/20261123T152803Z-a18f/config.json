@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "mh82.dat",
+    "source_sha256": "60d28d7c38d3a80a1523a98747e4b76585656e58ca596467669c18e8043bf825",
+    "index_labels": [
+      "Martin Hepperle MH 82 for flying wings (hang glider)"
+    ],
+    "order_sha256": "0fa2be01a12ebc0aab91a9127e96c3c582447b4472c767e5ecc134587adc1fd5",
+    "coordinate_label": "MH 82  13.31%",
+    "thickness": 0.13309890472366984,
+    "absolute_camber": 0.040915786085695204,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_91.707_-1.557_3.933_4.731_0.0_12.944",
+    "nearest_naca_rms": 0.007470922076263494,
+    "status": "eligible",
+    "rank": 40,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-mh82",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-mh82.csv",
+    "geometry_sha256": "2a5d5042d0aba943456799976d0e985b887f72318904f96b1b9be9b13c592e5d"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

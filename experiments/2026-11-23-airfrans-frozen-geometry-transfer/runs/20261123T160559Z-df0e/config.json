@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "usa33.dat",
+    "source_sha256": "a34d9bbd62b0ebb05e681a93ebdffa84924a94a621e978d4a89d0e73ae280a56",
+    "index_labels": [
+      "USA-33 airfoil"
+    ],
+    "order_sha256": "1158786e6d8e17dfd5c8843785a775f128cc9804c8fbe9b82ab6a29ebc62207d",
+    "coordinate_label": "USA 33 AIRFOIL",
+    "thickness": 0.1419822045006366,
+    "absolute_camber": 0.04858754816645566,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_83.993_10.542_3.978_6.293_1.0_14.147",
+    "nearest_naca_rms": 0.005406444278597665,
+    "status": "eligible",
+    "rank": 46,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-usa33",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-usa33.csv",
+    "geometry_sha256": "f208d5069d589782ccd1430e917495e633a114de75bc787462be59a65ee63ae5"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

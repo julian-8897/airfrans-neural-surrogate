@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "run_id": "20261123T160602Z-cbc0",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "running",
+  "backend": {
+    "kind": "slurm",
+    "job_id": null
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:35:00",
+    "--job-name=airfrans-matched-094",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "uiuc-n14",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T16:06:02+00:00",
+  "ended": null,
+  "duration_s": null,
+  "exit_code": null,
+  "git": {
+    "commit": "59b6110de2c384b1675f74fa4b6031ea8aad2e1d",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-094.json",
+    "sha256": "83bc0c8c47beda560fc91cc71b928d6be6e52326e687e7a71cc3311044c269a4",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T160602Z-cbc0/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160602Z-cbc0",
+  "metrics": null,
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch."
+}

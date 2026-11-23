@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261123T150536Z-ed16",
   "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "912764"
   },
   "command": [
     "sbatch",
@@ -21,9 +21,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-23T15:05:36+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-23T16:05:00+00:00",
+  "duration_s": 3564.242,
+  "exit_code": 0,
   "git": {
     "commit": "60f6cb6c1066ca865c608808c04b521bae107cfb",
     "branch": "prototype-evaluation",
@@ -47,6 +47,34 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150536Z-ed16",
-  "metrics": null,
-  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch."
+  "metrics": {
+    "case": "airFoil2D_SST_89.523_6.267_4.381_6.934_14.085",
+    "job_id": "912764",
+    "allocated_cpu_core_seconds": 26640,
+    "slurm_state": "COMPLETED",
+    "slurm_exit_code": "0:0",
+    "outcome": "qualified",
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.9925100891999998,
+        0.012330873160000002
+      ],
+      "last_mean": [
+        0.9925061803999996,
+        0.012330785139999996
+      ],
+      "absolute_difference": [
+        3.90880000022964e-06,
+        8.802000000564247e-08
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    }
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nVerified matched CFD output and immutable provenance"
 }

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e836.dat",
+    "source_sha256": "d3ef9bc0141f72a46f0a95706d86f79176f36357677c4c7b71f15f896ce29e93",
+    "index_labels": [
+      "Eppler E836 hydrofoil"
+    ],
+    "order_sha256": "1238b8508a31be7c2ad71fd477aca0f3e4112d7e878e4658240ea5e53c4f0223",
+    "coordinate_label": "EPPLER E836 HYDROFOIL AIRFOIL",
+    "thickness": 0.12639649260395136,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_34.613_-4.801_4.017_0.0_12.213",
+    "nearest_naca_rms": 0.005177557937389091,
+    "status": "eligible",
+    "rank": 48,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e836",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e836.csv",
+    "geometry_sha256": "da1da0434cc4b02a002ae6d0744ed23a492868feee51b614482fd5a178543b8f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

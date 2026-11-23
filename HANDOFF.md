@@ -22,6 +22,8 @@ Jobs `912168` and `912169` passed all approved mesh, force, pressure and force c
 
 Three matched waves have submitted 56 attempts at the fixed operating point, Slurm IDs `912710`–`912721`, `912723`–`912746` and `912751`–`912770`. They use scratch archive `checkout-4476ddf` and the sealed qualification. Outputs are under `checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/<run-id>` in the study scratch directory. The 15:08 UTC accounting check had 16 terminal mesh rejections, 14 running and 26 pending. Use each allocation's `submission.txt` and saved `assessment.json` in local ignored outputs to reconcile scheduler, mesh and convergence results. The next waves follow the pinned group ranks and reserve accounting. Inference requires a frozen 30 UIUC and 30 NACA cohort.
 
+The user approved a [675 CPU-core-hour cumulative cap](docs/decisions/2026-11-23-matched-cpu-cap.md) after 26 matched cases qualified and completing the remaining 34 at the observed cost projected to exceed the original cap. Pass `--cpu-core-hours 675` when sealing the matched ledger. Use the same shape ranks, standard mesh and convergence checks, and the original frozen checkpoint. The GPU cap remains 24 A100-hours.
+
 ## Official benchmark closeout
 
 The registered [original-mesh study](experiments/2026-11-20-original-mesh-transfer/experiment.json) is closed. Seed 0 completed all 398 epochs on one full Eureka2 A100. All cluster artefacts are on parallel scratch, and Slurm ran the compute on allocated nodes.

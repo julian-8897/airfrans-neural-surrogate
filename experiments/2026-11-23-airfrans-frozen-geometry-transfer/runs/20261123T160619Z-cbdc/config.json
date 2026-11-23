@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e854.dat",
+    "source_sha256": "f1b38afcc6f7d3155ad3eaf3ed27fb646eb376db162938adef1f4cec533f2910",
+    "index_labels": [
+      "Eppler E854 propeller airfoil"
+    ],
+    "order_sha256": "13da66713d334d6395ef3fd8892c0f43414ce0e35b33daa218d4a57f0e705b9c",
+    "coordinate_label": "EPPLER E854 AIRFOIL",
+    "thickness": 0.13426267095506586,
+    "absolute_camber": 0.03281843944373575,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_70.666_5.642_3.479_5.344_12.979",
+    "nearest_naca_rms": 0.004331665288629112,
+    "status": "eligible",
+    "rank": 54,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e854",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e854.csv",
+    "geometry_sha256": "da521c15f6406507a182a1c62b67aaa6a069a342dd2b113acd2ec14a0e093bfd"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

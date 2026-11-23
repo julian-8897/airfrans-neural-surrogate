@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e328.dat",
+    "source_sha256": "9abdc895b3c7d75b8f5856b6ed50202aab40d42289d685041fd408a2769ca561",
+    "index_labels": [
+      "Eppler E328 flying wing airfoil"
+    ],
+    "order_sha256": "0f7b3cbe5fc9c149175ba4cdfd05ecf0bec1b6b98d6f99c6ebaba10e18e48f20",
+    "coordinate_label": "EPPLER 328 AIRFOIL",
+    "thickness": 0.13347161975132107,
+    "absolute_camber": 0.029915356772234006,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_86.419_5.574_3.194_3.726_0.0_12.775",
+    "nearest_naca_rms": 0.003780519324185597,
+    "status": "eligible",
+    "rank": 39,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e328",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e328.csv",
+    "geometry_sha256": "f676445f340b399757595a97d9318cf785a798a4c9f98a96763428a6e249209e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

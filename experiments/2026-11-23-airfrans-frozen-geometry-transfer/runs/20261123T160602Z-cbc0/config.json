@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "n14.dat",
+    "source_sha256": "6f1944ada6e635712b837f126c4f8441b8e0cfc42e6e41c6b77cd3d6b9ccb6f9",
+    "index_labels": [
+      "N-14 airfoil"
+    ],
+    "order_sha256": "11cd6df46f6cff2997bff8074c02e8f5f5ce97645019edf9a5495046e43a61ae",
+    "coordinate_label": "N-14",
+    "thickness": 0.114799907963355,
+    "absolute_camber": 0.0005035254535922153,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_47.008_-0.17_4.651_0.0_11.91",
+    "nearest_naca_rms": 0.0025121627347428955,
+    "status": "eligible",
+    "rank": 47,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-n14",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-n14.csv",
+    "geometry_sha256": "e7cf9041456d416d886ba79ec7870b18761f6f0dbeef3ab80897a2e1331031e8"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

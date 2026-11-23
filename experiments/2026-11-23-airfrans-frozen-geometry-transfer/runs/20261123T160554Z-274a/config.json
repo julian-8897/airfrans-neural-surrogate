@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "sd5060.dat",
+    "source_sha256": "4dbcf5b038f83f37173b907a9c5ac748c409c77c69ff13acc82ea9b2552295d0",
+    "index_labels": [
+      "Selig / Donovan SD5060 low Reynolds number airfoil"
+    ],
+    "order_sha256": "1032a7b9e359e25cba404065819cf05ecfd2c4e9ed75976799e1d96ff61b1a7f",
+    "coordinate_label": "SD5060 (9.5%)",
+    "thickness": 0.09463290881412617,
+    "absolute_camber": 0.023367567979106288,
+    "trailing_gap": 1.0000247828153021e-05,
+    "nearest_naca_id": "airFoil2D_SST_56.749_1.468_1.967_7.293_1.0_8.866",
+    "nearest_naca_rms": 0.003612578055701132,
+    "status": "eligible",
+    "rank": 44,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-sd5060",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-sd5060.csv",
+    "geometry_sha256": "7ff1d3e873b5265917a2b9c1f6f8f737cf44fd65dd00f1461fda8870a3a30134"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

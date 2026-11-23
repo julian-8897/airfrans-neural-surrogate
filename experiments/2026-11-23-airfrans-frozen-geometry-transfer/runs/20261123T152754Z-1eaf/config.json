@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "sa7026.dat",
+    "source_sha256": "96823817ab960bccba41ceb641821a9a7b4a33ccbd6d564c68ba7fbe05b318fa",
+    "index_labels": [
+      "Selig / Ashok Gopalarathnam SA7026 low Reynolds number airfoil"
+    ],
+    "order_sha256": "0f70605ac46f3135ef2064dae2ab830bb209b7ca8997090d3ca036b131aab755",
+    "coordinate_label": "SA7026",
+    "thickness": 0.09007802195035398,
+    "absolute_camber": 0.038409965198986956,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_36.155_8.69_3.296_7.636_1.0_8.571",
+    "nearest_naca_rms": 0.0034263918875365334,
+    "status": "eligible",
+    "rank": 38,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-sa7026",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-sa7026.csv",
+    "geometry_sha256": "d9ba1bee4262553a56407073006510e88fe00d390e39976c0709a5e3ec02f468"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

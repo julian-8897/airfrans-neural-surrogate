@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261123T145518Z-ac70",
   "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
-  "status": "running",
+  "status": "failed",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "912746"
   },
   "command": [
     "sbatch",
@@ -21,9 +21,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-23T14:55:18+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-23T15:26:29+00:00",
+  "duration_s": 1871.305,
+  "exit_code": 1,
   "git": {
     "commit": "60f6cb6c1066ca865c608808c04b521bae107cfb",
     "branch": "prototype-evaluation",
@@ -47,6 +47,15 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145518Z-ac70",
-  "metrics": null,
-  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch."
+  "metrics": {
+    "case": "airFoil2D_SST_86.326_9.572_2.09_6.863_0.0_12.995",
+    "job_id": "912746",
+    "allocated_cpu_core_seconds": 528,
+    "slurm_state": "FAILED",
+    "slurm_exit_code": "1:0",
+    "outcome": "reject",
+    "reason": "mesh",
+    "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145518Z-ac70/cfd/case/log.checkMesh"
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nmesh"
 }

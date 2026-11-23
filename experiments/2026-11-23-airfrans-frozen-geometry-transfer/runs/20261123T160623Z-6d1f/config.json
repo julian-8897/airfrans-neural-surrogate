@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e178.dat",
+    "source_sha256": "73c7b73cd4eeb95ef25c2167a6c8a7b3002c6cb8aa138f376abe698383b4ec30",
+    "index_labels": [
+      "Eppler E178 low Reynolds number airfoil"
+    ],
+    "order_sha256": "1444369b2060e168c7c162a029bf9553dc9b7bf9b5722dbbacfb4462a7884b19",
+    "coordinate_label": "E178  (8.69%)",
+    "thickness": 0.086956611585132,
+    "absolute_camber": 0.02801657344672752,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_76.857_-1.481_2.184_7.102_0.0_7.491",
+    "nearest_naca_rms": 0.003404487596632389,
+    "status": "eligible",
+    "rank": 56,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e178",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e178.csv",
+    "geometry_sha256": "c68f1399296f60ba8ddd5c075fd65bddb02c4a7e879578597b5e2f4317d82675"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

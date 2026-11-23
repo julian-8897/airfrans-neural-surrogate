@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e325.dat",
+    "source_sha256": "bcd1510ee6fea2c35bdd12489f6cebc3346371e517864627e5f04618506ceacf",
+    "index_labels": [
+      "Eppler E325 flying wing airfoil"
+    ],
+    "order_sha256": "0d2fe38d670b7d52fb82f37c2384ba3156b8bff8134716aafe21901055e44242",
+    "coordinate_label": "EPPLER 325 AIRFOIL",
+    "thickness": 0.12651083598260632,
+    "absolute_camber": 0.01806922732856584,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_33.846_6.261_0.922_3.023_1.0_12.36",
+    "nearest_naca_rms": 0.008034840085434347,
+    "status": "eligible",
+    "rank": 29,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e325",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-e325.csv",
+    "geometry_sha256": "72462a5269c0c39c359261a3861695b7ca3076acf15af351c092304b4fe56849"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

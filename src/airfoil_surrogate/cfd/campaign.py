@@ -11,6 +11,7 @@ from pathlib import Path
 
 from airfoil_surrogate.cfd.accounting import (
     TERMINAL,
+    TOTAL_CORE_SECONDS,
     Allocation,
     budget,
     read_allocations,
@@ -348,6 +349,9 @@ def main() -> None:
         action.add_argument("accounting", type=Path)
         action.add_argument("--preparation-accounting", type=Path)
         action.add_argument("--reference-requalification", action="store_true")
+        action.add_argument(
+            "--cpu-core-hours", type=int, default=TOTAL_CORE_SECONDS // 3600
+        )
         action.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     allocations = read_allocations(args.accounting.read_text())
@@ -369,6 +373,7 @@ def main() -> None:
         proposals,
         preparation=preparation,
         reference_requalification=args.reference_requalification,
+        cap_core_seconds=args.cpu_core_hours * 3600,
     ) | {
         "ledger": _record(args.ledger),
         "sacct": _record(args.accounting),

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "p51droot.dat",
+    "source_sha256": "9c2031b639a78d0de52863e888e3d5bfc333f51ab8e39601b9dd334e2e1dcbd5",
+    "index_labels": [
+      "P-51D root (BL17.5) airfoil"
+    ],
+    "order_sha256": "0d75441c9d69ceef3e46c6640a87b123fcfff3bdcd9ff21791fc4728db801a47",
+    "coordinate_label": "P-51D ROOT (BL17.5) AIRFOIL",
+    "thickness": 0.1651388578851657,
+    "absolute_camber": 0.012652434541572662,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_33.263_-1.073_1.438_5.145_15.567",
+    "nearest_naca_rms": 0.004345846158642613,
+    "status": "eligible",
+    "rank": 30,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-p51droot",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-p51droot.csv",
+    "geometry_sha256": "80995d0ef5f5c50dca18f9765804c8778409f93bcb2782c4f703959eb06c15c4"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe477.dat",
+    "source_sha256": "b8a6baa73bb1e4a4cfc31ff05721808779c1335a2377d7ef97b7d56d70b697a1",
+    "index_labels": [
+      "Gottingen 477 airfoil"
+    ],
+    "order_sha256": "0dfa169a751db13e7cf05990b3845c2340480ea96363bd919e4f61b87fa10cb9",
+    "coordinate_label": "GOE 477 AIRFOIL",
+    "thickness": 0.10089438360138492,
+    "absolute_camber": 0.048985012289121936,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_39.375_11.642_5.097_2.44_9.816",
+    "nearest_naca_rms": 0.003869761846634778,
+    "status": "eligible",
+    "rank": 34,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe477",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe477.csv",
+    "geometry_sha256": "8267bb07f440cb3b2afc850815b5a7ad914a3ab660865835533a0bdac571beff"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

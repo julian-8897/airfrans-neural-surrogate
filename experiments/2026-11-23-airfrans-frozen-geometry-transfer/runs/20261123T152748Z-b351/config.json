@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "mh30.dat",
+    "source_sha256": "e49573aeeab27777333aa8f32562cb7f0c1732ef51169edc80b65d635715b259",
+    "index_labels": [
+      "Martin Hepperle MH 30 for F3E and F3B"
+    ],
+    "order_sha256": "0f41ecf707c2ab55ba0e172536f211ca1f3a782812ef682ae041f59b50f69492",
+    "coordinate_label": "MH 30  7.84%",
+    "thickness": 0.07847400923825129,
+    "absolute_camber": 0.017308621064485503,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_85.127_5.859_1.916_4.91_7.26",
+    "nearest_naca_rms": 0.002396932093343307,
+    "status": "eligible",
+    "rank": 36,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-mh30",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-mh30.csv",
+    "geometry_sha256": "57ae2644cb32980fa05b803679e710e9fc4d48827314e956d3e4190aa2ead624"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

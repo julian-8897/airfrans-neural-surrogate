@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e434.dat",
+    "source_sha256": "3f9f0e2240276d58330f750fe7e47a68dad8193c7afa1365ae521e9fbe5f2a66",
+    "index_labels": [
+      "Eppler E434 sailplane airfoil"
+    ],
+    "order_sha256": "1540f447a1b6df8f59df25fbb23d9505b896a1a0f67447e62aa8b1e530c65186",
+    "coordinate_label": "EPPLER 434 AIRFOIL",
+    "thickness": 0.133401888489497,
+    "absolute_camber": 0.04310383684566346,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_74.165_1.138_4.452_3.087_12.674",
+    "nearest_naca_rms": 0.005064642647794578,
+    "status": "eligible",
+    "rank": 57,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e434",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e434.csv",
+    "geometry_sha256": "72e4439b71145e3962a663b91c1e53888ce2cefdfed3ec5f20fead5483efa036"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

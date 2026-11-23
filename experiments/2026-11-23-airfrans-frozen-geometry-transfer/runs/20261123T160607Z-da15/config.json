@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe314.dat",
+    "source_sha256": "6f86f8be6084fe888ce6d52d660ab367104d1a135241648f9240ea99df4a384e",
+    "index_labels": [
+      "Gottingen 314 (Hansa-Brandenburg) airfoil"
+    ],
+    "order_sha256": "1271b0e78f8567a5d95d7d951b66fa8fb71402962ab912a43ac97a5226d21150",
+    "coordinate_label": "GOE 314 (HANSA-BRANDENBURG) AIRFOIL",
+    "thickness": 0.0804327390753341,
+    "absolute_camber": 0.046900980952027806,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_62.866_8.143_4.559_2.422_8.17",
+    "nearest_naca_rms": 0.0023858923963265533,
+    "status": "eligible",
+    "rank": 49,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe314",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe314.csv",
+    "geometry_sha256": "6ab5db376ab3802393887ca4c2b948bff78911e765a57d5a38402280df805387"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

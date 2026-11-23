@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s8037.dat",
+    "source_sha256": "2e66a11ff7492d26b4f884830a1bebba6eef28411cca55026e81f0b628372b9b",
+    "index_labels": [
+      "Selig S8037 low Reynolds number airfoil"
+    ],
+    "order_sha256": "129571eafe8cebded6ee0093105029f1fc68e8c20805bdb63ee1850c216564a5",
+    "coordinate_label": "S8037 (16%)",
+    "thickness": 0.16005201382099746,
+    "absolute_camber": 0.024285468886345876,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_92.923_8.147_2.34_7.191_1.0_15.373",
+    "nearest_naca_rms": 0.0034681193102703138,
+    "status": "eligible",
+    "rank": 50,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s8037",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-s8037.csv",
+    "geometry_sha256": "8b0eff1b87e7a3ac918779ba0b243fa3e49d6496f8feb0c755ff2bec40bfd8ce"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

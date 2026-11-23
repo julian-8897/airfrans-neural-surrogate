@@ -57,3 +57,11 @@ def test_requalification_reserves_three_sixty_minute_allocations_explicitly():
     assert budget({}, {}, proposed)["proposed_core_seconds"] == 40 * 3600
     requalification = budget({}, {}, proposed, reference_requalification=True)
     assert requalification["proposed_core_seconds"] == 48 * 3600
+
+
+def test_revised_cpu_cap_requires_an_explicit_argument():
+    proposed = {"matched": 72}
+    assert not budget({}, {}, proposed)["within_cap"]
+    raised = budget({}, {}, proposed, cap_core_seconds=675 * 3600)
+    assert raised["within_cap"]
+    assert raised["cap_core_seconds"] == 675 * 3600

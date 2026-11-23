@@ -16,6 +16,7 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 | Metric set and which runs count | Evaluation harness | accepted for this study | [2026-11-20](2026-11-20-original-transfer-measures.md) |
 | Design-loop objectives (A lift-led, B CL/CD) | Design loop (Q3) | open | |
 | Compute budget (GPU and OpenFOAM node-hours) | Compute budget | accepted for this study | [2026-11-20](2026-11-20-original-transfer-budget.md) |
+| Cumulative CPU cap for matched transfer | Compute budget | revised from 600 to 675 CPU-core-hours | [2026-11-23](2026-11-23-matched-cpu-cap.md) |
 
 ## Template
 

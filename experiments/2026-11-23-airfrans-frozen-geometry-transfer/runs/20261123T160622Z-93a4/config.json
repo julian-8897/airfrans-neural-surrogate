@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe437.dat",
+    "source_sha256": "d26596a3431f99a584647844fe5ae81bcf415d5aa56f3fbd5bc3df620ee26885",
+    "index_labels": [
+      "Gottingen 437 airfoil"
+    ],
+    "order_sha256": "13fa1c7d2c9a400bf2b653338e71d70ab23331693fa7aa03b5058cfbf5d1a801",
+    "coordinate_label": "GOE 437 AIRFOIL",
+    "thickness": 0.0709789756380286,
+    "absolute_camber": 0.04805955365346143,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_87.14_5.626_5.045_3.272_6.19",
+    "nearest_naca_rms": 0.00280712945760565,
+    "status": "eligible",
+    "rank": 55,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe437",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe437.csv",
+    "geometry_sha256": "30562a69ef15ae9382553d93cba8fb27fce99e5d0debf5cf89386e76dee3b611"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

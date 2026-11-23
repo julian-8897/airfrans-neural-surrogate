@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "hq3518.dat",
+    "source_sha256": "c7b39343abdc8ec41d2a2ea973d722628abe5b0749223e62ea22b63752c05b75",
+    "index_labels": [
+      "Quabeck HQ 3.5/18 R/C sailplane airfoil"
+    ],
+    "order_sha256": "10211d87cd639cd3cd5dec42f792de6909eba90b75ae0db8e946d0fd850c5bd2",
+    "coordinate_label": "HQ 3.5/18 AIRFOIL",
+    "thickness": 0.179990548869439,
+    "absolute_camber": 0.03507310645809335,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_54.49_1.502_4.442_2.755_17.676",
+    "nearest_naca_rms": 0.0052311451553459926,
+    "status": "eligible",
+    "rank": 43,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-hq3518",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-hq3518.csv",
+    "geometry_sha256": "a3398a8c5b3fac094c5bb8c5bf6e88637fdbe1546a56ddc2e199c00c4b96d589"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

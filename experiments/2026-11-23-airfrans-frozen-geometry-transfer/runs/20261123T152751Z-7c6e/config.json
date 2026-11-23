@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "jx-gs-06.dat",
+    "source_sha256": "402dd40f1eae81d95d583594cb54fb14ec919b136c51c1287e7e9695df8cd4ce",
+    "index_labels": [
+      "Jochen G\u00fcnzel JX-GS-06 airfoil for F3F slope racing"
+    ],
+    "order_sha256": "0f48e845e4fcfae501ef2d4ea1cb9cd480684e650f818935fa8d20adc5c67669",
+    "coordinate_label": "JX-GS-06",
+    "thickness": 0.07099690455869472,
+    "absolute_camber": 0.014653734328646775,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_65.137_-0.857_1.659_4.203_1.0_7.197",
+    "nearest_naca_rms": 0.0028306734175746586,
+    "status": "eligible",
+    "rank": 37,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-jx-gs-06",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-jx-gs-06.csv",
+    "geometry_sha256": "9406a6b304eb8f6cc8e53ef4b28dc08b2dd7157cc22dfa6332c7af3c4388ddd8"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

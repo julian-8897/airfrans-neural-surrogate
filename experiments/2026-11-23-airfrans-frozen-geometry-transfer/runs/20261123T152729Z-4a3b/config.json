@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e417.dat",
+    "source_sha256": "45bc6685745dae2b8db628867495486a05046042c7ee930a9a6861221857705e",
+    "index_labels": [
+      "Eppler E417 general purpose airfoil"
+    ],
+    "order_sha256": "0de0dc6dc5d0aeda218ce4089b8edbdbc09df44f9d504c713c6ccabce4927874",
+    "coordinate_label": "EPPLER 417 AIRFOIL",
+    "thickness": 0.14221293010638872,
+    "absolute_camber": 0.031269772356836305,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_75.235_-0.236_2.204_6.684_13.159",
+    "nearest_naca_rms": 0.007825860120675175,
+    "status": "eligible",
+    "rank": 32,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e417",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e417.csv",
+    "geometry_sha256": "e8243a718bf9f0b240d5e719fa172d20ea1f122b570d3cf25fc91174faf7be4f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

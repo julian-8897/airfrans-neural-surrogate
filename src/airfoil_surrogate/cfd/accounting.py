@@ -89,7 +89,10 @@ def budget(
     *,
     preparation: dict[str, Allocation] | None = None,
     reference_requalification: bool = False,
+    cap_core_seconds: int = TOTAL_CORE_SECONDS,
 ) -> dict:
+    if cap_core_seconds <= 0:
+        raise ValueError("the CPU budget must be positive")
     if allocations.keys() != phases.keys():
         raise ValueError("accounting snapshot and registered job IDs differ")
     wall_limits = WALL_LIMIT_MINUTES | (
@@ -111,8 +114,8 @@ def budget(
     totals = {
         "charged_core_seconds": charged,
         "proposed_core_seconds": proposed,
-        "cap_core_seconds": TOTAL_CORE_SECONDS,
-        "within_cap": setup_charge + charged + proposed <= TOTAL_CORE_SECONDS,
+        "cap_core_seconds": cap_core_seconds,
+        "within_cap": setup_charge + charged + proposed <= cap_core_seconds,
     }
     if preparation is not None:
         totals["preparation_core_seconds"] = setup_charge

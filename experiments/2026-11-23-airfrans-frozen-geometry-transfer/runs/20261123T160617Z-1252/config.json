@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "lwk79100.dat",
+    "source_sha256": "015a1e706195abcdc92b2616e88d651da9762ea769480d3ad5cf8fb113952cf1",
+    "index_labels": [
+      "LWK 79-100 symmetrical airfoil"
+    ],
+    "order_sha256": "13d694861a302c3b38dae9510fde7d5e9aefb7cbcfd3ccc9d8bcf85e71593ca1",
+    "coordinate_label": "LWK 79-100",
+    "thickness": 0.09993969109812961,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_82.556_12.657_2.173_0.0_9.256",
+    "nearest_naca_rms": 0.0037222873962592423,
+    "status": "eligible",
+    "rank": 53,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-lwk79100",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-lwk79100.csv",
+    "geometry_sha256": "5f78c0e9d5c13f2a8d87625bb05ded073adfc7b304ba20acd86b56426f636e06"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

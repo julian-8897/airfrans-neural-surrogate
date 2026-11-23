@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe12k.dat",
+    "source_sha256": "f57f9996ba64b12269826d318868663a935167401b4e7ad3875f55e94b38a8c6",
+    "index_labels": [
+      "Gottingen 12K airfoil"
+    ],
+    "order_sha256": "15e570d14d6c3f13d55a25ad659f1262845eb8ee50d6bb8e2d37d6b24531aa57",
+    "coordinate_label": "GOE 12K AIRFOIL",
+    "thickness": 0.11127700804036288,
+    "absolute_camber": 0.04087038056502518,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_32.941_-0.472_4.699_5.604_11.579",
+    "nearest_naca_rms": 0.007816399598942052,
+    "status": "eligible",
+    "rank": 59,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe12k",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe12k.csv",
+    "geometry_sha256": "487acfce620359e7706cb94e2cfc6c9cfb10e449ffd4e4bab121dcde160d0b74"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

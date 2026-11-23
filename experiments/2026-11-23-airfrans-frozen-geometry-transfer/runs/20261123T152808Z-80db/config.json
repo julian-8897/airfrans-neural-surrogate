@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "raf33.dat",
+    "source_sha256": "443616aed2f8dd43131741589e1145085985263a83849d3d7401cfff20c7952a",
+    "index_labels": [
+      "RAF-33 airfoil"
+    ],
+    "order_sha256": "0fcf6e311e5a50b6cfe82f1be526f532bca7cbf57d526deaeb6ce0be873bbaa6",
+    "coordinate_label": "RAF 33 AIRFOIL",
+    "thickness": 0.126399780255473,
+    "absolute_camber": 0.0468795421198874,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_80.715_4.776_3.703_6.357_1.0_11.797",
+    "nearest_naca_rms": 0.005717867809232789,
+    "status": "eligible",
+    "rank": 42,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-raf33",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-raf33.csv",
+    "geometry_sha256": "d391eb50d6e69bb88aa7178c9c9951547ea68eb23f2308de12eb0f9e4e6ec15a"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

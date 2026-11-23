@@ -1,0 +1,25 @@
+{
+  "case": {
+    "id": "airFoil2D_SST_63.757_8.194_0.641_6.49_16.591",
+    "family": "naca4",
+    "naca_parameters": [
+      0.641,
+      6.49,
+      16.591
+    ],
+    "order_sha256": "3ce5d3cd264688c2946546867b2f3d0d1e9a341cd4627c7fb491836df82a0a3a",
+    "thickness": 0.16593620798761097,
+    "absolute_camber": 0.006210735748903691,
+    "trailing_gap": 0.0,
+    "status": "eligible",
+    "rank": 17,
+    "role": "reserve",
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "group": "naca"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

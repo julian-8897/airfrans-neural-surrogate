@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "usa40b.dat",
+    "source_sha256": "57486d7e857ef886c973f5aff0fbf6d5a75cab5aae27ea824c4a306e0b17d53e",
+    "index_labels": [
+      "USA-40B airfoil"
+    ],
+    "order_sha256": "13407db98614eff087790cf4810fefd38be3e11154a191093f5025ee66ccbe86",
+    "coordinate_label": "USA 40 B AIRFOIL",
+    "thickness": 0.1364100358207169,
+    "absolute_camber": 0.0403016074352832,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_74.165_1.138_4.452_3.087_12.674",
+    "nearest_naca_rms": 0.006702879719653976,
+    "status": "eligible",
+    "rank": 52,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-usa40b",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-usa40b.csv",
+    "geometry_sha256": "890c6bd97f777ab6dceb943addd21dd371cbb198c22014dd3047e7c5bf9dc4b1"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

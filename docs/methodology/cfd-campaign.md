@@ -41,7 +41,7 @@ python -m airfoil_surrogate.cfd.campaign qualify /path/to/reproduction-plan.json
 
 Review the reproduction elapsed times and completed iteration counts before planning matched jobs. Use the `budget` command with `--matched N --qualification /path/to/qualified.json` before each matched wave, with a fresh ledger and accounting snapshot. The [matched job template](../../configs/cfd-matched.sbatch) uses the same runner and a 35-minute limit. It requires `qualified.json` as its fourth positional argument.
 
-On Eureka2, the `cfd-campaign` mode of [the preparation template](../../configs/original-eureka2-preparation.sbatch) takes the scratch Python executable followed by the campaign command and its inputs. It writes `campaign.json` to that allocation's scratch output directory. Use `--reference-requalification` when the ledger includes the approved 60-minute reference jobs.
+On Eureka2, the `cfd-campaign` mode of [the preparation template](../../configs/original-eureka2-preparation.sbatch) takes the scratch Python executable followed by the campaign command and its inputs. It writes `campaign.json` to that allocation's scratch output directory. Use `--reference-requalification` when the ledger includes the approved 60-minute reference jobs. Pass `--cpu-core-hours 675` for the [revised matched campaign cap](../decisions/2026-11-23-matched-cpu-cap.md).
 
 Once the matched jobs reach terminal states, verify and freeze the retained CFD cases:
 

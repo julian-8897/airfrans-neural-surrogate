@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "fx79w151a.dat",
+    "source_sha256": "b2c4a805ceb6c47fe6b1aa98dd1b6c7ca291ea4aa01dbc186c1a81e2a1f08351",
+    "index_labels": [
+      "Wortmann FX 79-W-151 airfoil for use on wind turbines (W) A"
+    ],
+    "order_sha256": "131eaabadce533dcb0a2693030febdeb9c7a7db18c442f28bab92f83db332b9f",
+    "coordinate_label": "FX 79-W-151 A",
+    "thickness": 0.15174539836086448,
+    "absolute_camber": 0.03778365652307734,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_48.214_0.541_3.303_6.762_1.0_15.195",
+    "nearest_naca_rms": 0.0039607839653970954,
+    "status": "eligible",
+    "rank": 51,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-fx79w151a",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-fx79w151a.csv",
+    "geometry_sha256": "1cc108a0fa95e9b95f9e8e18d3955e8256ea8fb0c67918a8bbe3636937340fe0"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}
