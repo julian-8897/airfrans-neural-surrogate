@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "boe106.dat",
+    "source_sha256": "cae5424d6cc5f354f933eb07fd6fd8d5c60ac68d9ca2eccae1842989f6ada2f0",
+    "index_labels": [
+      "Boeing 106 airfoil"
+    ],
+    "order_sha256": "1bdb656e43ede52cf1c74b7ad2c349492f666f6f7c5927fcb1c09246b760cbae",
+    "coordinate_label": "BOEING 106 AIRFOIL",
+    "thickness": 0.13059504833542082,
+    "absolute_camber": 0.033366759613623655,
+    "trailing_gap": 0.0003999999920000002,
+    "nearest_naca_id": "airFoil2D_SST_51.025_3.578_3.636_2.36_13.085",
+    "nearest_naca_rms": 0.0022813955185658464,
+    "status": "eligible",
+    "rank": 86,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-boe106",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-boe106.csv",
+    "geometry_sha256": "74b4e2df3625a81494ec139caa94a169428abbda94edfa42d6af8c97ed3d1685"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

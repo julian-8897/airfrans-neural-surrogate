@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "rc510.dat",
+    "source_sha256": "7a0f07dae2560961f9ba029f357b7af05797d31e6596f200d673a593012c479a",
+    "index_labels": [
+      "NASA/Langley RC(5)-10 rotorcraft airfoil"
+    ],
+    "order_sha256": "188d586b18f3917468d49f38cf6e7a284f56b743d5a46be273ec57d378e096b8",
+    "coordinate_label": "NASA RC(5)-10 AIRFOIL",
+    "thickness": 0.09968039190432693,
+    "absolute_camber": 0.02211019812033623,
+    "trailing_gap": 0.001583,
+    "nearest_naca_id": "airFoil2D_SST_71.139_-4.429_2.189_4.398_0.0_9.674",
+    "nearest_naca_rms": 0.002693299997991334,
+    "status": "eligible",
+    "rank": 68,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-rc510",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-rc510.csv",
+    "geometry_sha256": "d29706172cca00773c41f7f12b568a2a231e19947ffc6255693fd014ccd47d44"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

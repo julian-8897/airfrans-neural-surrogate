@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e638.dat",
+    "source_sha256": "efeefc47a103da812741100fe46f5fbec4d3696b42c791a3a3e6f8cc57e132db",
+    "index_labels": [
+      "Eppler E638 airfoil"
+    ],
+    "order_sha256": "1b3dfecf1636229ed289bb5570a4c7b513aa438730ac975e875452c6249e5a8f",
+    "coordinate_label": "EPPLER 638 AIRFOIL",
+    "thickness": 0.12369405976117773,
+    "absolute_camber": 0.044189521085507416,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_60.991_-0.053_4.159_1.545_12.053",
+    "nearest_naca_rms": 0.005390188032778673,
+    "status": "eligible",
+    "rank": 82,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e638",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e638.csv",
+    "geometry_sha256": "585b540ac5f9f239552e1fabc9d0007c59b4cd26fd52d249967275619ac92a1e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

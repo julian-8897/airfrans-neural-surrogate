@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "rae101.dat",
+    "source_sha256": "928595cba85b95fb967285e86e08ee3915a8a816d11c1a8cc1855b16822f8a81",
+    "index_labels": [
+      "RAE 101 airfoil"
+    ],
+    "order_sha256": "17e9f2a1d242e1b1c6a7b68dfb9b1026f23ab16e50fa773412dbe2fd53f96e07",
+    "coordinate_label": "RAE 101 AIRFOIL",
+    "thickness": 0.09993785478624086,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_37.572_14.235_3.712_0.0_9.577",
+    "nearest_naca_rms": 0.0015364558165232474,
+    "status": "eligible",
+    "rank": 66,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-rae101",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-rae101.csv",
+    "geometry_sha256": "2fe9c4731adbd5e35a0ce520a09e945e03f8d4ed276ffcd30dc288237dbae2bc"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

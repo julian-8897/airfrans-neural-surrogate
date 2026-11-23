@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "b707b.dat",
+    "source_sha256": "83ff1d0f6c1e0a995afc66d15febab88440f19d7d7dbf16335278758ae171cab",
+    "index_labels": [
+      "continued"
+    ],
+    "order_sha256": "1ad6285381cf480a37effb9ebe94bf97fbb86be301fe7d9d082182a0f537273a",
+    "coordinate_label": "BOEING 707 .19 SPAN AIRFOIL",
+    "thickness": 0.12164839710673488,
+    "absolute_camber": 0.007350831695265483,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_53.78_-2.014_0.251_4.147_0.0_11.898",
+    "nearest_naca_rms": 0.003998454260903308,
+    "status": "eligible",
+    "rank": 80,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-b707b",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-b707b.csv",
+    "geometry_sha256": "ef0d38c247d4f4316f59a70a842485a42995c14aa50f8fbcf7ee4d5420eb3970"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

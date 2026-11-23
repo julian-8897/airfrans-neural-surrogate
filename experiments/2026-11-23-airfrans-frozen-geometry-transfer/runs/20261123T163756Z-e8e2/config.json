@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe144.dat",
+    "source_sha256": "ee2d0c938916e9303af2e217bb328a91d824c017ebce7391c6df7d4355ebb7d0",
+    "index_labels": [
+      "Gottingen 144 (MVA H.21) airfoil"
+    ],
+    "order_sha256": "16c36faf54ff099507138e883943bb8ced8e18374b0b85eb1d704f995615db94",
+    "coordinate_label": "GOE 144 (MVA H.21) AIRFOIL",
+    "thickness": 0.07325534591765855,
+    "absolute_camber": 0.04729915095397844,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_62.63_10.845_4.38_2.684_6.747",
+    "nearest_naca_rms": 0.004178885437918688,
+    "status": "eligible",
+    "rank": 61,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe144",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe144.csv",
+    "geometry_sha256": "b3d71f758e65dfddea8d6764f16bb51d49d70bb07695489ed3864e8d4511fff6"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

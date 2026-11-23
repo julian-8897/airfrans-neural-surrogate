@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261123T162723Z-0b9b",
   "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
-  "status": "running",
+  "status": "killed",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "913004"
   },
   "command": [
     "sbatch",
@@ -22,9 +22,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-23T16:27:23+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-23T17:35:36+00:00",
+  "duration_s": 4093.188,
+  "exit_code": 0,
   "git": {
     "commit": "59b6110de2c384b1675f74fa4b6031ea8aad2e1d",
     "branch": "prototype-evaluation",
@@ -48,6 +48,15 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162723Z-0b9b",
-  "metrics": null,
-  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch."
+  "metrics": {
+    "case": "uiuc-s6061",
+    "job_id": "913004",
+    "allocated_cpu_core_seconds": 34064,
+    "slurm_state": "TIMEOUT",
+    "slurm_exit_code": "0:0",
+    "outcome": "retry",
+    "reason": "allocation_timeout",
+    "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162723Z-0b9b/slurm-913004.log"
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nallocation_timeout"
 }

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe115.dat",
+    "source_sha256": "a6eba4c7edd8f494686007d0f58783eb6f317eee117c757d63439aa27d1df747",
+    "index_labels": [
+      "Gottingen 115 (MVA MK.2) airfoil"
+    ],
+    "order_sha256": "1d2f06be40629df77623886261a71383f6f0d5fca94645b73e47a7f05a812b50",
+    "coordinate_label": "GOE 115 (MVA MK.2) AIRFOIL",
+    "thickness": 0.09829049809363075,
+    "absolute_camber": 0.03784454987168669,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_39.204_6.325_3.319_3.611_8.695",
+    "nearest_naca_rms": 0.004153252851441948,
+    "status": "eligible",
+    "rank": 91,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe115",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe115.csv",
+    "geometry_sha256": "1d44b554ddd127a1deabd8c9acf8e958f2b84e6dee823f5ac17b055633e92777"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

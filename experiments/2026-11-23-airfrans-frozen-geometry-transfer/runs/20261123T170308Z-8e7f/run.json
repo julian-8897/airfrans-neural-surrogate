@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "run_id": "20261123T170308Z-8e7f",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "succeeded",
+  "backend": {
+    "kind": "slurm",
+    "job_id": "913034"
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:35:00",
+    "--job-name=airfrans-matched-131",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "uiuc-tempest1",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T17:03:08+00:00",
+  "ended": "2026-11-23T17:57:34+00:00",
+  "duration_s": 3266.972,
+  "exit_code": 0,
+  "git": {
+    "commit": "9b8a5df3804ca70812c67822772e6884f100e178",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-131.json",
+    "sha256": "0cc90bb5d9850ad29e088c3ae39e2ad9dd40e471c7c6b3aa4c1c7649888e23c2",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T170308Z-8e7f/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170308Z-8e7f",
+  "metrics": {
+    "case": "uiuc-tempest1",
+    "job_id": "913034",
+    "allocated_cpu_core_seconds": 30640,
+    "slurm_state": "COMPLETED",
+    "slurm_exit_code": "0:0",
+    "outcome": "qualified",
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.49404017560000196,
+        0.009897971637999964
+      ],
+      "last_mean": [
+        0.4940401000000047,
+        0.009897965234000007
+      ],
+      "absolute_difference": [
+        7.559999726236555e-08,
+        6.403999957063644e-09
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    }
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nVerified matched CFD output and immutable provenance"
+}

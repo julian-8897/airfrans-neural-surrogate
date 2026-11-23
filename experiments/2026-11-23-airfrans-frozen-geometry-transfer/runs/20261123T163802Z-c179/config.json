@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "v23010.dat",
+    "source_sha256": "aaa9b7c158a67d087fc0687acb45ec505640168043b4ccd57cf300ab8bad8e02",
+    "index_labels": [
+      "Boeing-Vertol V23010-1.58 rotorcraft airfoil"
+    ],
+    "order_sha256": "1798dad5e04f160116893dfb974f8e1bef1e0973eafc7b227ba1882ef269538e",
+    "coordinate_label": "BOEING-VERTOL V23010-1.58 AIRFOIL",
+    "thickness": 0.10190835011469151,
+    "absolute_camber": 0.017559091783933212,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_54.238_7.911_2.123_3.832_1.0_9.902",
+    "nearest_naca_rms": 0.0024558497194885768,
+    "status": "eligible",
+    "rank": 64,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-v23010",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-v23010.csv",
+    "geometry_sha256": "ac9000899838dc736c37da9cfb7fa99a1c3aeb0acc19ea021cc8b5a49f2d27d4"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

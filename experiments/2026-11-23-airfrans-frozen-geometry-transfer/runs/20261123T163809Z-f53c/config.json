@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "rg1495.dat",
+    "source_sha256": "57a787e35725c65084ccecbb96c78b93f54081cee49be3771e4cae43488abc80",
+    "index_labels": [
+      "Rolf Girsberger RG 14 (9.5%) airfoil"
+    ],
+    "order_sha256": "17fca982eb98cce18acf827236d31896ac6568f95ddf3aa4a80779cb37c62513",
+    "coordinate_label": "RG 14 9.5% AIRFOIL",
+    "thickness": 0.09500717535603018,
+    "absolute_camber": 0.01586317927388107,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_83.053_10.95_1.506_3.323_9.429",
+    "nearest_naca_rms": 0.0016373602374572848,
+    "status": "eligible",
+    "rank": 67,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-rg1495",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-rg1495.csv",
+    "geometry_sha256": "077e2a8f97b5187fc2621c259095c3334d14d2ffd73946d94e3637d16488f9c8"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

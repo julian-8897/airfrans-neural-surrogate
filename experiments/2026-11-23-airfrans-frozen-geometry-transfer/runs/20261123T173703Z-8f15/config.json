@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "raf27.dat",
+    "source_sha256": "1bd6603f44c2b7fc8b14d1c19aae1eb7152317015060d3798bcee355fe74dced",
+    "index_labels": [
+      "RAF-27 airfoil"
+    ],
+    "order_sha256": "1b38c9d12c2f8018b654339b12a24bb102e8e0ad74e445239223851f2bc00e12",
+    "coordinate_label": "RAF 27 AIRFOIL",
+    "thickness": 0.09759943604762773,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_93.213_3.79_0.418_0.0_9.665",
+    "nearest_naca_rms": 0.0011808321345254324,
+    "status": "eligible",
+    "rank": 81,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-raf27",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-raf27.csv",
+    "geometry_sha256": "c1b33396a81264b71605213954b266374ca6797ad57bc2dd319cdb0cfacbd862"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

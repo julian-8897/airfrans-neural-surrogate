@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe682.dat",
+    "source_sha256": "d9423cbf959ebb936be045388baedbfe8be702eeae7af3c9a6f061fa23a58c72",
+    "index_labels": [
+      "Gottingen 682 airfoil"
+    ],
+    "order_sha256": "20169c25445db212d3c4608c2dca898dc6517bb783325186816b289ca5c5995d",
+    "coordinate_label": "GOE 682 AIRFOIL",
+    "thickness": 0.10721579108717899,
+    "absolute_camber": 0.04334984206092079,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_52.526_2.212_4.618_3.827_10.191",
+    "nearest_naca_rms": 0.002548331991275954,
+    "status": "eligible",
+    "rank": 96,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe682",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe682.csv",
+    "geometry_sha256": "4b1b5920ccb78e82df94c807cb3b97c1134ccc3dc062b454eda5c524b26cc99c"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "rae2822.dat",
+    "source_sha256": "5158ae6e8b1dea715678e996cf29d4a8583f8d7b52cc3a8fa4498ff314aa42f6",
+    "index_labels": [
+      "RAE 2822 transonic airfoil"
+    ],
+    "order_sha256": "1a701dc79b368c75b9953733f0287063acb14455c454bebdd0340eeec7d91c91",
+    "coordinate_label": "RAE 2822 AIRFOIL",
+    "thickness": 0.12111018365191328,
+    "absolute_camber": 0.012640785989360782,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_84.367_14.837_0.843_4.812_12.138",
+    "nearest_naca_rms": 0.006252711441554845,
+    "status": "eligible",
+    "rank": 79,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-rae2822",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-rae2822.csv",
+    "geometry_sha256": "fa9733f3a57f60c479755a3faf45e2d3ba850143d417f9c3fc854b3b69987e51"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "fx84w150.dat",
+    "source_sha256": "7a8a880d68321dd3fc28476215123f8d563be2114597db0956477626618d413a",
+    "index_labels": [
+      "Wortmann FX 84-W-150 airfoil for use on wind turbines (W)"
+    ],
+    "order_sha256": "1fad20955347052555d939fb074472b87c0cd0de0f2d4ec6e6f5263e18930aff",
+    "coordinate_label": "FX 84-W-150",
+    "thickness": 0.1500273893790171,
+    "absolute_camber": 0.04211888014985449,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_45.931_0.03_3.709_7.593_0.0_14.706",
+    "nearest_naca_rms": 0.004194247266304181,
+    "status": "eligible",
+    "rank": 95,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-fx84w150",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-fx84w150.csv",
+    "geometry_sha256": "1cb4c617d8eb218d6652188bd3687009bf5087fa642ad77d3824e8409c0b04bd"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s9033.dat",
+    "source_sha256": "b277b9d92bf016c78a73a911e6ba9a629a85f25e184834bedfe5bfd452e1b4a7",
+    "index_labels": [
+      "Selig S9033 (7.5%) symmetrical vertical stab airfoil used on the Blackhawk R/C sailplane"
+    ],
+    "order_sha256": "16eddd6b395dee0d0ca7458d4325c71d4cfb1b0bae0957d802dcdc2cb0d58601",
+    "coordinate_label": "S9033 (7.5%)",
+    "thickness": 0.0749786005573436,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_70.983_-3.536_6.368_0.0_7.157",
+    "nearest_naca_rms": 0.0031927578645342706,
+    "status": "eligible",
+    "rank": 62,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s9033",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-s9033.csv",
+    "geometry_sha256": "35d2ee975e74f03601f38db0a0ceced79442ed15ed1f5494f2fb1f864c67e17b"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

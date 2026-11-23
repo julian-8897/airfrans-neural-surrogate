@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe408.dat",
+    "source_sha256": "2112e45d354f39de6630eb39a0b241d80b0c4c88832eb323c535b3e0f805a277",
+    "index_labels": [
+      "Gottingen 408 airfoil"
+    ],
+    "order_sha256": "1b8ba08515a7d762c45b683d30e2659b35b464f7046ce560f5d2690632d2afe5",
+    "coordinate_label": "GOE 408 AIRFOIL",
+    "thickness": 0.07750624329948634,
+    "absolute_camber": 0.0415103881309388,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_62.866_8.143_4.559_2.422_8.17",
+    "nearest_naca_rms": 0.003773961706809621,
+    "status": "eligible",
+    "rank": 84,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe408",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe408.csv",
+    "geometry_sha256": "e549d484a69fb2196b62439506ed37d8522176afd3a4e7880d1aaede37bb83b3"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

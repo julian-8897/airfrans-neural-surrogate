@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe278.dat",
+    "source_sha256": "82a02c837d77e0a60711f9ebf816b8fde4f1d24a6397c03366e6574cf300aa7e",
+    "index_labels": [
+      "Gottingen 278 (DAIMLER IX) airfoil"
+    ],
+    "order_sha256": "1a6c3aba6bdc231c4aa46412b2dbaa1fe2eb848b6956b9a389b69ef7fad2b592",
+    "coordinate_label": "GOE 278 (DAIMLER IX) AIRFOIL",
+    "thickness": 0.07447242481870342,
+    "absolute_camber": 0.042666368268792394,
+    "trailing_gap": 0.002,
+    "nearest_naca_id": "airFoil2D_SST_62.866_8.143_4.559_2.422_8.17",
+    "nearest_naca_rms": 0.002546990267378045,
+    "status": "eligible",
+    "rank": 78,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe278",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe278.csv",
+    "geometry_sha256": "f6c77ab611e144ac7f07c7756e94cdf7af64675cc90e43ccd1a08643fe59403b"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

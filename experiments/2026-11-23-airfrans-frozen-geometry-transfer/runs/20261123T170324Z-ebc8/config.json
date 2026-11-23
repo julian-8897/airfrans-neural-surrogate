@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "eh1070.dat",
+    "source_sha256": "f360496c6f5619d5af3d68d45121afd3a2e3552f95d3ebf00aec8dfc5361ec38",
+    "index_labels": [
+      "John Yost EH 1.0/7.0 for tailless R/C aircraft"
+    ],
+    "order_sha256": "19910fc33467dc0e2795d7750740453f253f10ffd4e9f3c3ccc1d747568cbbab",
+    "coordinate_label": "Eh 1.0/7.0",
+    "thickness": 0.07003544973702445,
+    "absolute_camber": 0.010016529835591443,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_45.331_8.408_0.677_4.87_1.0_6.642",
+    "nearest_naca_rms": 0.0018432816107927152,
+    "status": "eligible",
+    "rank": 75,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-eh1070",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-eh1070.csv",
+    "geometry_sha256": "38eade7f642f51b84c0c35df08f472278b28d27367ce9ef2fc3b35e905aabe90"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

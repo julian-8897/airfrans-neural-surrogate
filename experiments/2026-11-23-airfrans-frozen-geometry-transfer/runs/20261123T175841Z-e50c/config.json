@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "nn7mk20.dat",
+    "source_sha256": "14eba53a33f6982101ecaa3f2da3b94dc7e7f1283e8e5090c73aef3f8a7d8817",
+    "index_labels": [
+      "NN7 MK20 airfoil"
+    ],
+    "order_sha256": "1c96c79f0f14914f006c2f820d26cba8f8cf45065570190058369d19b0df948c",
+    "coordinate_label": "NN7 MK20",
+    "thickness": 0.16860108454621447,
+    "absolute_camber": 0.030332174620260735,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_43.575_9.308_3.448_4.441_16.051",
+    "nearest_naca_rms": 0.007132985092975435,
+    "status": "eligible",
+    "rank": 89,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-nn7mk20",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-nn7mk20.csv",
+    "geometry_sha256": "27ce67d7465a8dc29e0267df7e36bdb9521f0005e727d9e28e2e0ffbf97d254f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

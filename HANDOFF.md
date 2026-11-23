@@ -24,6 +24,10 @@ Three matched waves have submitted 56 attempts at the fixed operating point, Slu
 
 The user approved a [675 CPU-core-hour cumulative cap](docs/decisions/2026-11-23-matched-cpu-cap.md) after 26 matched cases qualified and completing the remaining 34 at the observed cost projected to exceed the original cap. Pass `--cpu-core-hours 675` when sealing the matched ledger. Use the same shape ranks, standard mesh and convergence checks, and the original frozen checkpoint. The GPU cap remains 24 A100-hours.
 
+At 18:51 UTC, 51 matched cases had qualified, including all 30 NACA controls and 21 UIUC profiles. The 164 settled matched allocations included 103 mesh rejections and ten timeouts. A validation-only recovery of the completed `uiuc-stcyr171` solution succeeded in job `913030`, retaining the verified fields from job `912952`. Settled cumulative spend was 605.31 CPU-core-hours. Four more first-attempt UIUC cases were then submitted as `913107`–`913110` under the current cap. The five unresolved UIUC cases are `uiuc-b737c`, `uiuc-s6061`, `uiuc-e472`, `uiuc-sd5060` and `uiuc-ui1720`. Their latest attempts timed out before saving final fields. Approval is pending for up to 45 minutes only on same-input retries and a cumulative cap of 710 CPU-core-hours. Observed iteration rates put the projected cumulative cost at about 688 hours before additional rejects and final verification.
+
+The local control scripts are under `outputs/2026-11-23-airfrans-frozen-geometry-transfer/control/`. `reconcile.py` closes terminal attempts from `sacct` and immutable CFD evidence. `matched-wave.py N initial` admits only new ranked cases and reserves the full allocation for every live case. `freeze.py` and `infer-transfer.py` are prepared for use after the 30 + 30 allocation and mesh evidence is complete. No matched-model inference has run yet.
+
 ## Official benchmark closeout
 
 The registered [original-mesh study](experiments/2026-11-20-original-mesh-transfer/experiment.json) is closed. Seed 0 completed all 398 epochs on one full Eureka2 A100. All cluster artefacts are on parallel scratch, and Slurm ran the compute on allocated nodes.

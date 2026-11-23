@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "fx80080.dat",
+    "source_sha256": "403d7977f0c73ed1bb1e8307866d027086a1f483244dd046421c882326b43312",
+    "index_labels": [
+      "Wortmann FX 80-080 airfoil"
+    ],
+    "order_sha256": "18b0b23ac6a2e634ce94a50e120a269ba54de22de7facb4e161672768aa4183a",
+    "coordinate_label": "FX 80-080",
+    "thickness": 0.0806457377138877,
+    "absolute_camber": 0.022060375957903305,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_74.259_-3.09_2.43_4.486_7.835",
+    "nearest_naca_rms": 0.0032780209605210047,
+    "status": "eligible",
+    "rank": 69,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-fx80080",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-fx80080.csv",
+    "geometry_sha256": "b8baa5e52890ff5bd68a2089dfbd3a1c4c7d90ed8957c8bd9f677a3f00c3a7b3"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

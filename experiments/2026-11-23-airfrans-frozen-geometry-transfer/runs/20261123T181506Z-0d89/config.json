@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e68.dat",
+    "source_sha256": "0bbff49f6fe87bb6a35768a87497e76d0cbfc5f24b831f703a04168de749a63a",
+    "index_labels": [
+      "Eppler E68 low Reynolds number airfoil"
+    ],
+    "order_sha256": "1dfc302a3fafe1f99fb57a471fd9677510c8de71f242d6a27fc88b1195404be6",
+    "coordinate_label": "EPPLER 68 AIRFOIL",
+    "thickness": 0.1311491939677692,
+    "absolute_camber": 0.03337583717809463,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_70.666_5.642_3.479_5.344_12.979",
+    "nearest_naca_rms": 0.0028549684227857754,
+    "status": "eligible",
+    "rank": 93,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e68",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e68.csv",
+    "geometry_sha256": "d7e4a79a02ee6ade4b215003fd1b9a6708eb3f1fca4122f6ca49affa98052577"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

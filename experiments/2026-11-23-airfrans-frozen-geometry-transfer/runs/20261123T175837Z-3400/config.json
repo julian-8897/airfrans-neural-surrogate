@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "hq3015.dat",
+    "source_sha256": "e461931ea2cce7a2a9adbdcfc4195f88a5b19c73944a0939d41db039e103c795",
+    "index_labels": [
+      "Quabeck HQ 3.0/15 R/C sailplane airfoil"
+    ],
+    "order_sha256": "1c169eb33dc35eb577729a327ae4c104f81efac63f4f8848b0273254c12091d7",
+    "coordinate_label": "HQ 3.0/15 AIRFOIL",
+    "thickness": 0.1498264805556251,
+    "absolute_camber": 0.029864992203638155,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_37.982_4.133_3.526_2.879_14.582",
+    "nearest_naca_rms": 0.004245270673857661,
+    "status": "eligible",
+    "rank": 88,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-hq3015",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-hq3015.csv",
+    "geometry_sha256": "7c8047fce2bb16a12c1f59319a100eccf79810df25945ba41b2d3334cd58898f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

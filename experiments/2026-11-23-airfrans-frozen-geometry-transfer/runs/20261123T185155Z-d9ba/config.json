@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "sd6080.dat",
+    "source_sha256": "528db0e77ee9882ecdcf5d905ff4d224404bc73d491267080953a1ed8602b8c7",
+    "index_labels": [
+      "Selig / Donovan SD6080 low Reynolds number airfoil"
+    ],
+    "order_sha256": "21f69f13bb866682cf0fd8e114e32cb2c399a7f8a4275cfc383f08b0ddb51425",
+    "coordinate_label": "SD6080 (9.2%)",
+    "thickness": 0.09197138432296344,
+    "absolute_camber": 0.035994161192147836,
+    "trailing_gap": 1.0004418136205701e-05,
+    "nearest_naca_id": "airFoil2D_SST_39.204_6.325_3.319_3.611_8.695",
+    "nearest_naca_rms": 0.0029051449950828756,
+    "status": "eligible",
+    "rank": 100,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-sd6080",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-sd6080.csv",
+    "geometry_sha256": "93799802e4125a8105e0733738a0819db4b6575286b79710c0e6d862b7591aee"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

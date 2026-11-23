@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "goe413.dat",
+    "source_sha256": "dfcfb6e562e5a430dd1ec42664273fb47af1af5c6790ad5ca709597d6507b7b2",
+    "index_labels": [
+      "Gottingen 413 airfoil"
+    ],
+    "order_sha256": "1d6422970f72e7eb80f4714abfc68d639e0b5f72433f3ab43e5f8215c4289e70",
+    "coordinate_label": "GOE 413 AIRFOIL",
+    "thickness": 0.16485378198346062,
+    "absolute_camber": 0.04669691363183731,
+    "trailing_gap": 0.0015999994880002459,
+    "nearest_naca_id": "airFoil2D_SST_47.789_3.639_3.974_7.872_1.0_16.005",
+    "nearest_naca_rms": 0.006116467459455331,
+    "status": "eligible",
+    "rank": 92,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-goe413",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-goe413.csv",
+    "geometry_sha256": "be67beeb84c65b118e09f3485428bcbfb6a6d6ddd75b993f1f43063cd4fb606c"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

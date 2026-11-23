@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "tempest1.dat",
+    "source_sha256": "07906717252feb8f33ecb19bd7212061718dbdd5ce2bd1556c898765544323c2",
+    "index_labels": [
+      "Hawker Tempest 37.5% semispan airfoil (NPL?)"
+    ],
+    "order_sha256": "1926976643e90a473c2abbd9fc33f61d88c039bac4119e4afe6382abcf1ab565",
+    "coordinate_label": "HAWKER TEMPEST 37.5% SEMISPAN AIRFOIL",
+    "thickness": 0.1449907628058829,
+    "absolute_camber": 0.010138374096912359,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_79.684_1.762_0.85_4.146_14.581",
+    "nearest_naca_rms": 0.005089069635761573,
+    "status": "eligible",
+    "rank": 71,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-tempest1",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-tempest1.csv",
+    "geometry_sha256": "d4394b340a49f4bfe05e744d46b3f5ad184cd7c2e6b002fc62fb5a7abacdae10"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

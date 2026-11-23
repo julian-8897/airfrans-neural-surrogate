@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "ag44ct02r.dat",
+    "source_sha256": "1293c3c6a6e986c9aa2d05de8b3bbe9a7d9ff8d1114dd37c168f2684e33a66b7",
+    "index_labels": [
+      "Drela AG44ct -02f airfoil"
+    ],
+    "order_sha256": "174a276139e10c113401e7f5fe9a044bc1ee1e0d0937c3fa25061a4c39bac1d7",
+    "coordinate_label": "AG44ct -02f",
+    "thickness": 0.07290437995458873,
+    "absolute_camber": 0.019640403732103774,
+    "trailing_gap": 0.0005340053123689441,
+    "nearest_naca_id": "airFoil2D_SST_81.092_14.391_2.15_1.586_6.867",
+    "nearest_naca_rms": 0.002876973737737019,
+    "status": "eligible",
+    "rank": 63,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-ag44ct02r",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-ag44ct02r.csv",
+    "geometry_sha256": "821c3387d928f102287d5727cbf0e7aee22d1652b0fe1440de6bfcad57d3f558"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

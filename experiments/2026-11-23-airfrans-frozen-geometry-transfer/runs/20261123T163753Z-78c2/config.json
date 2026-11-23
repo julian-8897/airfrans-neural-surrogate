@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "ui1720.dat",
+    "source_sha256": "c5ebff3c01b50d0138fe09bb9d2a01425de6f60a525fe5b7c712119c0c2b8085",
+    "index_labels": [
+      "University of Illinois UI-1720 high lift airfoil"
+    ],
+    "order_sha256": "1607b385aa85b3152278d56d5f6824d4a1ee07129d6a25ec5bbdf6c80a0abb40",
+    "coordinate_label": "UNIVERSITY OF ILLINOIS UI-1720 AIRFOIL",
+    "thickness": 0.13832475437419306,
+    "absolute_camber": 0.04637692003445107,
+    "trailing_gap": 0.0009828668922135754,
+    "nearest_naca_id": "airFoil2D_SST_81.115_-3.901_4.771_2.338_11.129",
+    "nearest_naca_rms": 0.010018722998601052,
+    "status": "eligible",
+    "rank": 60,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-ui1720",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-ui1720.csv",
+    "geometry_sha256": "5964157f3f501d07f71552f66af64931fb9aa6c1fdece120102c34dd59daf243"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "b707a.dat",
+    "source_sha256": "3fc00b5f68969699f62775aba547a030495fd9d837c248f75ba4db1bd9ef0929",
+    "index_labels": [
+      "Boeing Commercial Airplane Company model 707 airfoils"
+    ],
+    "order_sha256": "1be4ea578106b966c8965120d5e92314ceaeeef5dffeec7e9c10a5443122d8fb",
+    "coordinate_label": "BOEING 707 .08 SPAN AIRFOIL",
+    "thickness": 0.11441426878528774,
+    "absolute_camber": 0.013054228595713192,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_74.512_-3.081_1.627_0.0_10.847",
+    "nearest_naca_rms": 0.0064040150375302895,
+    "status": "eligible",
+    "rank": 87,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-b707a",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-b707a.csv",
+    "geometry_sha256": "d75311567f6a04d0475f5463e60e6cbd29a399d51467839cad49f32b3ee5032e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

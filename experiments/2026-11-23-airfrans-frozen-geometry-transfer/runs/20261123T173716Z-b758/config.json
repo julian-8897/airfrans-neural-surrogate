@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s3024.dat",
+    "source_sha256": "1091d856c28a23b447a9c4622693e19086ca279fe4086d57a0aa6f9afeded61b",
+    "index_labels": [
+      "Selig S3024 low Reynolds number airfoil"
+    ],
+    "order_sha256": "1b54bf90ec3721bf60269b5ab9521b81a1481588f36f19baf7a416ab69263079",
+    "coordinate_label": "S3024 9.84%",
+    "thickness": 0.09852923373003769,
+    "absolute_camber": 0.034009106892561564,
+    "trailing_gap": 1.0003126549125864e-05,
+    "nearest_naca_id": "airFoil2D_SST_57.892_3.999_3.335_7.558_1.0_9.976",
+    "nearest_naca_rms": 0.0033959375217228293,
+    "status": "eligible",
+    "rank": 83,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s3024",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-s3024.csv",
+    "geometry_sha256": "38153d7209c4f355148d79e7548912c22c11d53339d97a632ca55827f3f18085"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

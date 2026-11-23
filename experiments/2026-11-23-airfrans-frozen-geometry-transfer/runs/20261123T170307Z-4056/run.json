@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "run_id": "20261123T170307Z-4056",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "succeeded",
+  "backend": {
+    "kind": "slurm",
+    "job_id": "913033"
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:35:00",
+    "--job-name=airfrans-matched-130",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "airFoil2D_SST_82.21_13.462_0.176_6.355_0.0_12.645",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T17:03:07+00:00",
+  "ended": "2026-11-23T17:57:30+00:00",
+  "duration_s": 3263.81,
+  "exit_code": 0,
+  "git": {
+    "commit": "9b8a5df3804ca70812c67822772e6884f100e178",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-130.json",
+    "sha256": "1f7c2365ea1d6b7af83c05e91d84181c1ce5902df580398f0bfb23dc40477f0d",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T170307Z-4056/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170307Z-4056",
+  "metrics": {
+    "case": "airFoil2D_SST_82.21_13.462_0.176_6.355_0.0_12.645",
+    "job_id": "913033",
+    "allocated_cpu_core_seconds": 27072,
+    "slurm_state": "COMPLETED",
+    "slurm_exit_code": "0:0",
+    "outcome": "qualified",
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.45028873719999474,
+        0.00933429145000006
+      ],
+      "last_mean": [
+        0.4502886367999962,
+        0.009334275910000007
+      ],
+      "absolute_difference": [
+        1.0039999853717063e-07,
+        1.5540000052396974e-08
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    }
+  },
+  "note": "Matched original-workflow CFD at the fixed operating point. Default mesh and convergence checks. Fully on parallel scratch.\nVerified matched CFD output and immutable provenance"
+}

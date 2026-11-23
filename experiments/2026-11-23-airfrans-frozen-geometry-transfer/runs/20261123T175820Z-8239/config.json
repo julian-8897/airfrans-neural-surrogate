@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "giiig.dat",
+    "source_sha256": "4f33fc9572261c0f581fd10f55ecf70bf44489a0ef3ac508d3e349ffb6a10c97",
+    "index_labels": [
+      "continued"
+    ],
+    "order_sha256": "1bcbae3ded87943443ee11fafd18d4f64b8906050af7ac8a73c17c1d17831c43",
+    "coordinate_label": "GIII BL167 AIRFOIL",
+    "thickness": 0.08294041904498112,
+    "absolute_camber": 0.012998071140982377,
+    "trailing_gap": 0.00035986171608215056,
+    "nearest_naca_id": "airFoil2D_SST_32.499_12.136_1.194_6.108_1.0_8.121",
+    "nearest_naca_rms": 0.003277123299259597,
+    "status": "eligible",
+    "rank": 85,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-giiig",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-giiig.csv",
+    "geometry_sha256": "55f629cd3f97e3fabae7f60b61a7776db5f724f988fbadce8e7bd57c37ad847f"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

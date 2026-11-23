@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "coanda3.dat",
+    "source_sha256": "42546e7d5681cac17614f98adfe337c1ce4ab4950692fd0c999f00901a8cd690",
+    "index_labels": [
+      "Coanda 3 airfoil"
+    ],
+    "order_sha256": "1d12b03238d9e04ef9763de66221ef1e99ec8f713b2f12649fb3147d009d1f7e",
+    "coordinate_label": "Coanda 3",
+    "thickness": 0.07016011150772831,
+    "absolute_camber": 0.029054430304661774,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_76.857_-1.481_2.184_7.102_0.0_7.491",
+    "nearest_naca_rms": 0.004239147224274081,
+    "status": "eligible",
+    "rank": 90,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-coanda3",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-coanda3.csv",
+    "geometry_sha256": "6fbbac126b1e7c555fbcd6f377afe576252096452379e7ec908510fd8f0aa3c6"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

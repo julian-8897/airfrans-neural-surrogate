@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "k3311.dat",
+    "source_sha256": "db2431b9ce6ca65a654016870e7947da6e26792b9b9da2fe2eec431390f63945",
+    "index_labels": [
+      "Leon Kincaid K3311 airfoil (original)"
+    ],
+    "order_sha256": "1a217cd40d217fa2eccb30da8a495367e6bb8b548c3cd4d38466b735c66020fa",
+    "coordinate_label": "K3311  (original)",
+    "thickness": 0.11011006243188999,
+    "absolute_camber": 0.03254526323264694,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_81.781_2.334_3.114_3.469_10.511",
+    "nearest_naca_rms": 0.003081480907357245,
+    "status": "eligible",
+    "rank": 77,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-k3311",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-k3311.csv",
+    "geometry_sha256": "ce9d46dd165cfe07bacb872e53a44ddd6d441d7917486049fb3d13a2f5e2671e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}
