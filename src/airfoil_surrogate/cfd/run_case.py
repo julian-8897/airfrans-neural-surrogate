@@ -21,6 +21,10 @@ import numpy as np
 from airfoil_surrogate.cfd.accounting import CORES
 from airfoil_surrogate.cfd.campaign import check_qualification
 from airfoil_surrogate.cfd.convert import convert_files
+from airfoil_surrogate.cfd.reference_mesh import (
+    approved_reference_mesh,
+    verify_reference_mesh,
+)
 from airfoil_surrogate.cfd.reproduction import (
     GENERATOR_REVISION,
     mesh_check_passed,
@@ -162,10 +166,15 @@ def _command(case: Path, log: str, args: list[str]) -> None:
         )
 
 
-def solve_case(case_dir: Path, iteration_limit: int) -> tuple[Path, Path, dict]:
+def solve_case(
+    case_dir: Path, iteration_limit: int, *, reference_mesh: dict | None = None
+) -> tuple[Path, Path, dict]:
     _command(case_dir, "log.blockMesh", ["blockMesh"])
     _command(case_dir, "log.checkMesh", ["checkMesh"])
-    if not mesh_check_passed((case_dir / "log.checkMesh").read_text()):
+    mesh_log = (case_dir / "log.checkMesh").read_text()
+    if reference_mesh is not None:
+        verify_reference_mesh(mesh_log, case_dir / "constant/polyMesh", reference_mesh)
+    elif not mesh_check_passed(mesh_log):
         raise ValueError("checkMesh failed")
     _command(case_dir, "log.decomposePar", ["decomposePar"])
     _command(
@@ -210,6 +219,7 @@ def run_case(
     out: Path,
     *,
     qualification: Path | None = None,
+    reference_mesh_exception: bool = False,
 ) -> None:
     if os.environ.get("WM_PROJECT_VERSION") not in ("2112", "v2112"):
         raise RuntimeError("source the OpenFOAM v2112 runtime before running a case")
@@ -224,6 +234,12 @@ def run_case(
     if len(matches) != 1:
         raise ValueError("case ID must occur exactly once in the manifest")
     case = matches[0]
+    plan_sha256 = hashlib.sha256(raw_plan).hexdigest()
+    reference_mesh = None
+    if reference_mesh_exception:
+        if "group" in case:
+            raise ValueError("reference mesh exception cannot apply to matched cases")
+        reference_mesh = approved_reference_mesh(case_id, plan_sha256)
     qualification_sha256 = None
     if "group" in case:
         if qualification is None:
@@ -240,7 +256,7 @@ def run_case(
     _write_json(
         out / "case.json",
         {
-            "plan_sha256": hashlib.sha256(raw_plan).hexdigest(),
+            "plan_sha256": plan_sha256,
             "generator_revision": GENERATOR_REVISION,
             "generator_archive_sha256": generator_sha256,
             "openfoam_version": os.environ["WM_PROJECT_VERSION"],
@@ -248,11 +264,14 @@ def run_case(
             "cores": CORES,
             "case": case,
             "qualification_sha256": qualification_sha256,
-        },
+        }
+        | ({"reference_mesh_exception": reference_mesh} if reference_mesh else {}),
     )
     case_dir = out / "case"
     _setup_case(source, case, plan.resolve().parent, case_dir)
-    internal, wall, convergence = solve_case(case_dir, case["iteration_limit"])
+    internal, wall, convergence = solve_case(
+        case_dir, case["iteration_limit"], reference_mesh=reference_mesh
+    )
     convert_files(internal, wall, out / "native")
     _write_json(
         out / "completion.json",
@@ -274,6 +293,7 @@ def main() -> None:
     parser.add_argument("case_id")
     parser.add_argument("generator_repo", type=Path)
     parser.add_argument("--qualification", type=Path)
+    parser.add_argument("--reference-mesh-exception", action="store_true")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     run_case(
@@ -282,6 +302,7 @@ def main() -> None:
         args.generator_repo,
         args.out,
         qualification=args.qualification,
+        reference_mesh_exception=args.reference_mesh_exception,
     )
     print(args.out)
 

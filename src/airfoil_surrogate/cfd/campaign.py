@@ -132,6 +132,9 @@ def _verify_case(
         raise ValueError(f"CFD case provenance mismatch for {case['id']}")
     if details.get("qualification_sha256") != qualification_sha:
         raise ValueError(f"CFD qualification mismatch for {case['id']}")
+    reference_mesh = details.get("reference_mesh_exception")
+    if reference_mesh is not None and qualification_sha is not None:
+        raise ValueError(f"reference mesh exception on a matched case: {case['id']}")
     if completion["case"] != case["id"] or not completion["convergence"]["passed"]:
         raise ValueError(f"CFD case has no passing completion for {case['id']}")
     paths = {
@@ -159,14 +162,18 @@ def _verify_case(
             "size": outputs[name]["size"],
             "sha256": outputs[name]["sha256"],
         }
-    return case | {
-        "job_id": row["job_id"],
-        "run_id": row["run_id"],
-        "completion": _record(root / "completion.json"),
-        "native": native,
-        "convergence": completion["convergence"],
-        "allocation": row["allocation"],
-    }
+    return (
+        case
+        | {
+            "job_id": row["job_id"],
+            "run_id": row["run_id"],
+            "completion": _record(root / "completion.json"),
+            "native": native,
+            "convergence": completion["convergence"],
+            "allocation": row["allocation"],
+        }
+        | ({"reference_mesh_exception": reference_mesh} if reference_mesh else {})
+    )
 
 
 def qualify_reproductions(plan: Path, by_case: dict) -> dict:
@@ -196,6 +203,8 @@ def qualify_reproductions(plan: Path, by_case: dict) -> dict:
             report["case"] != case["id"]
             or report["plan_sha256"] != plan_sha
             or not report["passed"]
+            or report.get("reference_mesh_exception")
+            != verified.get("reference_mesh_exception")
             or report["internal_sha256"] != verified["native"]["internal.vtu"]["sha256"]
             or report["aerofoil_sha256"] != verified["native"]["aerofoil.vtp"]["sha256"]
         ):
@@ -338,6 +347,7 @@ def main() -> None:
         action.add_argument("ledger", type=Path)
         action.add_argument("accounting", type=Path)
         action.add_argument("--preparation-accounting", type=Path)
+        action.add_argument("--reference-requalification", action="store_true")
         action.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     allocations = read_allocations(args.accounting.read_text())
@@ -353,7 +363,13 @@ def main() -> None:
         if args.preparation_accounting is not None
         else None
     )
-    accounting = budget(allocations, phases, proposals, preparation=preparation) | {
+    accounting = budget(
+        allocations,
+        phases,
+        proposals,
+        preparation=preparation,
+        reference_requalification=args.reference_requalification,
+    ) | {
         "ledger": _record(args.ledger),
         "sacct": _record(args.accounting),
     }

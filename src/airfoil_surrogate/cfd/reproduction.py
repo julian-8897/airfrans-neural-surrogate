@@ -11,6 +11,10 @@ from pathlib import Path
 
 import numpy as np
 
+from airfoil_surrogate.cfd.reference_mesh import (
+    approved_reference_mesh,
+    verify_reference_mesh,
+)
 from airfoil_surrogate.data.original import OriginalMesh, load_original_mesh
 from airfoil_surrogate.data.stage_original import PIN
 from airfoil_surrogate.data.staged_original import (
@@ -191,6 +195,8 @@ def compare_reproduction(
     checkmesh_log: str,
     solver_log: str,
     coefficients: str,
+    *,
+    reference_mesh: dict | None = None,
 ) -> tuple[dict, np.ndarray, np.ndarray]:
     inlet, angle = case["inlet_velocity"], np.deg2rad(case["aoa_deg"])
     native = [
@@ -208,7 +214,8 @@ def compare_reproduction(
         for values in (original_force, reproduced_force, original_cp, reproduced_cp)
     ):
         raise ValueError("non-finite force or surface pressure in reproduction")
-    mesh_ok = mesh_check_passed(checkmesh_log)
+    strict_mesh_ok = mesh_check_passed(checkmesh_log)
+    mesh_ok = strict_mesh_ok or reference_mesh is not None
     delta = np.abs(reproduced_force[:, 0] - original_force[:, 0])
     tolerance = np.maximum([0.02, 0.0005], np.abs(original_force[:, 0]) * [0.03, 0.05])
     cp_rmse = np.sqrt(np.mean((reproduced_cp - original_cp) ** 2, axis=1))
@@ -225,6 +232,7 @@ def compare_reproduction(
             "coefficient_names": ["CL", "CD"],
             "contribution_names": ["total", "pressure", "viscous"],
             "mesh_ok": mesh_ok,
+            "strict_mesh_ok": strict_mesh_ok,
             "original_coefficients": original_force.tolist(),
             "reproduced_coefficients": reproduced_force.tolist(),
             "coefficient_absolute_difference": delta.tolist(),
@@ -233,7 +241,8 @@ def compare_reproduction(
             "cp_rmse": cp_rmse.tolist(),
             "cp_rmse_tolerance": 0.05,
             "convergence": convergence,
-        },
+        }
+        | ({"reference_mesh_exception": reference_mesh} if reference_mesh else {}),
         original_cp,
         reproduced_cp,
     )
@@ -279,6 +288,7 @@ def main() -> None:
     ):
         verify.add_argument(argument, type=Path)
     verify.add_argument("--out", type=Path, required=True)
+    verify.add_argument("--reference-mesh-exception", action="store_true")
     args = parser.parse_args()
     pin = json.loads(PIN.read_text())
     if args.command == "plan":
@@ -316,6 +326,14 @@ def main() -> None:
                 report[f"{field}_sha256"] = hashlib.file_digest(
                     stream, "sha256"
                 ).hexdigest()
+        reference_mesh = None
+        if args.reference_mesh_exception:
+            reference_mesh = approved_reference_mesh(case["id"], report["plan_sha256"])
+            verify_reference_mesh(
+                logs["checkmesh_log"],
+                args.checkmesh_log.parent / "constant/polyMesh",
+                reference_mesh,
+            )
         result, original_cp, reproduced_cp = compare_reproduction(
             case,
             original,
@@ -323,6 +341,7 @@ def main() -> None:
             logs["checkmesh_log"],
             logs["solver_log"],
             logs["force_history"],
+            reference_mesh=reference_mesh,
         )
     except (ValueError, OSError) as error:
         _write_json(

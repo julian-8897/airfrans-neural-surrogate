@@ -11,6 +11,7 @@ Each **[agree]** item in [PLAN.md](../../PLAN.md) is settled here, with the user
 | Data for reported runs (official processed vs remeshed) | Data | accepted for this study | [2026-11-20](2026-11-20-reported-airfrans-data.md) |
 | Out-of-family set selection rule | Data | accepted for this study | [2026-11-20](2026-11-20-matched-airfoil-cohorts.md) |
 | Solver reproduction tolerance (CL, CD, surface pressure) | Solver reproduction | accepted for this study | [2026-11-20](2026-11-20-openfoam-reproduction.md) |
+| Reference-mesh exception and requalification allocation | Solver reproduction and Compute budget | accepted for three reference cases | [2026-11-23](2026-11-23-reference-mesh-requalification.md) |
 | Architectures and hyperparameters for reported runs | Models | accepted for this study | [2026-11-20](2026-11-20-original-transolver-training.md) |
 | Metric set and which runs count | Evaluation harness | accepted for this study | [2026-11-20](2026-11-20-original-transfer-measures.md) |
 | Design-loop objectives (A lift-led, B CL/CD) | Design loop (Q3) | open | |

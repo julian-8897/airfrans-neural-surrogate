@@ -88,18 +88,21 @@ def budget(
     proposals: dict[str, int],
     *,
     preparation: dict[str, Allocation] | None = None,
+    reference_requalification: bool = False,
 ) -> dict:
     if allocations.keys() != phases.keys():
         raise ValueError("accounting snapshot and registered job IDs differ")
+    wall_limits = WALL_LIMIT_MINUTES | (
+        {"reproduction": 60} if reference_requalification else {}
+    )
     for job, phase in phases.items():
-        if allocations[job].limit_minutes > WALL_LIMIT_MINUTES[phase]:
+        if allocations[job].limit_minutes > wall_limits[phase]:
             raise ValueError(f"{job} exceeds its phase's wall-time limit")
     if any(count < 0 for count in proposals.values()):
         raise ValueError("proposed job count must be non-negative")
     charged = sum(a.charge for a in allocations.values())
     proposed = sum(
-        count * CORES * WALL_LIMIT_MINUTES[phase] * 60
-        for phase, count in proposals.items()
+        count * CORES * wall_limits[phase] * 60 for phase, count in proposals.items()
     )
     other = preparation or {}
     if allocations.keys() & other.keys():

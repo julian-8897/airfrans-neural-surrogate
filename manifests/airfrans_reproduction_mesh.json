@@ -1,0 +1,31 @@
+{
+  "plan_sha256": "dff9e219fbdd6ca9efc1a986cd8be346bd0e538345ca341ad258e7ea5d4899ef",
+  "cases": {
+    "airFoil2D_SST_35.575_-4.221_6.432_5.051_16.214": {
+      "source_exp_run": "20261120T232532Z-c620",
+      "flagged_cells": 4,
+      "max_aspect_ratio": "1183.27",
+      "poly_mesh_sha256": {
+        "boundary": "080fefd262bd6b46729fc8ce1f4a3c6f5b78c2d38f3b94209052648eaa867976",
+        "faces.gz": "60aa19e364a098794d54b98f9afce18399d3aef37af08e5e96e6d13a7efc1a91",
+        "neighbour.gz": "704f5609b6cf321ef239ec14f98c25acd2495db1ae3b3ce0924e9eb903482b7d",
+        "owner.gz": "e874b7bbc4b9be7c5e1a8388456403059509b77eebf4fee5ed8700ca9ad99c4a",
+        "points.gz": "c05a6f9f0adbcd5e24424da2e60a14a6cac159f3b156604a5f8a9260687f19be",
+        "sets/highAspectRatioCells.gz": "9e9e79152cc26971619fb05397f10cbf082a14785054b6c9235485333d93369b"
+      }
+    },
+    "airFoil2D_SST_62.357_4.75_1.794_6.505_0.0_6.123": {
+      "source_exp_run": "20261120T233024Z-9c8e",
+      "flagged_cells": 96,
+      "max_aspect_ratio": "2438.8",
+      "poly_mesh_sha256": {
+        "boundary": "55cb37cad38920a434f1a7972c8698577da5003211b1146494473fe153bf8969",
+        "faces.gz": "1e4aad1fb245466cf33eb13adcf44f02798d2868ae3f349cb022c3594a01500e",
+        "neighbour.gz": "f167d5450b87be9008d1010cb6c6558f2061a06c4c75b000ededb25ac2b85941",
+        "owner.gz": "5e4b058c6c24fcd50b7acc7c7e30d25b48ca051255c193be1f6c41f555b5e166",
+        "points.gz": "65ba972689dc1756841e6bcb2c8c4b24a7c4a19f4553bcf51bb0e9f30a18f124",
+        "sets/highAspectRatioCells.gz": "c83598e3d2894e5f2d1328a39f723701ea6a3ddc304e61a58377f980e36ea195"
+      }
+    }
+  }
+}
