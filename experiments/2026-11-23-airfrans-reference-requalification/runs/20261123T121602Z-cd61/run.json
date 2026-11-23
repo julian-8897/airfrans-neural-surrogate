@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261123T121602Z-cd61",
   "experiment": "2026-11-23-airfrans-reference-requalification",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "912168"
   },
   "command": [
     "sbatch",
@@ -21,9 +21,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-23T12:16:02+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-23T12:49:51+00:00",
+  "duration_s": 2029.246,
+  "exit_code": 0,
   "git": {
     "commit": "657e1a45eb9fc914c3a1ec057b8748fd6ec1c959",
     "branch": "prototype-evaluation",
@@ -53,6 +53,44 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-reference-requalification/20261123T121602Z-cd61",
-  "metrics": null,
-  "note": "Approved 16-core reference reproduction and in-allocation verification on Eureka2 parallel scratch. Uses the reference-specific mesh pin."
+  "metrics": {
+    "passed": true,
+    "case": "airFoil2D_SST_35.575_-4.221_6.432_5.051_16.214",
+    "strict_mesh_ok": false,
+    "coefficient_absolute_difference": [
+      0.000222739168146191,
+      3.725597371161474e-05
+    ],
+    "coefficient_tolerance": [
+      0.02,
+      0.00058495920754625
+    ],
+    "cp_rmse": [
+      0.00013176781834093508,
+      0.00012530988309751408
+    ],
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.2218354962000005,
+        0.011682611920000032
+      ],
+      "last_mean": [
+        0.22183305979999976,
+        0.011682293480000038
+      ],
+      "absolute_difference": [
+        2.4364000007492947e-06,
+        3.184399999939247e-07
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    },
+    "allocated_cpu_core_seconds": 26976
+  },
+  "note": "Approved 16-core reference reproduction and in-allocation verification on Eureka2 parallel scratch. Uses the reference-specific mesh pin.\nOpenFOAM and native export completed. The regenerated mesh passed the approved reference-specific exception. The original CL, CD, Cp and convergence gates all passed."
 }

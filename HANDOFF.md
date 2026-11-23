@@ -15,8 +15,9 @@ The three 60-minute jobs reserve 48 of the 50 approved allocated CPU-core-hours,
 | `912168` | `20261123T121602Z-cd61` | First reference, pinned aspect-ratio exception |
 | `912169` | `20261123T121607Z-15c3` | Second reference, pinned aspect-ratio exception |
 | `912170` | `20261123T121611Z-e60d` | Third reference, standard mesh check |
+| `912372` | `20261123T131711Z-2a24` | Same third reference, recovery on `node22` |
 
-All three were `RUNNING` at the first scheduler check. The matched runs and frozen-model inference depend on all three passing verification.
+Jobs `912168` and `912169` passed all mesh, force, pressure and force convergence checks. Their maximum absolute drag differences from AirfRANS were 3.73 × 10⁻⁵ and 3.25 × 10⁻⁵ respectively. Job `912170` timed out on `node21` at 39,199 of 40,000 iterations and wrote no final fields. The three settled allocations used 31.76 CPU-core-hours. The same-input recovery on `node22` reserves another 16, bringing the maximum to 47.76 of the approved 50. The matched runs and frozen-model inference depend on the third reference passing verification.
 
 ## Official benchmark closeout
 
