@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 
 from airfoil_surrogate.cfd.accounting import CORES
-from airfoil_surrogate.cfd.campaign import check_qualification
+from airfoil_surrogate.cfd.campaign import check_qualification, verify_case_outputs
 from airfoil_surrogate.cfd.convert import convert_files
 from airfoil_surrogate.cfd.reference_mesh import (
     approved_reference_mesh,
@@ -212,6 +212,48 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def _retain_completed_case(
+    source: Path, out: Path, case: dict, plan_sha: str, qualification_sha: str
+) -> None:
+    details = json.loads((source / "case.json").read_bytes())
+    former_job = str(details["slurm_job_id"])
+    evidence = verify_case_outputs(
+        source, case, plan_sha, former_job, qualification_sha
+    )
+    source_case = source / "case"
+    if not mesh_check_passed((source_case / "log.checkMesh").read_text()):
+        raise ValueError("retained matched case failed the mesh check")
+    convergence = read_convergence(
+        (source_case / MONITOR_PATH).read_text(),
+        (source_case / "log.simpleFoam").read_text(),
+        case["iteration_limit"],
+    )
+    if convergence != evidence["convergence"]:
+        raise ValueError("retained convergence evidence differs from the solver logs")
+    out.mkdir(parents=True, exist_ok=False)
+    for name in ("log.checkMesh", "log.simpleFoam", MONITOR_PATH):
+        target = out / "case" / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_case / name, target)
+    shutil.copytree(source / "native", out / "native")
+    _write_json(
+        out / "case.json",
+        details
+        | {
+            "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
+            "recovered_from": {
+                "job_id": former_job,
+                "completion": evidence["completion"],
+            },
+        },
+    )
+    completion = json.loads((source / "completion.json").read_bytes())
+    _write_json(
+        out / "completion.json",
+        completion | {"case_sha256": _sha256(out / "case.json")},
+    )
+
+
 def run_case(
     plan: Path,
     case_id: str,
@@ -220,6 +262,7 @@ def run_case(
     *,
     qualification: Path | None = None,
     reference_mesh_exception: bool = False,
+    completed_output: Path | None = None,
 ) -> None:
     if os.environ.get("WM_PROJECT_VERSION") not in ("2112", "v2112"):
         raise RuntimeError("source the OpenFOAM v2112 runtime before running a case")
@@ -250,6 +293,13 @@ def run_case(
                 "qualification and matched case use different official splits"
             )
         qualification_sha256 = _sha256(qualification)
+    if completed_output is not None:
+        if qualification_sha256 is None:
+            raise ValueError("only matched CFD can recover a completed export")
+        _retain_completed_case(
+            completed_output, out, case, plan_sha256, qualification_sha256
+        )
+        return
     out.mkdir(parents=True, exist_ok=False)
     source = out / "generator"
     generator_sha256 = _generator_archive(generator_repo, source)
@@ -294,6 +344,7 @@ def main() -> None:
     parser.add_argument("generator_repo", type=Path)
     parser.add_argument("--qualification", type=Path)
     parser.add_argument("--reference-mesh-exception", action="store_true")
+    parser.add_argument("--completed-output", type=Path)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     run_case(
@@ -303,6 +354,7 @@ def main() -> None:
         args.out,
         qualification=args.qualification,
         reference_mesh_exception=args.reference_mesh_exception,
+        completed_output=args.completed_output,
     )
     print(args.out)
 

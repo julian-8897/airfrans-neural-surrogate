@@ -210,3 +210,70 @@ def test_matched_runner_requires_reproduction_evidence_before_preparation(
     with pytest.raises(ValueError, match="requires three qualifying reproductions"):
         runner.run_case(plan, "uiuc-test", tmp_path, out)
     assert not out.exists()
+
+
+def test_recovers_verified_native_fields_into_a_new_allocation(tmp_path, monkeypatch):
+    source = tmp_path / "prior"
+    case = {"id": "uiuc-verified", "iteration_limit": 20_000}
+    case_dir = source / "case"
+    history = case_dir / runner.MONITOR_PATH
+    history.parent.mkdir(parents=True)
+    history.write_text(
+        "# Time Cd Cl\n" + "".join(f"{i} 0.02 0.5\n" for i in range(1, 1001))
+    )
+    solver = case_dir / "log.simpleFoam"
+    solver.write_text("Time = 1000\nEnd\n")
+    mesh = case_dir / "log.checkMesh"
+    mesh.write_text("Mesh OK.\n")
+    native = source / "native"
+    native.mkdir()
+    outputs = {}
+    for external in ("internal.vtu", "aerofoil.vtp"):
+        path = native / external
+        path.write_text(external)
+        outputs[external] = {
+            "size": path.stat().st_size,
+            "sha256": runner._sha256(path),
+        }
+    conversion = native / "conversion.json"
+    conversion.write_text(json.dumps({"output": outputs}))
+    metadata = source / "case.json"
+    metadata.write_text(
+        json.dumps(
+            dict(
+                case=case,
+                plan_sha256="plan",
+                qualification_sha256="gate",
+                slurm_job_id="1",
+            )
+        )
+    )
+    completion = source / "completion.json"
+    completion.write_text(
+        json.dumps(
+            {
+                "case": case["id"],
+                "convergence": runner.read_convergence(
+                    history.read_text(), solver.read_text(), case["iteration_limit"]
+                ),
+                "case_sha256": runner._sha256(metadata),
+                "force_monitor_sha256": runner._sha256(history),
+                "solver_log_sha256": runner._sha256(solver),
+                "mesh_log_sha256": runner._sha256(mesh),
+                "conversion_sha256": runner._sha256(conversion),
+            }
+        )
+    )
+    saved = completion.read_bytes()
+    monkeypatch.setenv("SLURM_JOB_ID", "2")
+    recovered = tmp_path / "recovered"
+    runner._retain_completed_case(source, recovered, case, "plan", "gate")
+    checked = runner.verify_case_outputs(recovered, case, "plan", "2", "gate")
+    assert (
+        checked["native"]["internal.vtu"]["sha256"] == outputs["internal.vtu"]["sha256"]
+    )
+    assert (
+        json.loads((recovered / "case.json").read_bytes())["recovered_from"]["job_id"]
+        == "1"
+    )
+    assert completion.read_bytes() == saved

@@ -119,16 +119,19 @@ def _terminal_attempts(
     return by_case
 
 
-def _verify_case(
-    row: dict, case: dict, plan_sha: str, qualification_sha: str | None = None
+def verify_case_outputs(
+    root: Path,
+    case: dict,
+    plan_sha: str,
+    job_id: str,
+    qualification_sha: str | None = None,
 ) -> dict:
-    root = Path(row["cfd_dir"])
     details = _json(root / "case.json")
     completion = _json(root / "completion.json")
     if (details["case"], details["plan_sha256"], str(details["slurm_job_id"])) != (
         case,
         plan_sha,
-        row["job_id"],
+        job_id,
     ):
         raise ValueError(f"CFD case provenance mismatch for {case['id']}")
     if details.get("qualification_sha256") != qualification_sha:
@@ -163,17 +166,21 @@ def _verify_case(
             "size": outputs[name]["size"],
             "sha256": outputs[name]["sha256"],
         }
+    return {
+        "completion": _record(root / "completion.json"),
+        "native": native,
+        "convergence": completion["convergence"],
+    } | ({"reference_mesh_exception": reference_mesh} if reference_mesh else {})
+
+
+def _verify_case(
+    row: dict, case: dict, plan_sha: str, qualification_sha: str | None = None
+) -> dict:
+    verified = verify_case_outputs(
+        Path(row["cfd_dir"]), case, plan_sha, row["job_id"], qualification_sha
+    )
     return (
-        case
-        | {
-            "job_id": row["job_id"],
-            "run_id": row["run_id"],
-            "completion": _record(root / "completion.json"),
-            "native": native,
-            "convergence": completion["convergence"],
-            "allocation": row["allocation"],
-        }
-        | ({"reference_mesh_exception": reference_mesh} if reference_mesh else {})
+        case | verified | {key: row[key] for key in ("job_id", "run_id", "allocation")}
     )
 
 

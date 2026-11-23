@@ -10,8 +10,8 @@
 #SBATCH --output=slurm-%j.log
 set -euo pipefail
 
-if [ "$#" -ne 4 ]; then
-    echo 'Usage: cfd-matched.sbatch COHORTS_JSON CASE_ID GENERATOR_REPO QUALIFICATION_JSON' >&2
+if [ "$#" -ne 4 ] && { [ "$#" -ne 6 ] || [ "$5" != --completed-output ]; }; then
+    echo 'Usage: cfd-matched.sbatch COHORTS_JSON CASE_ID GENERATOR_REPO QUALIFICATION_JSON [--completed-output CFD_DIR]' >&2
     exit 2
 fi
 
@@ -22,4 +22,4 @@ if [ -n "${AIRFOIL_SCRATCH:-}" ]; then
 fi
 export OMP_NUM_THREADS=1
 python -m airfoil_surrogate.cfd.run_case "$1" "$2" "$3" \
-    --qualification "$4" --out "$EXP_OUT/cfd"
+    --qualification "$4" --out "$EXP_OUT/cfd" "${@:5}"

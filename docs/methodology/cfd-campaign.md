@@ -19,6 +19,8 @@ After protocol approval, register every solver attempt with `exp`. Preserve the 
 
 Use `phase: matched` for the matched cases. For failed attempts, set `outcome` to `retry` for a recoverable infrastructure failure or `reject` for a prespecified scientific failure. Include a `reason` and an `evidence` file. Valid scientific reasons are `geometry`, `mesh`, `nonfinite_output` and `force_convergence`. Keep active attempts in the ledger with `outcome: pending`. Resolve them before qualification or the final freeze.
 
+If an interrupted matched allocation has a complete native export and completion record, a new allocation can retain that exact solution with `--completed-output CFD_DIR` on the matched batch command. It verifies the original case, mesh, solver, convergence and export evidence, then writes a new completion record bound to the successful recovery allocation. Keep the original timeout and the recovery in the ledger.
+
 Save the allocation rows for **all** submitted jobs in the campaign, including failures and active jobs. Use the raw fields below. `ElapsedRaw` is in seconds and `TimelimitRaw` is in minutes. The budget command charges actual allocated CPU time for terminal jobs and reserves the full wall limit for jobs that are active or pending. [Slurm accounting fields](https://slurm.schedmd.com/sacct.html#SECTION_Job-Accounting-Fields).
 
 Keep CPU preparation and verification jobs in a separate snapshot with the same fields. Pass it to `budget`, `qualify` and `freeze` with `--preparation-accounting` so these allocations count towards the same cap. Use the full reserved wall time when proposing a new preparation allocation.
