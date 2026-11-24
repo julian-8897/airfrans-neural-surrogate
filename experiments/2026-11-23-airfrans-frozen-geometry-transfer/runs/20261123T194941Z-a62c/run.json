@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "run_id": "20261123T194941Z-a62c",
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "status": "succeeded",
+  "backend": {
+    "kind": "slurm",
+    "job_id": "913131"
+  },
+  "command": [
+    "sbatch",
+    "--parsable",
+    "--time=00:45:00",
+    "--job-name=airfrans-matched-176",
+    "--chdir=/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf",
+    "--exclude=node21,node28",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout-4476ddf/configs/cfd-matched.sbatch",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T232258Z-dbcd/cohorts/cohorts.json",
+    "uiuc-e472",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T231048Z-9482/NACA_simulation",
+    "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T144952Z-5130/campaign.json"
+  ],
+  "cwd": ".",
+  "started": "2026-11-23T19:49:41+00:00",
+  "ended": "2026-11-24T12:13:43+00:00",
+  "duration_s": 59042.443,
+  "exit_code": 0,
+  "git": {
+    "commit": "efe942d0436d660f8d056851942aed5d5782baeb",
+    "branch": "prototype-evaluation",
+    "dirty": false,
+    "diff_sha256": null,
+    "untracked": []
+  },
+  "config": {
+    "path": "/private/tmp/airfrans-requalification-20261123.dRdG04/matched-configs/attempt-176.json",
+    "sha256": "a90d913983694888fc74cc9c9c7835365859765f53b3b47a12d3f315bb7bdb91",
+    "copy": "experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261123T194941Z-a62c/config.json"
+  },
+  "seeds": [],
+  "data": [],
+  "env": {
+    "host": "Mac",
+    "platform": "macOS-27.2.1-arm64-arm-64bit-Mach-O",
+    "exp_python": "3.13.11",
+    "uv_lock_sha256": "b4e849c34a82ac4eaba4f3c1c8a7f33cfedf5637b5e751c86d8e4cdae5b005bb",
+    "gpus": [],
+    "slurm_job_id": null
+  },
+  "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194941Z-a62c",
+  "metrics": {
+    "case": "uiuc-e472",
+    "job_id": "913131",
+    "allocated_cpu_core_seconds": 34048,
+    "slurm_state": "COMPLETED",
+    "slurm_exit_code": "0:0",
+    "outcome": "qualified",
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.44002477960000014,
+        0.009322503535999997
+      ],
+      "last_mean": [
+        0.4400250532000059,
+        0.009322551338000024
+      ],
+      "absolute_difference": [
+        2.7360000576237553e-07,
+        4.780200002670043e-08
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    }
+  },
+  "note": "Approved 45-minute same-input recovery after an allocation timeout. Preserves the ranked case and all numerical settings.\nVerified matched CFD output and immutable provenance"
+}

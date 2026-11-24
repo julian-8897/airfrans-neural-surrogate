@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "b737c.dat",
+    "source_sha256": "e5ffbf1f8922a2febbea2ed3f42a7f4e8534ea9f58fb8eec3b2545070142f17f",
+    "index_labels": [
+      "continued"
+    ],
+    "order_sha256": "00f4e6157f82428a6a28b13bab521e5661bfb897758ccaa18465348d50be4bd2",
+    "coordinate_label": "BOEING 737 MIDSPAN AIRFOIL",
+    "thickness": 0.10009899900811263,
+    "absolute_camber": 0.014501049083609835,
+    "trailing_gap": 0.001,
+    "nearest_naca_id": "airFoil2D_SST_58.253_4.47_1.554_4.779_1.0_9.828",
+    "nearest_naca_rms": 0.0033336522007572744,
+    "status": "eligible",
+    "rank": 3,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-b737c",
+    "group": "uiuc",
+    "role": "primary",
+    "geometry_file": "geometry/uiuc-b737c.csv",
+    "geometry_sha256": "70cb128e942f777c9de416a3a96dd9bd1241ed2b9f798409b403b1ab0396eb2d"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

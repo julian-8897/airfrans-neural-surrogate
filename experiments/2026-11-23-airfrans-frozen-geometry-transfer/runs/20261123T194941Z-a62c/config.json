@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "e472.dat",
+    "source_sha256": "71411e13fc1b405dd85d0a7914e8f03edd4f567ac83e47e073c925b15b32b1a4",
+    "index_labels": [
+      "Eppler E472 aerobatic aircraft airfoil"
+    ],
+    "order_sha256": "0fc43b781dac4b683b2ff49c62804ebb10951c7542b59b833d19276a892e78ed",
+    "coordinate_label": "EPPLER 472 AIRFOIL",
+    "thickness": 0.12097972034235317,
+    "absolute_camber": 0.0,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_45.619_4.925_5.72_0.0_11.709",
+    "nearest_naca_rms": 0.005193486427388494,
+    "status": "eligible",
+    "rank": 41,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-e472",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-e472.csv",
+    "geometry_sha256": "21b0efc405bf139b47b4fd3b25d74b3ea4664c57d3d7d77c38d38c99f9edeb0e"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}

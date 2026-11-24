@@ -1,4 +1,12 @@
-# Last session (2026-11-23)
+# Last session (2026-11-24)
+
+The frozen Transolver study has 59 qualified CFD references, comprising 29 UIUC profiles and all 30 unseen NACA controls. All five 45-minute same-input retries from the previous wave completed, as did `uiuc-goe629`. The local ranked-prefix check, using `cfd.campaign.retained_cases`, confirmed the intended 30 UIUC, 15 NACA four-digit and 15 NACA five-digit cases if the one remaining case qualifies. No matched-model inference has run.
+
+The remaining case is UIUC rank 101, `uiuc-s3016`. Job `928510`, run `20261124T121440Z-8e65`, used the approved 45-minute recovery on `node27` and timed out at logged iteration 19,938 of 20,000 after 2,719 allocated seconds. No final fields or native export were retained. Its final available 1,000 force records ended at iteration 19,937. The successive 500-iteration means differed by 4.38 × 10⁻⁸ in CL and 6.83 × 10⁻⁹ in CD. This supports giving the unchanged solver enough time to complete. The case still needs the full simulation, export and standard checks.
+
+Settled cumulative spend is 705.08 of 710 CPU-core-hours. No jobs are live. Approval is pending for one 50-minute retry on 16 cores and a cumulative cap of 725 CPU-core-hours including freeze, inference and report. The updated local control scripts `freeze-approved.py`, `infer-transfer-approved.py` and `report-transfer.py` are in the matched study's ignored `control/` directory. After any new budget approval, ensure their accounting arguments and archived checkout reflect the new decision. The terminal statuses were reconciled from `sacct` and retained CFD evidence. On `efe942d` with experiment records in progress, `uv run --locked --no-sync pytest -q` passed all 79 tests, Ruff check and formatting passed, and `exp validate` passed with 219 runs.
+
+## Matched study preparation and earlier waves
 
 The active goal is the frozen model's matched UIUC and NACA evaluation against CFD lift, drag and flow fields. On Eureka2 parallel scratch, `sha256sum` verified the retained checkpoint and freeze against the official evidence. `cmp` verified that the checkpoint's normaliser matches the 720-case training fit. The scratch candidate manifest matches the local copy and has 30 primary cases in each group. The 60 CFD reference solutions and held-out inference are pending.
 

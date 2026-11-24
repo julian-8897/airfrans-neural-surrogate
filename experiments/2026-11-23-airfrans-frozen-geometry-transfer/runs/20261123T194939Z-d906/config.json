@@ -1,0 +1,29 @@
+{
+  "case": {
+    "filename": "s6061.dat",
+    "source_sha256": "94495cdbc55d4d0f0732d9a47b1eb02ae3a5d726a606b43938ef9b60cb9a91d8",
+    "index_labels": [
+      "Selig S6061 low Reynolds number airfoil"
+    ],
+    "order_sha256": "0dde98ff240c227decc303cc09ca9f6a26492cd72467c2953cdeb15a0a3a72fc",
+    "coordinate_label": "S6061 9%",
+    "thickness": 0.09013126428479686,
+    "absolute_camber": 0.01855064657880373,
+    "trailing_gap": 0.0,
+    "nearest_naca_id": "airFoil2D_SST_90.743_14.221_1.897_3.274_8.669",
+    "nearest_naca_rms": 0.001959857098652136,
+    "status": "eligible",
+    "rank": 31,
+    "inlet_velocity": 61.992593165709856,
+    "aoa_deg": 4.0,
+    "reynolds": 4000000.0,
+    "iteration_limit": 20000,
+    "id": "uiuc-s6061",
+    "group": "uiuc",
+    "role": "reserve",
+    "geometry_file": "geometry/uiuc-s6061.csv",
+    "geometry_sha256": "729281aa60d7131ef04bc617e97e504aebe44eeb6b4c5b263a5d1a3d7efa3e96"
+  },
+  "cohorts_sha256": "cf1f290a4b6b7d75312a6a0dce52025cfe409d92c4c253bddfff4797ebc95871",
+  "qualification_sha256": "f3dffe65cf240a3ac652e03d47a16906ff43b7345ccc0b4a70a2efcf58bfcf27"
+}
