@@ -143,6 +143,27 @@ def matched_timeout_retries(
     return frozenset(approved)
 
 
+def final_matched_recovery(
+    attempts: list[dict], allocations: dict[str, Allocation]
+) -> str:
+    case_attempts = [
+        row
+        for row in attempts
+        if (row["phase"], row["case"]) == ("matched", "uiuc-s3016")
+    ]
+    longer = [
+        row["job_id"]
+        for row in case_attempts
+        if allocations[row["job_id"]].limit_minutes > 45
+    ]
+    if len(longer) != 1:
+        raise ValueError("expected one approved final recovery for uiuc-s3016")
+    index = next(i for i, row in enumerate(case_attempts) if row["job_id"] == longer[0])
+    if index == 0 or case_attempts[index - 1]["job_id"] != "928510":
+        raise ValueError("the final recovery must directly follow timeout 928510")
+    return longer[0]
+
+
 def verify_case_outputs(
     root: Path,
     case: dict,
@@ -381,6 +402,7 @@ def main() -> None:
         action.add_argument("--preparation-accounting", type=Path)
         action.add_argument("--reference-requalification", action="store_true")
         action.add_argument("--matched-timeout-recovery", action="store_true")
+        action.add_argument("--final-matched-recovery", action="store_true")
         action.add_argument(
             "--cpu-core-hours", type=int, default=TOTAL_CORE_SECONDS // 3600
         )
@@ -410,6 +432,11 @@ def main() -> None:
             matched_timeout_retries(attempts, allocations)
             if args.matched_timeout_recovery
             else frozenset()
+        ),
+        final_matched_recovery_job=(
+            final_matched_recovery(attempts, allocations)
+            if args.final_matched_recovery
+            else None
         ),
     ) | {
         "ledger": _record(args.ledger),

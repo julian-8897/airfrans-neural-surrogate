@@ -6,7 +6,10 @@ import pytest
 
 from airfoil_surrogate.cfd import reference_mesh
 from airfoil_surrogate.cfd.accounting import Allocation, budget
-from airfoil_surrogate.cfd.campaign import matched_timeout_retries
+from airfoil_surrogate.cfd.campaign import (
+    final_matched_recovery,
+    matched_timeout_retries,
+)
 
 
 def test_reference_exception_binds_plan_case_mesh_and_the_single_failure(
@@ -84,3 +87,26 @@ def test_longer_matched_wall_time_requires_a_same_case_timeout():
     permitted = matched_timeout_retries([first, retry], allocations)
     recorded = budget(allocations, phases, {}, matched_recovery_jobs=permitted)
     assert recorded["charged_core_seconds"] == 16 * (2110 + 45 * 60)
+
+
+def test_final_retry_only_allows_one_job_for_the_approved_case():
+    allocations = {
+        "928510": Allocation(16, 16, 2719, 45, "TIMEOUT", "0:0"),
+        "3": Allocation(0, 16, 0, 50, "PENDING", "0:0"),
+    }
+    prior = dict(phase="matched", case="uiuc-s3016", job_id="928510")
+    retry = prior | {"job_id": "3"}
+    phases = {key: "matched" for key in allocations}
+    with pytest.raises(ValueError, match="only|directly follow"):
+        final_matched_recovery([retry], allocations)
+    final = final_matched_recovery([prior, retry], allocations)
+    with pytest.raises(ValueError, match="approved matched timeout retry"):
+        budget(allocations, phases, {}, final_matched_recovery_job=final)
+    checked = budget(
+        allocations,
+        phases,
+        {},
+        matched_recovery_jobs=frozenset(allocations),
+        final_matched_recovery_job=final,
+    )
+    assert checked["charged_core_seconds"] == 16 * (2719 + 3000)

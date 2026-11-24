@@ -92,11 +92,17 @@ def budget(
     reference_requalification: bool = False,
     cap_core_seconds: int = TOTAL_CORE_SECONDS,
     matched_recovery_jobs: frozenset[str] = frozenset(),
+    final_matched_recovery_job: str | None = None,
 ) -> dict:
     if cap_core_seconds <= 0:
         raise ValueError("the CPU budget must be positive")
     if allocations.keys() != phases.keys():
         raise ValueError("accounting snapshot and registered job IDs differ")
+    if final_matched_recovery_job is not None and (
+        phases.get(final_matched_recovery_job) != "matched"
+        or final_matched_recovery_job not in matched_recovery_jobs
+    ):
+        raise ValueError("the final recovery must be an approved matched timeout retry")
     wall_limits = WALL_LIMIT_MINUTES | (
         {"reproduction": 60} if reference_requalification else {}
     )
@@ -106,6 +112,8 @@ def budget(
             if phase == "matched" and job in matched_recovery_jobs
             else wall_limits[phase]
         )
+        if job == final_matched_recovery_job:
+            wall_limit = 50
         if allocations[job].limit_minutes > wall_limit:
             raise ValueError(f"{job} exceeds its phase's wall-time limit")
     if any(count < 0 for count in proposals.values()):
