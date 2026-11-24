@@ -1,0 +1,6 @@
+{
+  "cohort_sha256": "7bd39bd934f0e760882e14c0928f10577c80fa33f0dc6aada7a7ec0c179a443c",
+  "frozen_sha256": "fa69f019e9827302fed2e6d37998139973c36260c7965ff040d09d9a4acd6063",
+  "checkpoint_sha256": "0753ab2aa7048c54f0fdee9a972f3729c4abc9540aca4e5eb4b6f1a3667dd543",
+  "prior_gpu_seconds": 52197
+}

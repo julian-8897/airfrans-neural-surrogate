@@ -2,10 +2,10 @@
   "schema": 1,
   "run_id": "20261124T131732Z-0fbe",
   "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
-  "status": "running",
+  "status": "succeeded",
   "backend": {
     "kind": "slurm",
-    "job_id": null
+    "job_id": "929808"
   },
   "command": [
     "sbatch",
@@ -22,9 +22,9 @@
   ],
   "cwd": ".",
   "started": "2026-11-24T13:17:32+00:00",
-  "ended": null,
-  "duration_s": null,
-  "exit_code": null,
+  "ended": "2026-11-24T14:04:36+00:00",
+  "duration_s": 2824.004,
+  "exit_code": 0,
   "git": {
     "commit": "d0afe0b6c81ec5a6adf3b96235cf3a97d2b049f4",
     "branch": "prototype-evaluation",
@@ -48,6 +48,34 @@
     "slurm_job_id": null
   },
   "output_dir": "outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261124T131732Z-0fbe",
-  "metrics": null,
-  "note": "Approved same-input 50-minute recovery for UIUC rank 101 after recorded Slurm timeout 928510."
+  "metrics": {
+    "case": "uiuc-s3016",
+    "job_id": "929808",
+    "allocated_cpu_core_seconds": 37136,
+    "slurm_state": "COMPLETED",
+    "slurm_exit_code": "0:0",
+    "outcome": "qualified",
+    "convergence": {
+      "passed": true,
+      "window_length": 500,
+      "last_iteration": 20000,
+      "previous_mean": [
+        0.6324278423999989,
+        0.009118658993999988
+      ],
+      "last_mean": [
+        0.6324277946000003,
+        0.009118675521999992
+      ],
+      "absolute_difference": [
+        4.7799998625919216e-08,
+        1.652800000334631e-08
+      ],
+      "tolerance": [
+        0.002,
+        5e-05
+      ]
+    }
+  },
+  "note": "Approved same-input 50-minute recovery for UIUC rank 101 after recorded Slurm timeout 928510.\nVerified matched CFD output and immutable provenance"
 }

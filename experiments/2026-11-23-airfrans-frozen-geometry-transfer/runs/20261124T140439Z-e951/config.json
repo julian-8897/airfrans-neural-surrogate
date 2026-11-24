@@ -1,0 +1,1416 @@
+{
+  "attempts": [
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_35.575_-4.221_6.432_5.051_16.214",
+      "exp_run": "20261123T121602Z-cd61.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121602Z-cd61/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121602Z-cd61/verification/reproduction.json"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_62.357_4.75_1.794_6.505_0.0_6.123",
+      "exp_run": "20261123T121607Z-15c3.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121607Z-15c3/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121607Z-15c3/verification/reproduction.json"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_88.719_12.609_5.172_0.0_11.439",
+      "exp_run": "20261123T121611Z-e60d.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T121611Z-e60d/slurm-912170.log"
+    },
+    {
+      "phase": "reproduction",
+      "case": "airFoil2D_SST_88.719_12.609_5.172_0.0_11.439",
+      "exp_run": "20261123T131711Z-2a24.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T131711Z-2a24/cfd",
+      "verification": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-reference-requalification/20261123T131711Z-2a24/verification/reproduction.json"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-rc10n1",
+      "exp_run": "20261123T145211Z-cc61.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145211Z-cc61/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_93.213_3.79_0.418_0.0_9.665",
+      "exp_run": "20261123T145213Z-6f55.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145213Z-6f55/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh27",
+      "exp_run": "20261123T145215Z-b785.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145215Z-b785/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_90.197_2.112_1.988_6.662_0.0_16.247",
+      "exp_run": "20261123T145216Z-8463.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145216Z-8463/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-b737c",
+      "exp_run": "20261123T145218Z-e90c.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145218Z-e90c/slurm-912714.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_65.202_-3.411_1.499_5.063_12.467",
+      "exp_run": "20261123T145219Z-7b69.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145219Z-7b69/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e635",
+      "exp_run": "20261123T145221Z-122e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145221Z-122e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_65.137_-0.857_1.659_4.203_1.0_7.197",
+      "exp_run": "20261123T145223Z-73ea.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145223Z-73ea/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e342",
+      "exp_run": "20261123T145224Z-ff4e.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145224Z-ff4e/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_58.859_13.222_0.658_5.498_17.478",
+      "exp_run": "20261123T145226Z-e042.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145226Z-e042/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-stcyr171",
+      "exp_run": "20261123T145228Z-d0f9.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145228Z-d0f9/slurm-912720.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_65.002_11.743_1.823_7.599_1.0_15.595",
+      "exp_run": "20261123T145229Z-9b92.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145229Z-9b92/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe613",
+      "exp_run": "20261123T145435Z-f672.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145435Z-f672/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_74.924_10.466_3.207_0.0_15.011",
+      "exp_run": "20261123T145437Z-70b3.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145437Z-70b3/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e521",
+      "exp_run": "20261123T145439Z-2eac.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145439Z-2eac/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_62.723_-1.384_2.243_6.46_0.0_8.85",
+      "exp_run": "20261123T145440Z-3349.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145440Z-3349/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e231",
+      "exp_run": "20261123T145442Z-136c.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145442Z-136c/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_52.195_-1.473_3.503_3.753_13.675",
+      "exp_run": "20261123T145443Z-9426.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145443Z-9426/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-la2573a",
+      "exp_run": "20261123T145445Z-f62a.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145445Z-f62a/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_68.096_11.613_1.485_4.441_1.0_11.892",
+      "exp_run": "20261123T145447Z-1f01.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145447Z-1f01/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh61",
+      "exp_run": "20261123T145448Z-d9d5.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145448Z-d9d5/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_45.059_0.002_4.332_6.389_8.438",
+      "exp_run": "20261123T145450Z-d5db.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145450Z-d5db/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-stcyr172",
+      "exp_run": "20261123T145452Z-aa89.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145452Z-aa89/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_82.537_6.598_2.148_5.703_1.0_12.892",
+      "exp_run": "20261123T145453Z-90d5.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145453Z-90d5/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e818",
+      "exp_run": "20261123T145455Z-26c2.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145455Z-26c2/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_80.611_-1.934_4.377_0.0_7.627",
+      "exp_run": "20261123T145456Z-57f9.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145456Z-57f9/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hsnlf213",
+      "exp_run": "20261123T145458Z-b0b7.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145458Z-b0b7/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_91.602_10.45_2.763_4.44_0.0_16.132",
+      "exp_run": "20261123T145500Z-d4d7.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145500Z-d4d7/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe622",
+      "exp_run": "20261123T145501Z-455e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145501Z-455e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_85.752_6.341_0.382_6.715_8.448",
+      "exp_run": "20261123T145503Z-a91f.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145503Z-a91f/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-clarkz",
+      "exp_run": "20261123T145504Z-6d55.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145504Z-6d55/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_39.497_-4.94_0.473_3.219_1.0_16.447",
+      "exp_run": "20261123T145506Z-9136.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145506Z-9136/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s9026",
+      "exp_run": "20261123T145508Z-c623.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145508Z-c623/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_87.291_7.541_4.057_0.0_17.571",
+      "exp_run": "20261123T145509Z-95b5.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145509Z-95b5/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-jx-gs-15",
+      "exp_run": "20261123T145511Z-de2d.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145511Z-de2d/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_86.326_9.572_2.09_6.863_0.0_12.995",
+      "exp_run": "20261123T145518Z-ac70.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T145518Z-ac70/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s8052",
+      "exp_run": "20261123T150510Z-7a04.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150510Z-7a04/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_48.999_7.352_4.239_5.813_7.804",
+      "exp_run": "20261123T150512Z-bb6f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150512Z-bb6f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s4062",
+      "exp_run": "20261123T150513Z-a055.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150513Z-a055/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_38.731_9.437_2.626_6.388_1.0_14.922",
+      "exp_run": "20261123T150515Z-6ea9.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150515Z-6ea9/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-du8608418",
+      "exp_run": "20261123T150522Z-179e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150522Z-179e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_53.509_6.273_1.063_0.0_7.271",
+      "exp_run": "20261123T150524Z-5efd.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150524Z-5efd/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hq108",
+      "exp_run": "20261123T150525Z-dd3a.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150525Z-dd3a/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_84.137_13.126_3.096_3.725_0.0_14.021",
+      "exp_run": "20261123T150527Z-9e7e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150527Z-9e7e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx60157",
+      "exp_run": "20261123T150528Z-a4c5.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150528Z-a4c5/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_79.502_3.387_4.058_0.0_17.153",
+      "exp_run": "20261123T150530Z-c5ea.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150530Z-c5ea/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e176",
+      "exp_run": "20261123T150532Z-a6a7.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150532Z-a6a7/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_43.007_1.079_3.697_3.071_1.0_12.272",
+      "exp_run": "20261123T150533Z-76cd.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150533Z-76cd/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-sd8000",
+      "exp_run": "20261123T150535Z-127c.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150535Z-127c/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_89.523_6.267_4.381_6.934_14.085",
+      "exp_run": "20261123T150536Z-ed16.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150536Z-ed16/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-ah80136",
+      "exp_run": "20261123T150538Z-d147.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150538Z-d147/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_39.01_8.67_0.874_3.693_1.0_16.259",
+      "exp_run": "20261123T150540Z-632c.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150540Z-632c/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-usa45m",
+      "exp_run": "20261123T150541Z-3b55.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150541Z-3b55/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_81.645_7.57_2.408_5.987_11.876",
+      "exp_run": "20261123T150543Z-abfb.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150543Z-abfb/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe559",
+      "exp_run": "20261123T150544Z-3d5e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150544Z-3d5e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_72.141_12.23_1.127_4.281_1.0_10.461",
+      "exp_run": "20261123T150546Z-06c6.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T150546Z-06c6/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e325",
+      "exp_run": "20261123T152719Z-40fe.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152719Z-40fe/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_67.706_-0.1_1.95_5.358_10.058",
+      "exp_run": "20261123T152721Z-e84f.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152721Z-e84f/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-p51droot",
+      "exp_run": "20261123T152722Z-f524.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152722Z-f524/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_86.999_4.281_3.703_4.242_1.0_7.47",
+      "exp_run": "20261123T152724Z-a4fd.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152724Z-a4fd/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s6061",
+      "exp_run": "20261123T152726Z-952c.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152726Z-952c/slurm-912876.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_59.266_-3.994_5.206_2.719_14.894",
+      "exp_run": "20261123T152727Z-de2d.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152727Z-de2d/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e417",
+      "exp_run": "20261123T152729Z-4a3b.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152729Z-4a3b/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_82.474_-3.457_1.866_7.496_0.0_16.213",
+      "exp_run": "20261123T152731Z-21f7.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152731Z-21f7/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e654",
+      "exp_run": "20261123T152732Z-6f99.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152732Z-6f99/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_63.757_8.194_0.641_6.49_16.591",
+      "exp_run": "20261123T152734Z-06c8.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152734Z-06c8/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe477",
+      "exp_run": "20261123T152735Z-793f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152735Z-793f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_88.307_-4.328_3.461_7.533_0.0_15.226",
+      "exp_run": "20261123T152743Z-5c32.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152743Z-5c32/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-giiim",
+      "exp_run": "20261123T152745Z-0db4.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152745Z-0db4/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_64.598_8.654_3.566_5.34_7.491",
+      "exp_run": "20261123T152746Z-97bf.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152746Z-97bf/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh30",
+      "exp_run": "20261123T152748Z-b351.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152748Z-b351/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_47.789_3.639_3.974_7.872_1.0_16.005",
+      "exp_run": "20261123T152750Z-f473.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152750Z-f473/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-jx-gs-06",
+      "exp_run": "20261123T152751Z-7c6e.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152751Z-7c6e/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_62.644_9.845_4.588_0.0_7.441",
+      "exp_run": "20261123T152753Z-c352.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152753Z-c352/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-sa7026",
+      "exp_run": "20261123T152754Z-1eaf.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152754Z-1eaf/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_52.403_3.314_3.418_5.667_0.0_10.515",
+      "exp_run": "20261123T152756Z-f053.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152756Z-f053/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e328",
+      "exp_run": "20261123T152801Z-b212.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152801Z-b212/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh82",
+      "exp_run": "20261123T152803Z-a18f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152803Z-a18f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_53.943_5.835_1.916_4.258_1.0_17.602",
+      "exp_run": "20261123T152804Z-d3f7.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152804Z-d3f7/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e472",
+      "exp_run": "20261123T152806Z-2083.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152806Z-2083/slurm-912911.log"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-raf33",
+      "exp_run": "20261123T152808Z-80db.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152808Z-80db/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_73.967_-1.295_1.592_4.266_1.0_16.148",
+      "exp_run": "20261123T152809Z-c555.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T152809Z-c555/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-b737c",
+      "exp_run": "20261123T160539Z-0ec6.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160539Z-0ec6/slurm-912950.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_79.552_4.065_0.184_6.952_14.205",
+      "exp_run": "20261123T160541Z-d2d3.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160541Z-d2d3/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-stcyr171",
+      "exp_run": "20261123T160542Z-ddb1.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160542Z-ddb1/slurm-912952.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_72.611_-2.163_0.02_6.478_0.0_14.131",
+      "exp_run": "20261123T160544Z-cdc3.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160544Z-cdc3/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hq3518",
+      "exp_run": "20261123T160545Z-8a46.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160545Z-8a46/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_86.75_14.13_0.471_5.71_17.904",
+      "exp_run": "20261123T160553Z-54e4.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160553Z-54e4/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-sd5060",
+      "exp_run": "20261123T160554Z-274a.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160554Z-274a/slurm-912956.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_40.539_-2.945_3.79_7.613_1.0_16.903",
+      "exp_run": "20261123T160556Z-19d8.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160556Z-19d8/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-daytonwright6",
+      "exp_run": "20261123T160558Z-9f9c.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160558Z-9f9c/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-usa33",
+      "exp_run": "20261123T160559Z-df0e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160559Z-df0e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_36.155_8.69_3.296_7.636_1.0_8.571",
+      "exp_run": "20261123T160601Z-25a3.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160601Z-25a3/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-n14",
+      "exp_run": "20261123T160602Z-cbc0.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160602Z-cbc0/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e836",
+      "exp_run": "20261123T160604Z-881b.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160604Z-881b/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_68.256_7.603_0.268_7.095_0.0_11.801",
+      "exp_run": "20261123T160606Z-cc10.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160606Z-cc10/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe314",
+      "exp_run": "20261123T160607Z-da15.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160607Z-da15/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s8037",
+      "exp_run": "20261123T160609Z-9b8a.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160609Z-9b8a/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_54.238_7.911_2.123_3.832_1.0_9.902",
+      "exp_run": "20261123T160610Z-34a2.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160610Z-34a2/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx79w151a",
+      "exp_run": "20261123T160612Z-0bea.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160612Z-0bea/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-usa40b",
+      "exp_run": "20261123T160614Z-f18d.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160614Z-f18d/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_82.708_1.905_2.307_5.28_1.0_16.618",
+      "exp_run": "20261123T160615Z-c925.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160615Z-c925/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-lwk79100",
+      "exp_run": "20261123T160617Z-1252.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160617Z-1252/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e854",
+      "exp_run": "20261123T160619Z-cbdc.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160619Z-cbdc/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_51.101_7.597_0.458_3.077_0.0_14.85",
+      "exp_run": "20261123T160620Z-ff97.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160620Z-ff97/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe437",
+      "exp_run": "20261123T160622Z-93a4.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160622Z-93a4/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e178",
+      "exp_run": "20261123T160623Z-6d1f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T160623Z-6d1f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s6061",
+      "exp_run": "20261123T162723Z-0b9b.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162723Z-0b9b/slurm-913004.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_60.541_2.401_0.081_0.0_16.295",
+      "exp_run": "20261123T162725Z-de8a.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162725Z-de8a/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e434",
+      "exp_run": "20261123T162727Z-4ded.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162727Z-4ded/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_42.34_1.874_0.761_3.136_1.0_10.022",
+      "exp_run": "20261123T162728Z-3fae.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162728Z-3fae/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-r140",
+      "exp_run": "20261123T162730Z-51e1.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162730Z-51e1/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe12k",
+      "exp_run": "20261123T162731Z-1142.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T162731Z-1142/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e472",
+      "exp_run": "20261123T163751Z-dd2e.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163751Z-dd2e/slurm-913012.log"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-ui1720",
+      "exp_run": "20261123T163753Z-78c2.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163753Z-78c2/slurm-913013.log"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_89.324_10.448_2.949_4.158_1.0_10.198",
+      "exp_run": "20261123T163754Z-6cda.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163754Z-6cda/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe144",
+      "exp_run": "20261123T163756Z-e8e2.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163756Z-e8e2/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s9033",
+      "exp_run": "20261123T163757Z-b8d7.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163757Z-b8d7/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_91.532_9.129_2.77_4.013_1.0_17.265",
+      "exp_run": "20261123T163759Z-4ea4.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163759Z-4ea4/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-ag44ct02r",
+      "exp_run": "20261123T163801Z-0655.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163801Z-0655/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-v23010",
+      "exp_run": "20261123T163802Z-c179.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163802Z-c179/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_74.033_-0.601_1.517_3.622_0.0_10.34",
+      "exp_run": "20261123T163804Z-166a.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163804Z-166a/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe627",
+      "exp_run": "20261123T163805Z-668e.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163805Z-668e/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-rae101",
+      "exp_run": "20261123T163807Z-df1a.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163807Z-df1a/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-rg1495",
+      "exp_run": "20261123T163809Z-f53c.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163809Z-f53c/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-rc510",
+      "exp_run": "20261123T163810Z-cfbe.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T163810Z-cfbe/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-stcyr171",
+      "exp_run": "20261123T170259Z-307d.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170259Z-307d/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx80080",
+      "exp_run": "20261123T170304Z-468f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170304Z-468f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe585",
+      "exp_run": "20261123T170305Z-2a0f.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170305Z-2a0f/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_82.21_13.462_0.176_6.355_0.0_12.645",
+      "exp_run": "20261123T170307Z-4056.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170307Z-4056/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-tempest1",
+      "exp_run": "20261123T170308Z-8e7f.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170308Z-8e7f/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e428",
+      "exp_run": "20261123T170310Z-541e.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170310Z-541e/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_64.341_8.316_0.545_6.883_1.0_16.251",
+      "exp_run": "20261123T170312Z-fe82.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170312Z-fe82/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx83w108",
+      "exp_run": "20261123T170313Z-4271.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170313Z-4271/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e329",
+      "exp_run": "20261123T170315Z-063a.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170315Z-063a/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_41.044_-0.773_1.334_6.785_1.0_16.207",
+      "exp_run": "20261123T170322Z-4f97.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170322Z-4f97/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-eh1070",
+      "exp_run": "20261123T170324Z-ebc8.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170324Z-ebc8/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe315",
+      "exp_run": "20261123T170326Z-fc71.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170326Z-fc71/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-k3311",
+      "exp_run": "20261123T170327Z-8424.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170327Z-8424/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe278",
+      "exp_run": "20261123T170329Z-3046.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T170329Z-3046/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-rae2822",
+      "exp_run": "20261123T173650Z-abcb.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173650Z-abcb/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-b707b",
+      "exp_run": "20261123T173655Z-2fb5.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173655Z-2fb5/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_44.995_5.582_0.618_7.104_1.0_16.596",
+      "exp_run": "20261123T173659Z-288f.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173659Z-288f/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-raf27",
+      "exp_run": "20261123T173703Z-8f15.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173703Z-8f15/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e638",
+      "exp_run": "20261123T173707Z-74e2.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173707Z-74e2/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_58.038_-4.278_2.807_7.062_1.0_8.833",
+      "exp_run": "20261123T173712Z-9724.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173712Z-9724/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s3024",
+      "exp_run": "20261123T173716Z-b758.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T173716Z-b758/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe408",
+      "exp_run": "20261123T175815Z-bf02.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175815Z-bf02/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-giiig",
+      "exp_run": "20261123T175820Z-8239.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175820Z-8239/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "airFoil2D_SST_61.642_14.277_1.498_5.176_0.0_16.386",
+      "exp_run": "20261123T175824Z-45c7.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175824Z-45c7/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-boe106",
+      "exp_run": "20261123T175829Z-8da4.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175829Z-8da4/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-b707a",
+      "exp_run": "20261123T175833Z-6dbb.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175833Z-6dbb/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hq3015",
+      "exp_run": "20261123T175837Z-3400.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175837Z-3400/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-nn7mk20",
+      "exp_run": "20261123T175841Z-e50c.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T175841Z-e50c/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-coanda3",
+      "exp_run": "20261123T181451Z-9ec1.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181451Z-9ec1/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe115",
+      "exp_run": "20261123T181456Z-87dc.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181456Z-87dc/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe413",
+      "exp_run": "20261123T181501Z-8ac1.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181501Z-8ac1/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e68",
+      "exp_run": "20261123T181506Z-0d89.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181506Z-0d89/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh32",
+      "exp_run": "20261123T181510Z-f815.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181510Z-f815/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx84w150",
+      "exp_run": "20261123T181514Z-69f2.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T181514Z-69f2/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe682",
+      "exp_run": "20261123T183606Z-639e.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T183606Z-639e/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hq2512",
+      "exp_run": "20261123T183607Z-81c0.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T183607Z-81c0/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s2062",
+      "exp_run": "20261123T183609Z-b953.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T183609Z-b953/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s6062",
+      "exp_run": "20261123T183610Z-96df.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T183610Z-96df/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-sd6080",
+      "exp_run": "20261123T185155Z-d9ba.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185155Z-d9ba/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s3016",
+      "exp_run": "20261123T185157Z-6134.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185157Z-6134/slurm-913108.log"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-mh80",
+      "exp_run": "20261123T185158Z-2822.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185158Z-2822/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e585",
+      "exp_run": "20261123T185200Z-c1b6.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185200Z-c1b6/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe701",
+      "exp_run": "20261123T185307Z-7836.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185307Z-7836/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e337",
+      "exp_run": "20261123T185309Z-f8a4.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185309Z-f8a4/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-fx66s171",
+      "exp_run": "20261123T185310Z-50d6.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T185310Z-50d6/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-hq208",
+      "exp_run": "20261123T190342Z-86b7.json",
+      "outcome": "reject",
+      "reason": "mesh",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T190342Z-86b7/cfd/case/log.checkMesh"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-goe629",
+      "exp_run": "20261123T192417Z-5cd7.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T192417Z-5cd7/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-b737c",
+      "exp_run": "20261123T194938Z-e1ad.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194938Z-e1ad/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s6061",
+      "exp_run": "20261123T194939Z-d906.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194939Z-d906/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-e472",
+      "exp_run": "20261123T194941Z-a62c.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194941Z-a62c/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-sd5060",
+      "exp_run": "20261123T194942Z-1780.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194942Z-1780/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-ui1720",
+      "exp_run": "20261123T194944Z-678b.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261123T194944Z-678b/cfd"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s3016",
+      "exp_run": "20261124T121440Z-8e65.json",
+      "outcome": "retry",
+      "reason": "allocation_timeout",
+      "evidence": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261124T121440Z-8e65/slurm-928510.log"
+    },
+    {
+      "phase": "matched",
+      "case": "uiuc-s3016",
+      "exp_run": "20261124T131732Z-0fbe.json",
+      "outcome": "qualified",
+      "cfd_dir": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261124T131732Z-0fbe/cfd"
+    }
+  ]
+}
