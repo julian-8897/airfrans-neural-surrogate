@@ -1,0 +1,8 @@
+{
+  "experiment": "2026-11-23-airfrans-frozen-geometry-transfer",
+  "transfer_run_id": "20261124T140621Z-5177",
+  "training": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261121T000542Z-7845/training",
+  "baselines": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261120T235221Z-fd04/baselines.json",
+  "freeze": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-20-original-mesh-transfer/20261121T000901Z-2157/frozen.json",
+  "cohorts": "/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/20261124T140439Z-e951/campaign.json"
+}

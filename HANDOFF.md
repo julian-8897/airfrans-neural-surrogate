@@ -1,4 +1,18 @@
-# Last session (2026-11-24)
+# Last session (2026-11-25)
+
+The matched unseen-geometry study is complete. The frozen original-mesh Transolver (seed 0, epoch 390 and its training-only normaliser) ran once on each of 30 non-NACA UIUC airfoils and 30 unseen NACA controls, split equally between four- and five-digit families. OpenFOAM supplied the reference fields and integrated forces at Re = 4 × 10⁶ and AoA = +4°. The ranked cohort was sealed before inference. No model training or selection used these cases.
+
+| Stage | Slurm job | Experiment run |
+| --- | --- | --- |
+| Cohort freeze and mesh checks | `930938` | [20261124T140439Z-e951](experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261124T140439Z-e951/run.json) |
+| Full-mesh A100 inference | `931021` | [20261124T140621Z-5177](experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261124T140621Z-5177/run.json) |
+| Independent report verification | `931879` | [20261125T000633Z-1444](experiments/2026-11-23-airfrans-frozen-geometry-transfer/runs/20261125T000633Z-1444/run.json) |
+
+Lift MAE rose from 0.01986 on NACA to 0.05576 on UIUC, with a difference of 0.03590 and a shape-bootstrap 95% interval of [0.01872, 0.05675]. Lift Spearman ρ fell from 0.987 to 0.877. The model overpredicted drag on all 60 cases, predominantly through the viscous contribution. Drag MAE rose from 0.06180 to 0.09880, while drag Spearman ρ was 0.091 and 0.051. The area-weighted off-wall pressure and both velocity MSEs increased on UIUC, and wall-pressure MSE increased by a factor of 6.28. These estimates apply to the CFD-qualified cohorts, this operating point and one checkpoint. The [official 200-case benchmark and its verification](experiments/2026-11-20-original-mesh-transfer/runs/20261121T002731Z-34b1/run.json) and the [three reference reproductions](experiments/2026-11-23-airfrans-reference-requalification/experiment.json) provide the earlier qualification evidence.
+
+The study output root is `/parallel_scratch/jc02423/airfrans-original-20261120/checkout/outputs/2026-11-23-airfrans-frozen-geometry-transfer/`. Under this root the freeze run retains `campaign.json`, the inference run retains `transfer/cases.jsonl`, 60 dimensional prediction files and `transfer/report/{summary,rankings}.json`, and the verification run retains `report/{report.md,evidence.json}`. The verifier checked all prediction hashes and exactly regenerated the metrics and rankings. The frozen checkpoint SHA-256 is `0753ab2aa7048c54f0fdee9a972f3729c4abc9540aca4e5eb4b6f1a3667dd543`. Inference ran for 167 seconds from scratch archive `checkout-d0afe0b`. The `transfer-report` preparation mode ran for 26 seconds from `checkout-2ad35ca`. The final `sacct -X` reconciliation recorded 715.51 allocated CPU-core-hours and 14.55 A100-hours across the original-mesh and matched campaign. `exp validate` passed for four experiments and 223 runs. No matched jobs remain.
+
+## Matched cohort freeze and final CFD recovery (2026-11-24)
 
 The frozen Transolver study has all 60 qualified CFD references, comprising 30 UIUC profiles and 30 unseen NACA controls. The five 45-minute same-input retries from the previous wave completed, as did `uiuc-goe629`. The final approved retry `929808` completed `uiuc-s3016`, passed the standard mesh and convergence gates and exported its native fields. It used 2,321 seconds on 16 cores. Its final convergence differences were 4.78 × 10⁻⁸ in CL and 1.65 × 10⁻⁸ in CD.
 
@@ -10,7 +24,7 @@ The user [approved one final retry](docs/decisions/2026-11-24-final-uiuc-recover
 
 ## Matched study preparation and earlier waves
 
-The active goal is the frozen model's matched UIUC and NACA evaluation against CFD lift, drag and flow fields. On Eureka2 parallel scratch, `sha256sum` verified the retained checkpoint and freeze against the official evidence. `cmp` verified that the checkpoint's normaliser matches the 720-case training fit. The scratch candidate manifest matches the local copy and has 30 primary cases in each group. The 60 CFD reference solutions and held-out inference are pending.
+During preparation, `sha256sum` verified the retained checkpoint and freeze against the official evidence on Eureka2 parallel scratch. `cmp` verified that the checkpoint's normaliser matches the 720-case training fit. The scratch candidate manifest matched the local copy and had 30 primary cases in each group.
 
 An offline preflight materialised the actual OpenFOAM inputs for all 60 primary cases using the pinned generator and the existing `_setup_case` entry point. It verified each UIUC contour hash and that all dictionaries had positive cell counts, finite positive grading and a 20,000-iteration solver schedule. The [preflight results](outputs/2026-11-21-matched-dictionary-preflight/results.json) bind the candidate manifest and generator hashes and record the individual dictionary hashes. `uv run --locked --no-sync --with seaborn==0.13.2 python` ran the [preflight script](outputs/2026-11-21-matched-dictionary-preflight/prepare.py) in `/private/tmp/airfrans-cohort-preflight.BYBMTx`. This exercised input setup locally. Mesh quality, solver convergence and native conversion remain to be measured on the cluster.
 

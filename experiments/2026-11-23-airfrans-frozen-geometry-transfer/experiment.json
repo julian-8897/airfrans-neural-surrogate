@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "2026-11-23-airfrans-frozen-geometry-transfer",
   "title": "Frozen Transolver on matched non-NACA and unseen NACA airfoils",
-  "status": "running",
+  "status": "complete",
   "created": "2026-11-23T14:50:40+00:00",
   "question": "How do field and aerodynamic errors of the frozen Transolver change on non-NACA airfoils compared with unseen NACA controls at the same flow conditions?",
   "hypothesis": "The frozen model may transfer differently for pressure and lift than for near-wall velocity and drag.",
@@ -12,5 +12,9 @@
   "linear": [],
   "parent": "2026-11-23-airfrans-reference-requalification",
   "tags": [],
-  "verdict": null
+  "verdict": {
+    "status": "complete",
+    "text": "Verified the frozen epoch-390 checkpoint against OpenFOAM on 30 UIUC and 30 unseen NACA airfoils at Re 4e6 and AoA +4 degrees. UIUC lift MAE increased from 0.01986 to 0.05576 and Spearman rho fell from 0.9867 to 0.8768. Drag was overpredicted on all 60 airfoils and ranked poorly in both groups. Area-weighted off-wall pressure and both velocity MSEs increased on UIUC. See inference 20261124T140621Z-5177 and verification 20261125T000633Z-1444.",
+    "date": "2026-11-25T00:08:00+00:00"
+  }
 }
